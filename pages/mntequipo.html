@@ -1,0 +1,42 @@
+<div class="container" ng-controller="equipoCtrl">
+    <div class="panel panel-primary">
+        <div class="panel-heading">Equipos</div>
+        <div class="panel-body">
+            <form name="frmEquipo" id="frmEquipo" class="form-inline" ng-submit="frmEquipo.$valid && addEquipo(equipo)" novalidate>
+                <div class="form-group" ng-class="{'has-error':frmEquipo.txtDescEquipo.$invalid && !frmEquipo.txtDescEquipo.$pristine}">
+                    <label for="txtDescEquipo">Descripci&oacute;n:</label>
+                    <input name="txtDescEquipo" id="txtDescEquipo" type="text" class="form-control" style="width: 50em" maxlength="250" ng-model="equipo.descripcion" required/>
+                </div>
+                <div class="btn-group" role="group" aria-label="...">
+                    <button type="submit" class="btn btn-primary" ng-disabled="frmEquipo.$invalid || !permiso.c" ng-hide="+equipo.id > 0">
+                        <span class="glyphicon glyphicon-floppy-save"></span>
+                    </button>
+                    <button type="button" class="btn btn-primary" ng-disabled="frmEquipo.$invalid || !permiso.m" ng-show="+equipo.id > 0" ng-click="updEquipo(equipo)">
+                        <span class="glyphicon glyphicon-floppy-save"></span>
+                    </button>
+                    <button type="button" class="btn btn-warning" ng-disabled="frmEquipo.$invalid || !permiso.e" ng-show="+equipo.id > 0" ng-click="delEquipo(equipo)">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                    <button type="button" class="btn btn-primary" ng-disabled="!permiso.c" ng-show="+equipo.id > 0" ng-click="resetEquipo()">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                </div>
+            </form>
+            <hr/>
+            <div class="table-responsive">
+                <table class="table table-condensed table-hover">
+                    <thead>
+                    <tr>
+                        <th>Descripci&oacute;n</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="e in equipos" ng-click="getEquipo(e.id)">
+                        <td>{{e.descripcion}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

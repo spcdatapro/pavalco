@@ -1,0 +1,205 @@
+<div class="container" ng-controller="parteCtrl">
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a show-tab href="#divFrmParte" data-toggle="tab">PARTES</a>
+        </li>
+        <li ng-show="+parte.id > 0">
+            <a show-tab href="#divFrmImagen" data-toggle="tab">IMAGENES</a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div id="divFrmParte" class="tab-pane fade in active">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Partes</div>
+                <div class="panel-body">
+                    <form name="frmParte" id="frmParte" ng-submit="frmParte.$valid && addParte(parte)" novalidate>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group" ng-class="{'has-error':frmParte.txtCodigo.$invalid && !frmParte.txtCodigo.$pristine}">
+                                    <label for="txtCodigo">C&oacute;digo:</label>
+                                    <input name="txtCodigo" id="txtCodigo" type="text" class="form-control" maxlength="50" ng-model="parte.codigo" required/>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group" ng-class="{'has-error':frmParte.txtCodInt.$invalid && !frmParte.txtCodInt.$pristine}">
+                                    <label for="txtCodInt">C&oacute;digo interno:</label>
+                                    <input name="txtCodInt" id="txtCodInt" type="text" class="form-control" maxlength="50" ng-model="parte.codigointerno"/>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group" ng-class="{'has-error':frmParte.selProveedor.$invalid && !frmParte.selProveedor.$pristine}">
+                                    <label for="selProveedor">Proveedor:</label>
+                                    <ui-select id="selProveedor"
+                                               ng-model="parte.idproveedor"
+                                               title="Seleccione un proveedor..."
+                                               theme="bootstrap"
+                                               autofocus="false"
+                                               append-to-body="true">
+                                        <ui-select-match placeholder="Buscar proveedor..." allow-clear="false">
+                                            <span ng-bind="$select.selected.nombre"></span>
+                                        </ui-select-match>
+                                        <ui-select-choices repeat="item.id as item in proveedores | filter:$select.search">
+                                            <div ng-bind-html="item.nombre | highlight: $select.search"></div>
+                                            <small>
+                                                <strong>N.I.T.:</strong>&nbsp;<span ng-bind-html="item.nit | highlight: $select.search" ></span>
+                                            </small>
+                                        </ui-select-choices>
+                                        <ui-select-no-choice>
+                                            No hay resultados...
+                                        </ui-select-no-choice>
+                                    </ui-select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group" ng-class="{'has-error':frmParte.selMarca.$invalid && !frmParte.selMarca.$pristine}">
+                                    <label for="selMarca">Marca:</label>
+                                    <ui-select id="selMarca"
+                                               ng-model="parte.idmarca"
+                                               title="Seleccione una marca..."
+                                               theme="bootstrap"
+                                               autofocus="false"
+                                               append-to-body="true">
+                                        <ui-select-match placeholder="Buscar marca..." allow-clear="false">
+                                            <span ng-bind="$select.selected.descripcion"></span>
+                                        </ui-select-match>
+                                        <ui-select-choices repeat="item.id as item in marcas | filter:$select.search">
+                                            <div ng-bind-html="item.descripcion | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                        <ui-select-no-choice>
+                                            No hay resultados...
+                                        </ui-select-no-choice>
+                                    </ui-select>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group" ng-class="{'has-error':frmParte.txtDescParte.$invalid && !frmParte.txtDescParte.$pristine}">
+                                    <label for="txtDescParte">Descripci&oacute;n:</label>
+                                    <input name="txtDescParte" id="txtDescParte" type="text" class="form-control" maxlength="250" ng-model="parte.descripcion" required/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group" ng-class="{'has-error':frmParte.selSubGrupo.$invalid && !frmParte.selSubGrupo.$pristine}">
+                                    <label for="selSubGrupo">Subgrupo de parte:</label>
+                                    <ui-select id="selSubGrupo"
+                                               ng-model="parte.idsubgrupo"
+                                               title="Seleccione un subgrupo..."
+                                               theme="bootstrap"
+                                               autofocus="false"
+                                               append-to-body="true">
+                                        <ui-select-match placeholder="Buscar subgrupo..." allow-clear="false">
+                                            <span ng-bind="$select.selected.descripcion"></span>
+                                        </ui-select-match>
+                                        <ui-select-choices repeat="item.id as item in subgrupos | filter:$select.search">
+                                            <div ng-bind-html="item.descripcion | highlight: $select.search"></div>
+                                            <small>
+                                                <strong>Grupo:</strong>&nbsp;<span ng-bind-html="item.grupoparte | highlight: $select.search" ></span>
+                                            </small>
+                                        </ui-select-choices>
+                                        <ui-select-no-choice>
+                                            No hay resultados...
+                                        </ui-select-no-choice>
+                                    </ui-select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group" ng-class="{'has-error':frmParte.txtMin.$invalid && !frmParte.txtMin.$pristine}">
+                                    <label for="txtMin">M&iacute;nimo:</label>
+                                    <input name="txtMin" id="txtMin" type="number" class="form-control" min="0" ng-model="parte.minimo" required/>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group" ng-class="{'has-error':frmParte.txtMax.$invalid && !frmParte.txtMax.$pristine}">
+                                    <label for="txtMax">M&aacute;ximo:</label>
+                                    <input name="txtMax" id="txtMax" type="number" class="form-control" min="0" ng-model="parte.maximo" required/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="btn-group" role="group" aria-label="...">
+                            <button type="submit" class="btn btn-primary" ng-disabled="frmParte.$invalid || !permiso.c" ng-hide="+parte.id > 0">
+                                <span class="glyphicon glyphicon-floppy-save"></span>
+                            </button>
+                            <button type="button" class="btn btn-primary" ng-disabled="frmParte.$invalid || !permiso.m" ng-show="+parte.id > 0" ng-click="updParte(parte)">
+                                <span class="glyphicon glyphicon-floppy-save"></span>
+                            </button>
+                            <button type="button" class="btn btn-warning" ng-disabled="frmParte.$invalid || !permiso.e" ng-show="+parte.id > 0" ng-click="delParte(parte)">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                            <button type="button" class="btn btn-primary" ng-disabled="!permiso.c" ng-show="+parte.id > 0" ng-click="resetParte()">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </button>
+                        </div>
+                    </form>
+                    <hr/>
+                    <div class="table-responsive">
+                        <table class="table table-condensed table-hover">
+                            <thead>
+                            <tr>
+                                <th style="white-space: nowrap">Grupo</th>
+                                <th style="white-space: nowrap">Subgrupo</th>
+                                <th style="white-space: nowrap">C&oacute;digo</th>
+                                <th style="white-space: nowrap">C&oacute;digo interno</th>
+                                <th>Descripci&oacute;n</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="g in partes" ng-click="getParte(g.id)">
+                                <td style="white-space: nowrap">{{g.grupoparte}}</td>
+                                <td style="white-space: nowrap">{{g.subgrupoparte}}</td>
+                                <td style="white-space: nowrap">{{g.codigo}}</td>
+                                <td style="white-space: nowrap">{{g.codigointerno}}</td>
+                                <td>{{g.descripcion}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="divFrmImagen" class="tab-pane fade">
+            <div class="panel panel-success">
+                <div class="panel-heading">Imagenes&nbsp;<span class="badge" style="color: white;">Parte: {{parte.descripcion}}&nbsp;({{parte.grupoparte}}&nbsp;-&nbsp;{{parte.subgrupoparte}})</span></div>
+                <div class="panel-body">
+                    <form name="frmImagen" id="frmImagen" class="form-inline" ng-submit="frmImagen.$valid && addImagen(imagen)" novalidate>
+                        <div class="form-group" ng-class="{'has-error':frmImagen.txtDescImagen.$invalid && !frmImagen.txtDescImagen.$pristine}">
+                            <label for="txtDescImagen">Descripci&oacute;n:</label>
+                            <input name="txtDescImagen" id="txtDescImagen" type="text" class="form-control" style="width: 50em;" maxlength="250" ng-model="imagen.descripcion" required/>
+                        </div>
+                        <div class="btn-group" role="group" aria-label="...">
+                            <button type="submit" class="btn btn-primary" ng-disabled="frmImagen.$invalid || !permiso.c" ng-hide="+imagen.id > 0">
+                                <span class="glyphicon glyphicon-floppy-save"></span>
+                            </button>
+                            <button type="button" class="btn btn-primary" ng-disabled="frmImagen.$invalid || !permiso.m" ng-show="+imagen.id > 0" ng-click="updImagen(imagen)">
+                                <span class="glyphicon glyphicon-floppy-save"></span>
+                            </button>
+                            <button type="button" class="btn btn-warning" ng-disabled="frmImagen.$invalid || !permiso.e" ng-show="+imagen.id > 0" ng-click="delImagen(imagen)">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                            <button type="button" class="btn btn-primary" ng-disabled="!permiso.c" ng-show="+imagen.id > 0" ng-click="resetImagen()">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </button>
+                        </div>
+                    </form>
+                    <hr/>
+                    <div class="table-responsive">
+                        <table class="table table-condensed table-hover">
+                            <thead>
+                            <tr>
+                                <th>Descripci&oacute;n</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="sg in imagenes" ng-click="getImagen(sg.id)">
+                                <td>{{sg.descripcion}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

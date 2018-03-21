@@ -1,0 +1,285 @@
+<style>
+    .centxt{ text-align: center; }
+    .app-modal-window .modal-dialog { width: 1000px; }
+    .allw{ width: 100%; overflow-x: auto; }
+</style>
+<div class="container-fluid" ng-controller="rptIntegracionAnualCtrl">
+    <div class="panel panel-default">
+        <div class="panel-heading">Reporte de Integraci&oacute;n Anual</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="txtAnio">A&ntilde;o:</label>
+                        <input name="txtAnio" id="txtAnio" type="number" class="form-control" ng-model="params.anio" min="2014"/>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="selDe">De:</label>
+                        <select name="selDe" id="selDe" class="form-control" ng-model="params.dmes">
+                            <option ng-repeat="m in meses" value="{{m.id}}">{{m.mes}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="selA">A:</label>
+                        <select name="selA" id="selA" class="form-control" ng-model="params.ames">
+                            <option ng-repeat="m in meses" value="{{m.id}}">{{m.mes}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <div class="form-group">
+                        <label for="chkTopTen">Top 10:</label>
+                        <input name="chkTopTen" id="chkTopTen" type="checkbox" class="form-control" ng-model="params.tt" ng-true-value="1" ng-false-value="0"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer" style="text-align: right">
+            <button type="button" class="btn btn-default btn-sm" ng-click="getRepHtml()">
+                <i class="fa fa-html5 fa-2x" aria-hidden="true"></i>
+            </button>
+            <div class="btn-group btn-group-sm" role="group" aria-label="...">
+                <button type="button" class="btn btn-default" ng-click="getReporte()">
+                    <i class="fa fa-file-excel-o fa-2x" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <hr ng-show="integracion != null && integracion != undefined"/>
+    <div class="table-responsive" ng-show="integracion != null && integracion != undefined">
+        <small>
+            <h4>
+				Total de máquinas activas: {{integracion.maquinasactivas | number:0}}<br/>Máquinas activas en el per&iacute;odo: {{integracion.maquinasperiodo | number:0}}<br/>
+				<strong>NOTA: Puede hacer click sobre cualquier celda para ver el detalle de los casos.</strong>
+			</h4>
+            <div class="allw">
+                <table class="table table-condensed table-hover table-striped">
+                    <caption style="text-align: center">
+                        <h5>REPORTE POR TIPO DE LLAMADA</h5>
+                    </caption>
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th colspan="2" class="centxt" ng-show="ver[0]">Enero</th>
+                        <th colspan="2" class="centxt" ng-show="ver[1]">Febrero</th>
+                        <th colspan="2" class="centxt" ng-show="ver[2]">Marzo</th>
+                        <th colspan="2" class="centxt" ng-show="ver[3]">Abril</th>
+                        <th colspan="2" class="centxt" ng-show="ver[4]">Mayo</th>
+                        <th colspan="2" class="centxt" ng-show="ver[5]">Junio</th>
+                        <th colspan="2" class="centxt" ng-show="ver[6]">Julio</th>
+                        <th colspan="2" class="centxt" ng-show="ver[7]">Agosto</th>
+                        <th colspan="2" class="centxt" ng-show="ver[8]">Septiembre</th>
+                        <th colspan="2" class="centxt" ng-show="ver[9]">Octubre</th>
+                        <th colspan="2" class="centxt" ng-show="ver[10]">Noviembre</th>
+                        <th colspan="2" class="centxt" ng-show="ver[11]">Diciembre</th>
+                        <th colspan="2" class="centxt">Acumulado</th>
+                    </tr>
+                    <tr>
+                        <th>Llamada</th>
+                        <th ng-show="ver[0]">Cantidad</th><th ng-show="ver[0]">% Mix</th>
+                        <th ng-show="ver[1]">Cantidad</th><th ng-show="ver[1]">% Mix</th>
+                        <th ng-show="ver[2]">Cantidad</th><th ng-show="ver[2]">% Mix</th>
+                        <th ng-show="ver[3]">Cantidad</th><th ng-show="ver[3]">% Mix</th>
+                        <th ng-show="ver[4]">Cantidad</th><th ng-show="ver[4]">% Mix</th>
+                        <th ng-show="ver[5]">Cantidad</th><th ng-show="ver[5]">% Mix</th>
+                        <th ng-show="ver[6]">Cantidad</th><th ng-show="ver[6]">% Mix</th>
+                        <th ng-show="ver[7]">Cantidad</th><th ng-show="ver[7]">% Mix</th>
+                        <th ng-show="ver[8]">Cantidad</th><th ng-show="ver[8]">% Mix</th>
+                        <th ng-show="ver[9]">Cantidad</th><th ng-show="ver[9]">% Mix</th>
+                        <th ng-show="ver[10]">Cantidad</th><th ng-show="ver[10]">% Mix</th>
+                        <th ng-show="ver[11]">Cantidad</th><th ng-show="ver[11]">% Mix</th>
+                        <th>Cantidad</th><th>% Mix</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="det in integracion.tipollamada">
+                        <td>{{det.descripcion}}</td>
+                        <td class="numero" ng-show="ver[0]" ng-click="detcelda(1, 1, +params.anio, 1, +det.idtipo)">{{det.ene | number:0}}</td><td class="numero" ng-show="ver[0]" ng-click="detcelda(1, 1, +params.anio, 1, +det.idtipo)">{{det.descripcion != '' ? (det.enemix | number:2) : ''}}</td>
+                        <td class="numero" ng-show="ver[1]" ng-click="detcelda(2, 2, +params.anio, 1, +det.idtipo)">{{det.feb | number:0}}</td><td class="numero" ng-show="ver[1]" ng-click="detcelda(2, 2, +params.anio, 1, +det.idtipo)">{{det.descripcion != '' ? (det.febmix | number:2) : ''}}</td>
+                        <td class="numero" ng-show="ver[2]" ng-click="detcelda(3, 3, +params.anio, 1, +det.idtipo)">{{det.mar | number:0}}</td><td class="numero" ng-show="ver[2]" ng-click="detcelda(3, 3, +params.anio, 1, +det.idtipo)">{{det.descripcion != '' ? (det.marmix | number:2) : ''}}</td>
+                        <td class="numero" ng-show="ver[3]" ng-click="detcelda(4, 4, +params.anio, 1, +det.idtipo)">{{det.abr | number:0}}</td><td class="numero" ng-show="ver[3]" ng-click="detcelda(4, 4, +params.anio, 1, +det.idtipo)">{{det.descripcion != '' ? (det.abrmix | number:2) : ''}}</td>
+                        <td class="numero" ng-show="ver[4]" ng-click="detcelda(5, 5, +params.anio, 1, +det.idtipo)">{{det.may | number:0}}</td><td class="numero" ng-show="ver[4]" ng-click="detcelda(5, 5, +params.anio, 1, +det.idtipo)">{{det.descripcion != '' ? (det.maymix | number:2) : ''}}</td>
+                        <td class="numero" ng-show="ver[5]" ng-click="detcelda(6, 6, +params.anio, 1, +det.idtipo)">{{det.jun | number:0}}</td><td class="numero" ng-show="ver[5]" ng-click="detcelda(6, 6, +params.anio, 1, +det.idtipo)">{{det.descripcion != '' ? (det.junmix | number:2) : ''}}</td>
+                        <td class="numero" ng-show="ver[6]" ng-click="detcelda(7, 7, +params.anio, 1, +det.idtipo)">{{det.jul | number:0}}</td><td class="numero" ng-show="ver[6]" ng-click="detcelda(7, 7, +params.anio, 1, +det.idtipo)">{{det.descripcion != '' ? (det.julmix | number:2) : ''}}</td>
+                        <td class="numero" ng-show="ver[7]" ng-click="detcelda(8, 8, +params.anio, 1, +det.idtipo)">{{det.ago | number:0}}</td><td class="numero" ng-show="ver[7]" ng-click="detcelda(8, 8, +params.anio, 1, +det.idtipo)">{{det.descripcion != '' ? (det.agomix | number:2) : ''}}</td>
+                        <td class="numero" ng-show="ver[8]" ng-click="detcelda(9, 9, +params.anio, 1, +det.idtipo)">{{det.sep | number:0}}</td><td class="numero" ng-show="ver[8]" ng-click="detcelda(9, 9, +params.anio, 1, +det.idtipo)">{{det.descripcion != '' ? (det.sepmix | number:2) : ''}}</td>
+                        <td class="numero" ng-show="ver[9]" ng-click="detcelda(10, 10, +params.anio, 1, +det.idtipo)">{{det.oct | number:0}}</td><td class="numero" ng-show="ver[9]" ng-click="detcelda(10, 10, +params.anio, 1, +det.idtipo)">{{det.descripcion != '' ? (det.octmix | number:2) : ''}}</td>
+                        <td class="numero" ng-show="ver[10]" ng-click="detcelda(11, 11, +params.anio, 1, +det.idtipo)">{{det.nov | number:0}}</td><td class="numero" ng-show="ver[10]" ng-click="detcelda(11, 11, +params.anio, 1, +det.idtipo)">{{det.descripcion != '' ? (det.novmix | number:2) : ''}}</td>
+                        <td class="numero" ng-show="ver[11]" ng-click="detcelda(12, 12, +params.anio, 1, +det.idtipo)">{{det.dic | number:0}}</td><td class="numero" ng-show="ver[11]" ng-click="detcelda(12, 12, +params.anio, 1, +det.idtipo)">{{det.descripcion != '' ? (det.dicmix | number:2) : ''}}</td>
+                        <td class="numero" ng-click="detcelda(+params.dmes, +params.ames, +params.anio, 1, +det.idtipo)">{{det.acu | number:0}}</td><td class="numero" ng-click="detcelda(+params.dmes, +params.ames, +params.anio, 1, +det.idtipo)">{{det.descripcion != '' ? (det.acumix | number:2) : ''}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <hr/>
+            <div class="allw">
+                <table class="table table-condensed table-hover table-striped">
+                    <caption style="text-align: center">
+                        <h5>REPORTE POR TIPO DE PROBLEMA</h5>
+                    </caption>
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th colspan="2" class="centxt" ng-show="ver[0]">Enero</th>
+                        <th colspan="2" class="centxt" ng-show="ver[1]">Febrero</th>
+                        <th colspan="2" class="centxt" ng-show="ver[2]">Marzo</th>
+                        <th colspan="2" class="centxt" ng-show="ver[3]">Abril</th>
+                        <th colspan="2" class="centxt" ng-show="ver[4]">Mayo</th>
+                        <th colspan="2" class="centxt" ng-show="ver[5]">Junio</th>
+                        <th colspan="2" class="centxt" ng-show="ver[6]">Julio</th>
+                        <th colspan="2" class="centxt" ng-show="ver[7]">Agosto</th>
+                        <th colspan="2" class="centxt" ng-show="ver[8]">Septiembre</th>
+                        <th colspan="2" class="centxt" ng-show="ver[9]">Octubre</th>
+                        <th colspan="2" class="centxt" ng-show="ver[10]">Noviembre</th>
+                        <th colspan="2" class="centxt" ng-show="ver[11]">Diciembre</th>
+                        <th colspan="2" class="centxt">Acumulado</th>
+                    </tr>
+                    <tr>
+                        <th>Problema</th>
+                        <th ng-show="ver[0]">Cantidad</th><th ng-show="ver[0]">% Mix</th>
+                        <th ng-show="ver[1]">Cantidad</th><th ng-show="ver[1]">% Mix</th>
+                        <th ng-show="ver[2]">Cantidad</th><th ng-show="ver[2]">% Mix</th>
+                        <th ng-show="ver[3]">Cantidad</th><th ng-show="ver[3]">% Mix</th>
+                        <th ng-show="ver[4]">Cantidad</th><th ng-show="ver[4]">% Mix</th>
+                        <th ng-show="ver[5]">Cantidad</th><th ng-show="ver[5]">% Mix</th>
+                        <th ng-show="ver[6]">Cantidad</th><th ng-show="ver[6]">% Mix</th>
+                        <th ng-show="ver[7]">Cantidad</th><th ng-show="ver[7]">% Mix</th>
+                        <th ng-show="ver[8]">Cantidad</th><th ng-show="ver[8]">% Mix</th>
+                        <th ng-show="ver[9]">Cantidad</th><th ng-show="ver[9]">% Mix</th>
+                        <th ng-show="ver[10]">Cantidad</th><th ng-show="ver[10]">% Mix</th>
+                        <th ng-show="ver[11]">Cantidad</th><th ng-show="ver[11]">% Mix</th>
+                        <th>Cantidad</th><th>% Mix</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="det in integracion.tipocaso">
+                        <td>{{det.descripcion}}</td>
+                        <td class="numero" ng-show="ver[0]" ng-click="detcelda(1, 1, +params.anio, 2, +det.idtipo)">{{det.ene | number:0}}</td><td class="numero" ng-show="ver[0]" ng-click="detcelda(1, 1, +params.anio, 2, +det.idtipo)">{{det.descripcion != '' ? (det.enemix | number:2) : ''}}</td>
+                        <td class="numero" ng-show="ver[1]" ng-click="detcelda(2, 2, +params.anio, 2, +det.idtipo)">{{det.feb | number:0}}</td><td class="numero" ng-show="ver[1]" ng-click="detcelda(2, 2, +params.anio, 2, +det.idtipo)">{{det.descripcion != '' ? (det.febmix | number:2) : ''}}</td>
+                        <td class="numero" ng-show="ver[2]" ng-click="detcelda(3, 3, +params.anio, 2, +det.idtipo)">{{det.mar | number:0}}</td><td class="numero" ng-show="ver[2]" ng-click="detcelda(3, 3, +params.anio, 2, +det.idtipo)">{{det.descripcion != '' ? (det.marmix | number:2) : ''}}</td>
+                        <td class="numero" ng-show="ver[3]" ng-click="detcelda(4, 4, +params.anio, 2, +det.idtipo)">{{det.abr | number:0}}</td><td class="numero" ng-show="ver[3]" ng-click="detcelda(4, 4, +params.anio, 2, +det.idtipo)">{{det.descripcion != '' ? (det.abrmix | number:2) : ''}}</td>
+                        <td class="numero" ng-show="ver[4]" ng-click="detcelda(5, 5, +params.anio, 2, +det.idtipo)">{{det.may | number:0}}</td><td class="numero" ng-show="ver[4]" ng-click="detcelda(5, 5, +params.anio, 2, +det.idtipo)">{{det.descripcion != '' ? (det.maymix | number:2) : ''}}</td>
+                        <td class="numero" ng-show="ver[5]" ng-click="detcelda(6, 6, +params.anio, 2, +det.idtipo)">{{det.jun | number:0}}</td><td class="numero" ng-show="ver[5]" ng-click="detcelda(6, 6, +params.anio, 2, +det.idtipo)">{{det.descripcion != '' ? (det.junmix | number:2) : ''}}</td>
+                        <td class="numero" ng-show="ver[6]" ng-click="detcelda(7, 7, +params.anio, 2, +det.idtipo)">{{det.jul | number:0}}</td><td class="numero" ng-show="ver[6]" ng-click="detcelda(7, 7, +params.anio, 2, +det.idtipo)">{{det.descripcion != '' ? (det.julmix | number:2) : ''}}</td>
+                        <td class="numero" ng-show="ver[7]" ng-click="detcelda(8, 8, +params.anio, 2, +det.idtipo)">{{det.ago | number:0}}</td><td class="numero" ng-show="ver[7]" ng-click="detcelda(8, 8, +params.anio, 2, +det.idtipo)">{{det.descripcion != '' ? (det.agomix | number:2) : ''}}</td>
+                        <td class="numero" ng-show="ver[8]" ng-click="detcelda(9, 9, +params.anio, 2, +det.idtipo)">{{det.sep | number:0}}</td><td class="numero" ng-show="ver[8]" ng-click="detcelda(9, 9, +params.anio, 2, +det.idtipo)">{{det.descripcion != '' ? (det.sepmix | number:2) : ''}}</td>
+                        <td class="numero" ng-show="ver[9]" ng-click="detcelda(10, 10, +params.anio, 2, +det.idtipo)">{{det.oct | number:0}}</td><td class="numero" ng-show="ver[9]" ng-click="detcelda(10, 10, +params.anio, 2, +det.idtipo)">{{det.descripcion != '' ? (det.octmix | number:2) : ''}}</td>
+                        <td class="numero" ng-show="ver[10]" ng-click="detcelda(11, 11, +params.anio, 2, +det.idtipo)">{{det.nov | number:0}}</td><td class="numero" ng-show="ver[10]" ng-click="detcelda(11, 11, +params.anio, 2, +det.idtipo)">{{det.descripcion != '' ? (det.novmix | number:2) : ''}}</td>
+                        <td class="numero" ng-show="ver[11]" ng-click="detcelda(12, 12, +params.anio, 2, +det.idtipo)">{{det.dic | number:0}}</td><td class="numero" ng-show="ver[11]" ng-click="detcelda(12, 12, +params.anio, 2, +det.idtipo)">{{det.descripcion != '' ? (det.dicmix | number:2) : ''}}</td>
+                        <td class="numero" ng-click="detcelda(+params.dmes, +params.ames, +params.anio, 2, +det.idtipo)">{{det.acu | number:0}}</td><td class="numero" ng-click="detcelda(+params.dmes, +params.ames, +params.anio, 2, +det.idtipo)">{{det.descripcion != '' ? (det.acumix | number:2) : ''}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <hr/>
+            <div class="allw">
+                <table class="table table-condensed table-hover table-striped">
+                    <caption style="text-align: center">
+                        <h5>REPORTE POR UBICACI&Oacute;N</h5>
+                    </caption>
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th colspan="2" class="centxt" ng-show="ver[0]">Enero</th>
+                        <th colspan="2" class="centxt" ng-show="ver[1]">Febrero</th>
+                        <th colspan="2" class="centxt" ng-show="ver[2]">Marzo</th>
+                        <th colspan="2" class="centxt" ng-show="ver[3]">Abril</th>
+                        <th colspan="2" class="centxt" ng-show="ver[4]">Mayo</th>
+                        <th colspan="2" class="centxt" ng-show="ver[5]">Junio</th>
+                        <th colspan="2" class="centxt" ng-show="ver[6]">Julio</th>
+                        <th colspan="2" class="centxt" ng-show="ver[7]">Agosto</th>
+                        <th colspan="2" class="centxt" ng-show="ver[8]">Septiembre</th>
+                        <th colspan="2" class="centxt" ng-show="ver[9]">Octubre</th>
+                        <th colspan="2" class="centxt" ng-show="ver[10]">Noviembre</th>
+                        <th colspan="2" class="centxt" ng-show="ver[11]">Diciembre</th>
+                        <th colspan="2" class="centxt">Acumulado</th>
+                    </tr>
+                    <tr>
+                        <th>Ubicaci&oacute;n</th>
+                        <th ng-show="ver[0]">Cantidad</th><th ng-show="ver[0]">% Mix</th>
+                        <th ng-show="ver[1]">Cantidad</th><th ng-show="ver[1]">% Mix</th>
+                        <th ng-show="ver[2]">Cantidad</th><th ng-show="ver[2]">% Mix</th>
+                        <th ng-show="ver[3]">Cantidad</th><th ng-show="ver[3]">% Mix</th>
+                        <th ng-show="ver[4]">Cantidad</th><th ng-show="ver[4]">% Mix</th>
+                        <th ng-show="ver[5]">Cantidad</th><th ng-show="ver[5]">% Mix</th>
+                        <th ng-show="ver[6]">Cantidad</th><th ng-show="ver[6]">% Mix</th>
+                        <th ng-show="ver[7]">Cantidad</th><th ng-show="ver[7]">% Mix</th>
+                        <th ng-show="ver[8]">Cantidad</th><th ng-show="ver[8]">% Mix</th>
+                        <th ng-show="ver[9]">Cantidad</th><th ng-show="ver[9]">% Mix</th>
+                        <th ng-show="ver[10]">Cantidad</th><th ng-show="ver[10]">% Mix</th>
+                        <th ng-show="ver[11]">Cantidad</th><th ng-show="ver[11]">% Mix</th>
+                        <th>Cantidad</th><th>% Mix</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="det in integracion.ubicacion">
+                        <td>{{det.descripcion}}</td>
+                        <td class="numero" ng-show="ver[0]" ng-click="detcelda(1, 1, +params.anio, 3, +det.idtipo)">{{det.ene | number:0}}</td><td class="numero" ng-show="ver[0]" ng-click="detcelda(1, 1, +params.anio, 3, +det.idtipo)">{{det.descripcion != '' ? (det.enemix | number:2) : ''}}</td>
+                        <td class="numero" ng-show="ver[1]" ng-click="detcelda(2, 2, +params.anio, 3, +det.idtipo)">{{det.feb | number:0}}</td><td class="numero" ng-show="ver[1]" ng-click="detcelda(2, 2, +params.anio, 3, +det.idtipo)">{{det.descripcion != '' ? (det.febmix | number:2) : ''}}</td>
+                        <td class="numero" ng-show="ver[2]" ng-click="detcelda(3, 3, +params.anio, 3, +det.idtipo)">{{det.mar | number:0}}</td><td class="numero" ng-show="ver[2]" ng-click="detcelda(3, 3, +params.anio, 3, +det.idtipo)">{{det.descripcion != '' ? (det.marmix | number:2) : ''}}</td>
+                        <td class="numero" ng-show="ver[3]" ng-click="detcelda(4, 4, +params.anio, 3, +det.idtipo)">{{det.abr | number:0}}</td><td class="numero" ng-show="ver[3]" ng-click="detcelda(4, 4, +params.anio, 3, +det.idtipo)">{{det.descripcion != '' ? (det.abrmix | number:2) : ''}}</td>
+                        <td class="numero" ng-show="ver[4]" ng-click="detcelda(5, 5, +params.anio, 3, +det.idtipo)">{{det.may | number:0}}</td><td class="numero" ng-show="ver[4]" ng-click="detcelda(5, 5, +params.anio, 3, +det.idtipo)">{{det.descripcion != '' ? (det.maymix | number:2) : ''}}</td>
+                        <td class="numero" ng-show="ver[5]" ng-click="detcelda(6, 6, +params.anio, 3, +det.idtipo)">{{det.jun | number:0}}</td><td class="numero" ng-show="ver[5]" ng-click="detcelda(6, 6, +params.anio, 3, +det.idtipo)">{{det.descripcion != '' ? (det.junmix | number:2) : ''}}</td>
+                        <td class="numero" ng-show="ver[6]" ng-click="detcelda(7, 7, +params.anio, 3, +det.idtipo)">{{det.jul | number:0}}</td><td class="numero" ng-show="ver[6]" ng-click="detcelda(7, 7, +params.anio, 3, +det.idtipo)">{{det.descripcion != '' ? (det.julmix | number:2) : ''}}</td>
+                        <td class="numero" ng-show="ver[7]" ng-click="detcelda(8, 8, +params.anio, 3, +det.idtipo)">{{det.ago | number:0}}</td><td class="numero" ng-show="ver[7]" ng-click="detcelda(8, 8, +params.anio, 3, +det.idtipo)">{{det.descripcion != '' ? (det.agomix | number:2) : ''}}</td>
+                        <td class="numero" ng-show="ver[8]" ng-click="detcelda(9, 9, +params.anio, 3, +det.idtipo)">{{det.sep | number:0}}</td><td class="numero" ng-show="ver[8]" ng-click="detcelda(9, 9, +params.anio, 3, +det.idtipo)">{{det.descripcion != '' ? (det.sepmix | number:2) : ''}}</td>
+                        <td class="numero" ng-show="ver[9]" ng-click="detcelda(10, 10, +params.anio, 3, +det.idtipo)">{{det.oct | number:0}}</td><td class="numero" ng-show="ver[9]" ng-click="detcelda(10, 10, +params.anio, 3, +det.idtipo)">{{det.descripcion != '' ? (det.octmix | number:2) : ''}}</td>
+                        <td class="numero" ng-show="ver[10]" ng-click="detcelda(11, 11, +params.anio, 3, +det.idtipo)">{{det.nov | number:0}}</td><td class="numero" ng-show="ver[10]" ng-click="detcelda(11, 11, +params.anio, 3, +det.idtipo)">{{det.descripcion != '' ? (det.novmix | number:2) : ''}}</td>
+                        <td class="numero" ng-show="ver[11]" ng-click="detcelda(12, 12, +params.anio, 3, +det.idtipo)">{{det.dic | number:0}}</td><td class="numero" ng-show="ver[11]" ng-click="detcelda(12, 12, +params.anio, 3, +det.idtipo)">{{det.descripcion != '' ? (det.dicmix | number:2) : ''}}</td>
+                        <td class="numero" ng-click="detcelda(+params.dmes, +params.ames, +params.anio, 3, +det.idtipo)">{{det.acu | number:0}}</td><td class="numero" ng-click="detcelda(+params.dmes, +params.ames, +params.anio, 3, +det.idtipo)">{{det.descripcion != '' ? (det.acumix | number:2) : ''}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </small>
+    </div>
+</div>
+<!--Template de la modal //Este usa el controlador ModalDetCasosCtrl-->
+<script type="text/ng-template" id="modalDetCasos.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Detalle de casos cerrados</h3>
+    </div>
+    <div class="modal-body" style="height: 500px; overflow-y: auto;">
+        <small>
+            <table class="table table-striped table-hover table-condensed">
+                <thead>
+                <tr>
+                    <th>No. caso</th>
+                    <th>Equipo</th>
+                    <th>Ubicaci&oacute;n</th>
+                    <th>Llamada</th>
+                    <th>Tipo</th>
+                    <th>Soluci&oacute;n</th>
+                    <th>T&eacute;cnico</th>
+                    <th>Apertura</th>
+                    <th>Cierre</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="c in cerrados">
+                    <td>{{c.nocaso}}</td>
+                    <td>{{c.equipo}}</td>
+                    <td>{{c.ubicacion}}</td>
+                    <td>{{c.tipollamada}}</td>
+                    <td>{{c.tipocaso}}</td>
+                    <td>{{c.tiposolucion}}</td>
+                    <td>{{c.tecnico}}</td>
+                    <td>{{c.fhapertura | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+                    <td>{{c.fhcierre | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </small>
+    </div>
+    <div class="modal-footer">
+        <div class="btn-group" role="group" aria-label="...">
+            <!-- <button class="btn btn-primary" type="button" ng-click="ok()">Aceptar</button> -->
+            <button class="btn btn-primary" type="button" ng-click="cancel()"><i class="fa fa-times-circle-o" aria-hidden="true"></i></button>
+        </div>
+    </div>
+</script>
+<!--Fin de Template de la modal-->

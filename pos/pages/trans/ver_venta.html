@@ -1,0 +1,52 @@
+<div class="row">
+	<div class="col-sm-offset-2 col-sm-8">
+		<table class="table table-condensed">
+			<tbody>
+				<tr>
+					<td>Cliente:</td>
+					<td colspan="3">{{ ven.nombre }} <a href="{{ url_factura }}" class="btn btn-xs btn-default pull-right" target="_blank"><i class="glyphicon glyphicon-print"></i></a></td>
+				</tr>
+				<tr>
+					<td>NIT:</td>
+					<td>{{ ven.nit }}</td>
+					<td>Dirección:</td>
+					<td>{{ ven.direccion }}</td>
+				</tr>
+				<tr>
+					<td>Factura:</td>
+					<td>{{ ven.serie }}-{{ ven.factura}} </td>
+					<td>Fecha:</td>
+					<td>{{ ven.fecha | date:"dd/MM/yyyy" }}</td>
+				</tr>
+				<tr>
+					<td>Nota:</td>
+					<td colspan="3">{{ ven.nota }}</td>
+				</tr>
+			</tbody>
+		</table>
+		<table class="table table-condensed">
+			<thead>
+				<tr>
+					<th>Cantidad</th>
+					<th>Descripción</th>
+					<th class="text-right">Precio/u</th>
+					<th class="text-right">Subtotal</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="i in agregados">
+					<td>{{ i.cantidad | number:0 }}</td>
+					<td>{{ i.descripcion }}</td>
+					<td class="text-right">{{ i.precio | number:2 }}</td>
+					<td class="text-right">{{ i.total | number:2 }}</td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<td colspan="3">TOTAL</td>
+					<td class="text-right">{{ totalVenta | number:2 }}</td>
+				</tr>
+			</tfoot>
+		</table>
+	</div>
+</div>

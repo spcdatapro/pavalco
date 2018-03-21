@@ -1,0 +1,45 @@
+<div class="container" ng-controller="tipoLlamadaCtrl">
+    <div class="panel panel-primary">
+        <div class="panel-heading">Tipos de llamada</div>
+        <div class="panel-body">
+            <form name="frmTipoLlamada" id="frmTipoLlamada" class="form-inline" ng-submit="frmTipoLlamada.$valid && addTipoLlamada(tipollamada)" novalidate>
+                <div class="form-group" ng-class="{'has-error':frmTipoLlamada.txtDescTipoLlamada.$invalid && !frmTipoLlamada.txtDescTipoLlamada.$pristine}">
+                    <label for="txtDescTipoLlamada">Descripci&oacute;n:</label>
+                    <input name="txtDescTipoLlamada" id="txtDescTipoLlamada" type="text" class="form-control" style="width: 50em" maxlength="250" ng-model="tipollamada.descripcion" required/>
+                </div>
+                <div class="btn-group" role="group" aria-label="...">
+                    <button type="submit" class="btn btn-primary" ng-disabled="frmTipoLlamada.$invalid || !permiso.c" ng-hide="+tipollamada.id > 0">
+                        <span class="glyphicon glyphicon-floppy-save"></span>
+                    </button>
+                    <button type="button" class="btn btn-primary" ng-disabled="frmTipoLlamada.$invalid || !permiso.m" ng-show="+tipollamada.id > 0" ng-click="updTipoLlamada(tipollamada)">
+                        <span class="glyphicon glyphicon-floppy-save"></span>
+                    </button>
+                    <button type="button" class="btn btn-warning" ng-disabled="frmTipoLlamada.$invalid || !permiso.e" ng-show="+tipollamada.id > 0" ng-click="delTipoLlamada(tipollamada)">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                    <button type="button" class="btn btn-primary" ng-disabled="!permiso.c" ng-show="+tipollamada.id > 0" ng-click="resetTipoLlamada()">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                </div>
+            </form>
+            <hr/>
+            <div class="table-responsive">
+                <table class="table table-condensed table-hover">
+                    <caption>
+                        <input ng-model="buscar.$" class="form-control" placeholder="Buscar tipo de llamada..." style="width: 100%;" />
+                    </caption>
+                    <thead>
+                    <tr>
+                        <th>Descripci&oacute;n</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="t in tiposllamada | filter:buscar" ng-click="getTipoLlamada(t.id)">
+                        <td>{{t.descripcion}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

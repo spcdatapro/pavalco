@@ -1,0 +1,849 @@
+<style> .app-modal-window .modal-dialog { width: 900px; } </style>
+<div class="container" ng-controller="contratoCtrl">
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a show-tab href="#divContratos" data-toggle="tab">CONTRATOS</a>
+        </li>
+        <li>
+            <a show-tab href="#divProveedores" data-toggle="tab" ng-show="elContrato.id > 0">PROVEEDORES</a>
+        </li>
+        <li>
+            <a show-tab href="#divDatosEspec" data-toggle="tab" ng-show="elContrato.id > 0">DATOS ESPEC&Iacute;FICOS</a>
+        </li>
+        <li>
+            <a show-tab href="#divDatosFact" data-toggle="tab" ng-show="elContrato.id > 0">DATOS DE FACTURACI&Oacute;N</a>
+        </li>
+        <li>
+            <a show-tab href="#divFrmDetCont" data-toggle="tab" ng-show="elContrato.id > 0">DETALLE CONTABLE</a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <div id="divContratos" class="tab-pane fade in active">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Contratos&nbsp;<span class="badge">{{contratoStr}}</span></div>
+                <div class="panel-body">
+                    <form name="frmContrato" id="frmContrato" ng-submit="frmContrato.$valid && addContrato(elContrato)" novalidate>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group" ng-class="{'has-error':frmContrato.txtFechaContrato.$invalid && !frmContrato.txtFechaContrato.$pristine}">
+                                    <label for="txtFechaContrato">Fecha del contrato:</label>
+                                    <input name="txtFechaContrato" id="txtFechaContrato" type="date" class="form-control"
+                                           ng-model="elContrato.fechacontrato" required/>
+                                </div>
+                            </div>
+                        </div>
+                        <table class="table table-responsive table-condensed">
+                            <caption class="tbl-caption-contrato">GRUPO CORPORATIVO FINANCIERO</caption>
+                            <tbody>
+                            <tr>
+                                <td class="td-contrato td-head-contrato"><strong>Promotor</strong></td>
+                                <td class="td-contrato">
+                                    <div class="form-group" ng-class="{'has-error':frmContrato.selPromotor.$invalid && !frmContrato.selPromotor.$pristine}">
+                                        <input name="txtFiltroPromotor" id="txtFiltroPromotor" type="text" class="form-control" ng-model="search"
+                                               placeholder="Nombre del promotor"/>
+                                    </div>
+                                </td>
+                                <td class="td-contrato">
+                                    <div class="form-group" ng-class="{'has-error':frmContrato.selPromotor.$invalid && !frmContrato.selPromotor.$pristine}">
+                                        <select name="selPromotor" id="selPromotor" class="form-control" ng-model="elContrato.objPromotor"
+                                                ng-options="obj.nombre for obj in promotores | filter:{nombre:search}" multiple required>
+                                        </select>
+                                    </div>
+                                </td>
+                                <td class="td-contrato">
+                                    <span>Tel. {{elContrato.objPromotor[0].telefono || '&nbsp;'}}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-contrato td-head-contrato"><strong>Mail</strong></td>
+                                <td colspan="3">{{elContrato.objPromotor[0].correoe || '&nbsp;'}}</td>
+                            </tr>
+                            <tr>
+                                <td class="td-contrato td-head-contrato">
+                                    <strong>Banco o financiera a descontar</strong>
+                                </td>
+                                <td class="td-contrato">
+                                    <div class="form-group" ng-class="{'has-error':frmContrato.selFinan.$invalid && !frmContrato.selFinan.$pristine}">
+                                        <input name="txtFiltroFinan" id="txtFiltroFinan" type="text" class="form-control" ng-model="searchfinan"
+                                               placeholder="Banco o financiera"/>
+                                    </div>
+                                </td>
+                                <td class="td-contrato" colspan="2">
+                                    <div class="form-group" ng-class="{'has-error':frmContrato.selFinan.$invalid && !frmContrato.selFinan.$pristine}">
+                                        <select name="selFinan" id="selFinan" class="form-control" ng-model="elContrato.objFinanciera"
+                                                ng-options="obj.tipofinanfinan for obj in financieras | filter:{nombre:searchfinan}" multiple required>
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <table class="table table-responsive table-condensed">
+                            <caption class="tbl-caption-contrato">CLIENTE</caption>
+                            <tbody>
+                            <tr>
+                                <td class="td-contrato td-head-contrato"><strong>T&iacute;tulo</strong></td>
+                                <td class="td-contrato" colspan="3">{{elContrato.objCliente[0].titulo || '&nbsp;'}}</td>
+                            </tr>
+                            <tr>
+                                <td class="td-contrato td-head-contrato"><strong>Nombre</strong></td>
+                                <td class="td-contrato">
+                                    <div class="form-group" ng-class="{'has-error':frmContrato.selCliente.$invalid && !frmContrato.selCliente.$pristine}">
+                                        <input name="txtFiltroCli" id="txtFiltroCli" type="text" class="form-control" ng-model="searchcli"
+                                               placeholder="Nombre del cliente"/>
+                                    </div>
+                                </td>
+                                <td class="td-contrato">
+                                    <div class="form-group" ng-class="{'has-error':frmContrato.selCliente.$invalid && !frmContrato.selCliente.$pristine}">
+                                        <select name="selCliente" id="selCliente" class="form-control" ng-model="elContrato.objCliente"
+                                                ng-options="obj.nombre for obj in clientes | filter:{nombre:searchcli}" multiple required>
+                                        </select>
+                                    </div>
+                                </td>
+                                <td class="td-contrato">
+                                    <span>Tel. {{elContrato.objCliente[0].telefono || '&nbsp;'}}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-contrato td-head-contrato"><strong>Puesto</strong></td>
+                                <td colspan="3">{{elContrato.objCliente[0].puesto || '&nbsp;'}}</td>
+                            </tr>
+                            <tr>
+                                <td class="td-contrato td-head-contrato"><strong>Empresa</strong></td>
+                                <td colspan="3">{{elContrato.objCliente[0].empresa || '&nbsp;'}}</td>
+                            </tr>
+                            <tr>
+                                <td class="td-contrato td-head-contrato"><strong>Direcci&oacute;n</strong></td>
+                                <td colspan="3">{{elContrato.objCliente[0].direccion || '&nbsp;'}}</td>
+                            </tr>
+                            <tr>
+                                <td class="td-contrato td-head-contrato"><strong>Pa&iacute;s</strong></td>
+                                <td colspan="3">{{elContrato.objCliente[0].pais || '&nbsp;'}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="btn-group" role="group" aria-label="...">
+                            <button type="submit" class="btn btn-primary" ng-disabled="frmContrato.$invalid" ng-hide="elContrato.id > 0">
+                                <span class="glyphicon glyphicon-floppy-save"></span>
+                            </button>
+                            <button type="button" class="btn btn-primary" ng-disabled="frmContrato.$invalid"
+                                    ng-show="elContrato.id > 0" ng-click="resetElContrato()">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </button>
+                        </div>
+                    </form>
+                    <hr/>
+                    <table datatable="ng" dt-options="dtOptions" class="table table-responsive table-hover">
+                        <thead>
+                            <tr>
+                                <th style="text-align: right">No.</th>
+                                <th>Fecha del contrato</th>
+                                <th>Promotor</th>
+                                <th>Banco/Financiera</th>
+                                <th>Cliente</th>
+                                <th>&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="c in contratos" ng-click="getContrato(c.id)">
+                                <td style="text-align: right; white-space: nowrap">GCF{{c.idcliente | padNumber:4}}-{{c.correlativo | padNumber:4}}</td>
+                                <td>{{c.fechacontrato | date:'dd/MM/yyyy'}}</td>
+                                <td>{{c.promotor}}</td>
+                                <td>{{c.financiera}}</td>
+                                <td>{{c.cliente}}</td>
+                                <td>
+                                    <button type="button" class="btn btn-danger" ng-click="delContrato(c.id)">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div id="divProveedores" class="tab-pane fade">
+            <div class="panel panel-success">
+                <div class="panel-heading">Proveedores&nbsp;<span class="badge">{{contratoStr}}</span></div>
+                <div class="panel-body">
+                    <form name="frmDetEq" id="frmDetEq" ng-submit="frmDetEq.$valid && addDetEq(elDetProvEq)" novalidate>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="form-group" ng-class="{'has-error':frmDetEq.selProvEq.$invalid && !frmDetEq.selProvEq.$pristine}">
+                                    <label for="selProvEq">Proveedor:</label>
+                                    <input name="txtFiltroProvEq" id="txtFiltroProvEq" type="text" class="form-control" ng-model="searchpe"
+                                           placeholder="Nombre"/>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="form-group" ng-class="{'has-error':frmDetEq.selProvEq.$invalid && !frmDetEq.selProvEq.$pristine}">
+                                    <label for="selProvEq">&nbsp;</label>
+                                    <select name="selProvEq" id="selProvEq" class="form-control" ng-model="elDetProvEq.objProvEq"
+                                            ng-options="obj.nombre for obj in provseq | filter:{nombre:searchpe}" multiple required>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                <div class="form-group" ng-class="{'has-error':frmDetEq.txtCantidad.$invalid && !frmDetEq.txtCantidad.$pristine}">
+                                    <label for="txtCantidad">Cant.:</label>
+                                    <input name="txtCantidad" id="txtCantidad" type="number" class="form-control" ng-model="elDetProvEq.cantidad"
+                                           placeholder="Cantidad" min="1" ng-change="calcTotDetEq()" required/>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group" ng-class="{'has-error':frmDetEq.selSector.$invalid && !frmDetEq.selSector.$pristine}">
+                                    <label for="selSector">Sector:</label>
+                                    <select name="selSector" id="selSector" class="form-control" ng-model="elDetProvEq.objSector"
+                                            ng-options="obj.descsector for obj in sectores track by obj.id" required>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="form-group" ng-class="{'has-error':frmDetEq.txtDesc.$invalid && !frmDetEq.txtDesc.$pristine}">
+                                    <label for="txtDesc">Descripci&oacute;n:</label>
+                                    <input name="txtDesc" id="txtDesc" type="text" class="form-control" ng-model="elDetProvEq.descequipo"
+                                           placeholder="Descripci&oacute;n del equipo" maxlength="150" required/>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group" ng-class="{'has-error':frmDetEq.txtPrecU.$invalid && !frmDetEq.txtPrecU.$pristine}">
+                                    <label for="txtPrecU">Precio unitario:</label>
+                                    <input name="txtPrecU" id="txtPrecU" type="text" class="form-control" ng-model="elDetProvEq.preciounitario"
+                                           placeholder="Precio unitario del equipo" min="0" fcsa-number="{ maxDecimals: 2 }" ng-change="calcTotDetEq()" required/>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group" ng-class="{'has-error':frmDetEq.txtPrecTot.$invalid && !frmDetEq.txtPrecTot.$pristine}">
+                                    <label for="txtPrecTot">Precio total:</label>
+                                    <input name="txtPrecTot" id="txtPrecTot" type="text" class="form-control" ng-model="elDetProvEq.preciotot"
+                                           placeholder="Precio total del equipo" min="0" fcsa-number="{ maxDecimals: 2 }" ng-disabled="true" required/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="btn-group" role="group" aria-label="...">
+                            <button type="submit" class="btn btn-success" ng-disabled="frmDetEq.$invalid">
+                                <span class="glyphicon glyphicon-floppy-save"></span>
+                            </button>
+                        </div>
+                    </form>
+                    <hr/>
+                    <table datatable="ng" dt-options="dtOptions" class="table table-responsive table-hover">
+                        <thead>
+                        <tr>
+                            <th>Proveedor</th>
+                            <th style="text-align: right">Cantidad</th>
+                            <th>Sector</th>
+                            <th>Descripci&oacute;n</th>
+                            <th style="text-align: right">Precio unitario</th>
+                            <th style="text-align: right">Total</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="de in detproveq">
+                            <td>{{de.provequipo}}</td>
+                            <td style="text-align: right">{{de.cantidad}}</td>
+                            <td>{{de.descsector}}</td>
+                            <td>{{de.descequipo}}</td>
+                            <td style="text-align: right">{{de.preciounitario | number:2}}</td>
+                            <td style="text-align: right">{{de.preciotot | number:2}}</td>
+                            <td>
+                                <button type="button" class="btn btn-danger" ng-click="delDetEq(de.id)">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div id="divDatosEspec" class="tab-pane fade">
+            <div class="panel panel-info">
+                <div class="panel-heading">Datos espec&iacute;ficos&nbsp;<span class="badge">{{contratoStr}}</span></div>
+                <div class="panel-body">
+                    <form name="frmDatosEsp" id="frmDatosEsp" ng-submit="frmDatosEsp.$valid && addDatoEsp(elDatoEsp)" novalidate>
+                        <table class="table table-responsive table-hover">
+                            <caption class="tbl-caption-contrato">DATOS ESPEC&Iacute;FICOS </caption>
+                            <tbody>
+                            <tr>
+                                <td>Valor del equipo (IVA incluido)</td>
+                                <td>
+                                    <div class="form-group" ng-class="{'has-error':frmDatosEsp.txtValorEq.$invalid && !frmDatosEsp.txtValorEq.$pristine}">
+                                        <input name="txtValorEq" id="txtValorEq" type="text" class="form-control" ng-model="elDatoEsp.valorequipo"
+                                               placeholder="Valor del equipo con el IVA" min="0" fcsa-number="{ maxDecimals: 2 }"/>
+                                    </div>
+                                </td>
+                                <td>Enganche(%)</td>
+                                <td>
+                                    <div class="form-group" ng-class="{'has-error':frmDatosEsp.txtEnganche.$invalid && !frmDatosEsp.txtEnganche.$pristine}">
+                                        <input name="txtEnganche" id="txtEnganche" type="text" class="form-control" ng-model="elDatoEsp.enganche"
+                                               placeholder="Porcentaje de enganche" min="0" fcsa-number="{ maxDecimals: 2 }"/>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!--<tr></tr>-->
+                            <tr>
+                                <td>Periodicidad</td>
+                                <td>
+                                    <div class="form-group" ng-class="{'has-error':frmDatosEsp.selPeriodicidad.$invalid && !frmDatosEsp.selPeriodicidad.$pristine}">
+                                        <select name="selPeriodicidad" id="selPeriodicidad" class="form-control" ng-model="elDatoEsp.objPeriodicidad"
+                                                ng-options="obj.descripcion for obj in periodos track by obj.id">
+                                        </select>
+                                    </div>
+                                </td>
+                                <td>Plazo</td>
+                                <td>
+                                    <div class="form-group" ng-class="{'has-error':frmDatosEsp.txtPlazo.$invalid && !frmDatosEsp.txtPlazo.$pristine}">
+                                        <input name="txtPlazo" id="txtPlazo" type="text" class="form-control" ng-model="elDatoEsp.plazo"
+                                               placeholder="Plazo" min="0" fcsa-number="{ maxDecimals: 0 }"/>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!--<tr></tr>-->
+                            <tr>
+                                <td>Inter&eacute;s</td>
+                                <td>
+                                    <div class="form-group" ng-class="{'has-error':frmDatosEsp.txtInteres.$invalid && !frmDatosEsp.txtInteres.$pristine}">
+                                        <input name="txtInteres" id="txtInteres" type="text" class="form-control" ng-model="elDatoEsp.interes"
+                                               placeholder="interes" min="0" fcsa-number="{ maxDecimals: 2 }"/>
+                                    </div>
+                                </td>
+                                <td>Residual (%)</td>
+                                <td>
+                                    <div class="form-group" ng-class="{'has-error':frmDatosEsp.txtResidual.$invalid && !frmDatosEsp.txtResidual.$pristine}">
+                                        <input name="txtResidual" id="txtResidual" type="text" class="form-control" ng-model="elDatoEsp.residual"
+                                               placeholder="Residual (%)" min="0" fcsa-number="{ maxDecimals: 2 }"/>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr ng-hide="true">
+                                <td>C&aacute;lculo de pago</td>
+                                <td>
+                                    <div class="form-group" ng-class="{'has-error':frmDatosEsp.selPeriodicidad.$invalid && !frmDatosEsp.selPeriodicidad.$pristine}">
+                                        <select name="selCalcPago" id="selCalcPago" class="form-control" ng-model="elDatoEsp.objCalculoPago"
+                                                ng-options="obj.descripcion for obj in calcpago track by obj.id">
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!--<tr></tr>-->
+                            <tr>
+                                <td>Seguro (% venta)</td>
+                                <td>
+                                    <div class="form-group" ng-class="{'has-error':frmDatosEsp.txtSegVenta.$invalid && !frmDatosEsp.txtSegVenta.$pristine}">
+                                        <input name="txtSegVenta" id="txtSegVenta" type="text" class="form-control" ng-model="elDatoEsp.seguroventa"
+                                               placeholder="Seguro (% venta)" min="0" fcsa-number="{ maxDecimals: 2 }"/>
+                                    </div>
+                                </td>
+                                <td>Seguro (% costo)</td>
+                                <td>
+                                    <div class="form-group" ng-class="{'has-error':frmDatosEsp.txtSegCosto.$invalid && !frmDatosEsp.txtSegCosto.$pristine}">
+                                        <input name="txtSegCosto" id="txtSegCosto" type="text" class="form-control" ng-model="elDatoEsp.segurocosto"
+                                               placeholder="Seguro (% costo)" min="0" fcsa-number="{ maxDecimals: 2 }"/>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!--<tr></tr>-->
+                            <tr>
+                                <td>Gastos de apertura (%)</td>
+                                <td>
+                                    <div class="form-group" ng-class="{'has-error':frmDatosEsp.txtGastAp.$invalid && !frmDatosEsp.txtGastAp.$pristine}">
+                                        <input name="txtGastAp" id="txtGastAp" type="text" class="form-control" ng-model="elDatoEsp.gastosapertura"
+                                               placeholder="Porcentaje de gastos de apertura" min="0" fcsa-number="{ maxDecimals: 2 }"/>
+                                    </div>
+                                </td>
+                                <td>Descuento proveedor (%)</td>
+                                <td>
+                                    <div class="form-group" ng-class="{'has-error':frmDatosEsp.txtDescProv.$invalid && !frmDatosEsp.txtDescProv.$pristine}">
+                                        <input name="txtDescProv" id="txtDescProv" type="text" class="form-control" ng-model="elDatoEsp.descuentoprov"
+                                               placeholder="Descuento proveedor (%)" min="0" fcsa-number="{ maxDecimals: 2 }"/>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr ng-hide="true">
+                                <td>Dep&oacute;sito seguridad sin IVA (# rentas)</td>
+                                <td>
+                                    <div class="form-group" ng-class="{'has-error':frmDatosEsp.txtDepRen.$invalid && !frmDatosEsp.txtDepRen.$pristine}">
+                                        <input name="txtDepRen" id="txtDepRen" type="text" class="form-control" ng-model="elDatoEsp.deposegnrentas"
+                                               placeholder="Dep&oacute;sito seguridad sin IVA (# rentas)" min="0" fcsa-number="{ maxDecimals: 2 }"/>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr ng-hide="true">
+                                <td>Dep&oacute;sito seguridad sin IVA (%)</td>
+                                <td>
+                                    <div class="form-group" ng-class="{'has-error':frmDatosEsp.txtDepSeg.$invalid && !frmDatosEsp.txtDepSeg.$pristine}">
+                                        <input name="txtDepSeg" id="txtDepSeg" type="text" class="form-control" ng-model="elDatoEsp.depseg"
+                                               placeholder="Dep&oacute;sito seguridad sin IVA (%)" min="0" fcsa-number="{ maxDecimals: 2 }"/>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr ng-hide="true">
+                                <td>Otros sin IVA (%)</td>
+                                <td>
+                                    <div class="form-group" ng-class="{'has-error':frmDatosEsp.txtOtros.$invalid && !frmDatosEsp.txtOtros.$pristine}">
+                                        <input name="txtOtros" id="txtOtros" type="text" class="form-control" ng-model="elDatoEsp.otros"
+                                               placeholder="Otros sin IVA (%)" min="0" fcsa-number="{ maxDecimals: 2 }"/>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!--<tr></tr>-->
+                            <tr>
+                                <td>IVA (%)</td>
+                                <td>
+                                    <div class="form-group" ng-class="{'has-error':frmDatosEsp.txtIva.$invalid && !frmDatosEsp.txtIva.$pristine}">
+                                        <input name="txtIva" id="txtIva" type="text" class="form-control" ng-model="elDatoEsp.iva"
+                                               placeholder="IVA (%)" min="0" fcsa-number="{ maxDecimals: 2 }"/>
+                                    </div>
+                                </td>
+                                <td>Tasa de fondeo (%)</td>
+                                <td>
+                                    <div class="form-group" ng-class="{'has-error':frmDatosEsp.txtTasaFon.$invalid && !frmDatosEsp.txtTasaFon.$pristine}">
+                                        <input name="txtTasaFon" id="txtTasaFon" type="text" class="form-control" ng-model="elDatoEsp.tasafondeo"
+                                               placeholder="Tasa de fondeo (%)" min="0" fcsa-number="{ maxDecimals: 2 }"/>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!--<tr></tr>-->
+                            <tr ng-hide="true">
+                                <td>Cobro de primera renta</td>
+                                <td>
+                                    <div class="form-group" ng-class="{'has-error':frmDatosEsp.selCobPrimRen.$invalid && !frmDatosEsp.selCobPrimRen.$pristine}">
+                                        <select name="selCobPrimRen" id="selCobPrimRen" class="form-control" ng-model="elDatoEsp.objCobPrimRenta"
+                                                ng-options="obj.descripcion for obj in cobprimrenta track by obj.id">
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr ng-hide="true">
+                                <td>Incluir IVA</td>
+                                <td>
+                                    <div class="form-group" ng-class="{'has-error':frmDatosEsp.chkConIVA.$invalid && !frmDatosEsp.chkConIVA.$pristine}">
+                                        <input name="chkConIVA" id="chkConIVA" type="checkbox" class="form-control" ng-model="elDatoEsp.incluiriva"
+                                               ng-true-value="1" ng-false-value="0"/>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Renta diaria (d&iacute;as)</td>
+                                <td>
+                                    <div class="form-group" ng-class="{'has-error':frmDatosEsp.txtRenDia.$invalid && !frmDatosEsp.txtRenDia.$pristine}">
+                                        <input name="txtRenDia" id="txtRenDia" type="text" class="form-control" ng-model="elDatoEsp.rentadiaria"
+                                               placeholder="Renta diaria en d&iacute;as" min="0" fcsa-number="{ maxDecimals: 0 }"/>
+                                    </div>
+                                </td>
+                                <td>Opci&oacute;n de compra fija (%)</td>
+                                <td>
+                                    <div class="form-group" ng-class="{'has-error':frmDatosEsp.txtOpc.$invalid && !frmDatosEsp.txtOpc.$pristine}">
+                                        <input name="txtOpc" id="txtOpc" type="text" class="form-control" ng-model="elDatoEsp.opccompfija"
+                                               placeholder="Opci&oacute;n de compra fija (%)" min="0" fcsa-number="{ maxDecimals: 2 }"/>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr ng-hide="true">
+                                <td>Floating proveedor (d&iacute;as)</td>
+                                <td>
+                                    <div class="form-group" ng-class="{'has-error':frmDatosEsp.txtFloating.$invalid && !frmDatosEsp.txtFloating.$pristine}">
+                                        <input name="txtFloating" id="txtFloating" type="text" class="form-control" ng-model="elDatoEsp.floatingprov"
+                                               placeholder="Floating proveedor en d&iacute;as" min="0" fcsa-number="{ maxDecimals: 0 }"/>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!--<tr></tr>-->
+                            <tr>
+                                <td>Moneda</td>
+                                <td>
+                                    <div class="form-group" ng-class="{'has-error':frmDatosEsp.selMoneda.$invalid && !frmDatosEsp.selMoneda.$pristine}">
+                                        <select name="selMoneda" id="selMoneda" class="form-control" ng-model="elDatoEsp.objMoneda"
+                                                ng-options="obj.nommoneda for obj in monedas track by obj.id">
+                                        </select>
+                                    </div>
+                                </td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="btn-group" role="group" aria-label="...">
+                            <button type="submit" class="btn btn-info" ng-disabled="frmDatosEsp.$invalid">
+                                <span class="glyphicon glyphicon-floppy-save"></span>
+                            </button>
+                            <!--
+                            <button type="button" class="btn btn-success" ng-disabled="frmTranBan.$invalid" ng-show="editando" ng-click="updTran(laTran, laTran.id)">
+                                <span class="glyphicon glyphicon-floppy-save"></span>
+                            </button>
+                            -->
+                        </div>
+                    </form>
+                    <hr/>
+                    <table datatable="ng" dt-options="dtOptions" class="table table-responsive table-hover">
+                        <thead>
+                        <tr>
+                            <th style="text-align: right">Valor del equipo (con IVA)</th>
+                            <th style="text-align: right">Enganche (%)</th>
+                            <th>Periodicidad</th>
+                            <th style="text-align: right">Plazo</th>
+                            <th style="text-align: right">Inter&eacute;s</th>
+                            <th>C&aacute;lculo de pago</th>
+                            <th>Autorizar</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="ds in datosespecificos">
+                            <td style="text-align: right">{{ds.valorequipo | number:2}}</td>
+                            <td style="text-align: right">{{ds.enganche | number:2}}</td>
+                            <td>{{ds.periodicidad}}</td>
+                            <td style="text-align: right">{{ds.plazo | number:0}}</td>
+                            <td style="text-align: right">{{ds.interes | number:2}}</td>
+                            <td>{{ds.idcalculopago === 1 ? 'Vencido' : 'Anticipado'}}</td>
+                            <td>
+                                <button type="button" class="btn btn-sm" ng-class="{'btn-success': ds.autorizada, 'btn-warning': !ds.autorizada }"
+                                        ng-click="autorizar(ds)" ng-disabled="yaAutorizaron">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                </button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-danger" ng-click="delDetEsp(ds.id)">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div id="divDatosFact" class="tab-pane fade">
+            <div class="panel panel-warning">
+                <div class="panel-heading">Datos de facturaci&oacute;n&nbsp;<span class="badge">{{contratoStr}}</span></div>
+                <div class="panel-body">
+                    <form name="frmDatosFact" id="frmDatosFact" ng-submit="frmDatosFact.$valid && updDatosFact(elContrato)" novalidate>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group" ng-class="{'has-error':frmDatosFact.txtNit.$invalid && !frmDatosFact.txtNit.$pristine}">
+                                    <label for="txtNit">N.I.T.:</label>
+                                    <input name="txtNit" id="txtNit" type="text" class="form-control" ng-model="elContrato.nit" maxlength="30" required/>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group" ng-class="{'has-error':frmDatosFact.txtFInicia.$invalid && !frmDatosFact.txtFInicia.$pristine}">
+                                    <label for="txtFInicia">Fecha de inicio de facturaci&oacute;n:</label>
+                                    <input name="txtFInicia" id="txtFInicia" type="date" class="form-control" ng-model="elContrato.fechainiciofact" required/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group" ng-class="{'has-error':frmDatosFact.txtEmailFact.$invalid && !frmDatosFact.txtEmailFact.$pristine}">
+                                    <label for="txtEmailFact">E-mail de env&iacute;o de factura (separados por punto y coma ";"):</label>
+                                    <input name="txtEmailFact" id="txtEmailFact" type="text" class="form-control" ng-model="elContrato.emailenviofact"
+                                           maxlength="1000" required/>
+                                </div>
+                            </div>
+                        </div>
+                        <!--
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group" ng-class="{'has-error':frmDatosFact.txtPagoIni.$invalid && !frmDatosFact.txtPagoIni.$pristine}">
+                                    <label for="txtPagoIni">Pago inicial:</label>
+                                    <input name="txtPagoIni" id="txtPagoIni" type="text" class="form-control" ng-model="elContrato.pagoinicial"
+                                           min="0" fcsa-number="{ maxDecimals: 2 }" ng-disabled="true" required/>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group" ng-class="{'has-error':frmDatosFact.txtMens.$invalid && !frmDatosFact.txtMens.$pristine}">
+                                    <label for="txtMens">Cuota mensual:</label>
+                                    <input name="txtMens" id="txtMens" type="text" class="form-control" ng-model="elContrato.cuotamensual"
+                                           min="0" fcsa-number="{ maxDecimals: 2 }" ng-disabled="true" required/>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group" ng-class="{'has-error':frmDatosFact.txtPagoFin.$invalid && !frmDatosFact.txtPagoFin.$pristine}">
+                                    <label for="txtPagoFin">Pago final:</label>
+                                    <input name="txtPagoFin" id="txtPagoFin" type="text" class="form-control" ng-model="elContrato.pagofinal"
+                                           min="0" fcsa-number="{ maxDecimals: 2 }" ng-disabled="true" required/>
+                                </div>
+                            </div>
+                        </div>
+                        -->
+                        <div class="row">
+                            <div class="col-md-4">
+                                <span><strong>&Uacute;ltima actualizaci&oacute;n:&nbsp;</strong>{{elContrato.fhactualizacion | date:'dd/MM/yyyy HH:mm:ss'}}</span>
+                            </div>
+                            <div class="col-md-4">
+                                <span><strong>Actualizado por:&nbsp;</strong>{{elContrato.modificadopor}}</span>
+                            </div>
+                        </div>
+                        <div class="btn-group" role="group" aria-label="...">
+                            <button type="submit" class="btn btn-warning" ng-disabled="frmDatosFact.$invalid || cargosGenerados">
+                                <span class="glyphicon glyphicon-floppy-save"></span>
+                            </button>
+                            <!--
+                            <button type="button" class="btn btn-warning" ng-click="genCargos()" ng-disabled="frmDatosFact.$invalid || cargosGenerados">
+                                <span class="glyphicon glyphicon-list"></span>
+                            </button>
+                            -->
+                            <button type="button" class="btn btn-danger" ng-click="delDatosFact(elContrato)" ng-disabled="cargosGenerados">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="panel panel-warning">
+                <div class="panel-heading">Configuraci&oacute;n de cobros</div>
+                <div class="panel-body">
+                    <form name="frmConfCob" id="frmConfCob" class="form-inline" ng-submit="frmConfCob.$valid && addConfCargos(confcobros)" novalidate>
+                        <div class="form-group">
+                            <label for="txtCnt">No. Cuotas:</label>
+                            <input name="txtCnt" id="txtCnt" type="number" class="form-control" style="width: 6em" ng-model="confcobros.cantidad" min="1" required/>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtMnt">Monto:</label>
+                            <input name="txtMnt" id="txtMnt" type="number" class="form-control" style="width: 10em" ng-model="confcobros.monto" step="0.01" min="0.00" required/>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtOrd">Orden:</label>
+                            <input name="txtOrd" id="txtOrd" type="number" class="form-control" style="width: 6em" ng-model="confcobros.ordengenera" min="0" required/>
+                        </div>
+                        <div class="checkbox">
+                            <label for="chkTipo">
+                                <strong>Otro:</strong>&nbsp;<input name="chkTipo" id="chkTipo" type="checkbox" ng-model="confcobros.tipocargo" ng-true-value="1" ng-false-value="0"/>
+                            </label>
+                        </div>
+                        <div class="btn-group" role="group" aria-label="...">
+                            <button type="submit" class="btn btn-warning" ng-disabled="frmConfCob.$invalid || cargosGenerados" ng-hide="confcobros.id > 0">
+                                <span class="glyphicon glyphicon-floppy-save"></span>
+                            </button>
+                            <button type="button" class="btn btn-warning" ng-disabled="frmConfCob.$invalid || cargosGenerados" ng-show="confcobros.id > 0" ng-click="updConfCargos(confcobros)">
+                                <span class="glyphicon glyphicon-floppy-save"></span>
+                            </button>
+                            <button type="button" class="btn btn-danger" ng-disabled="frmConfCob.$invalid || cargosGenerados" ng-show="confcobros.id > 0" ng-click="delConfCargos(confcobros)">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                            <button type="button" class="btn btn-warning" ng-disabled="cargosGenerados" ng-show="confcobros.id > 0" ng-click="resetConfCobros()">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </button>
+                        </div>
+                    </form>
+                    <hr/>
+                    <table class="table table-condensed table-hover">
+                        <thead>
+                        <tr>
+                            <th style="text-align: right">No. Cuotas</th>
+                            <th style="text-align: right">Monto</th>
+                            <th style="text-align: right">Orden</th>
+                            <th>Tipo</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="cnf in lstconfcobros" ng-click="getConfCargo(cnf.id)">
+                            <td style="text-align: right">{{cnf.cantidad}}</td>
+                            <td style="text-align: right">{{cnf.monto | number:2}}</td>
+                            <td style="text-align: right">{{cnf.ordengenera}}</td>
+                            <td>{{+cnf.tipocargo == 0 ? 'Cuota' : 'Otro'}}</td>
+                            <td>
+                                <button type="button" class="btn btn-warning btn-sm" ng-show="+cnf.tipocargo == 1" ng-click="verDetalle(cnf)">
+                                    <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="panel-footer" style="text-align: right">
+                    <button type="button" class="btn btn-warning" ng-disabled="lstconfcobros.length == 0 || cargosGenerados" ng-click="genCargos()">
+                        <i class="fa fa-tasks" aria-hidden="true"></i>
+                    </button>
+                    <button type="button" class="btn btn-warning" ng-disabled="lstconfcobros.length == 0 || !cargosGenerados" ng-click="verCargos()">
+                        <i class="fa fa-list-alt" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="divFrmDetCont" class="tab-pane fade">
+            <div class="panel panel-success">
+                <div class="panel-heading">Detalle contable</div>
+                <div class="panel-body">
+                    <form name="frmDetCont" id="frmDetCont" ng-submit="frmDetCont.$valid && addDetCont(elDetCont)" novalidate>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="selCta">Cuenta:</label>
+                                    <input name="txtFiltroCta" id="txtFiltroCta" type="text" class="form-control" ng-model="searchcta"
+                                           placeholder="Cuenta contable"/>
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="form-group" ng-class="{'has-error':frmDetCont.selCta.$invalid && !frmDetCont.selCta.$pristine}">
+                                    <label for="selCta">&nbsp;</label>
+                                    <select name="selCta" id="selCta" class="form-control" ng-model="elDetCont.objCuenta"
+                                            ng-options="obj.codcta for obj in cuentas | filter:{codcta:searchcta}" multiple required>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group" ng-class="{'has-error':frmDetCont.txtDebe.$invalid && !frmDetCont.txtDebe.$pristine}">
+                                    <label for="txtDebe">Debe:</label>
+                                    <input name="txtDebe" id="txtDebe" type="text" class="form-control" ng-model="elDetCont.debe"
+                                           placeholder="Debe" fcsa-number="{ min:0, maxDecimals: 2 }" ng-change="zeroHaber(elDetCont.debe)" required />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group" ng-class="{'has-error':frmDetCont.txtHaber.$invalid && !frmDetCont.txtHaber.$pristine}">
+                                    <label for="txtHaber">Haber:</label>
+                                    <input name="txtHaber" id="txtHaber" type="text" class="form-control" ng-model="elDetCont.haber"
+                                           placeholder="Haber" fcsa-number="{ min:0, maxDecimals: 2 }" ng-change="zeroDebe(elDetCont.haber)" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group" ng-class="{'has-error':frmDetCont.txtConceptoMayor.$invalid && !frmDetCont.txtConceptoMayor.$pristine}">
+                                    <label for="txtConceptoMayor">Concepto mayor:</label>
+                                    <textarea name="txtConceptoMayor" id="txtConceptoMayor" class="form-control"
+                                              ng-model="elDetCont.conceptomayor" placeholder="Concepto para el libro mayor"
+                                              style="width:100%" rows="3" required>
+                                    </textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="btn-group" role="group" aria-label="...">
+                            <button type="submit" class="btn btn-info" ng-disabled="frmDetCont.$invalid">
+                                <span class="glyphicon glyphicon-floppy-save"></span>
+                            </button>
+                        </div>
+                    </form>
+                    <hr/>
+                    <table datatable="ng" dt-options="dtOptions" class="table table-responsive table-hover">
+                        <thead>
+                        <tr>
+                            <th>Cuenta</th>
+                            <th style="text-align: right">Debe</th>
+                            <th style="text-align: right">Haber</th>
+                            <th>Concepto mayor</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="dc in lstdetcont">
+                            <td>{{dc.desccuentacont}}</td>
+                            <td style="text-align: right">{{dc.debe | number:2}}</td>
+                            <td style="text-align: right">{{dc.haber | number:2}}</td>
+                            <td>{{dc.conceptomayor}}</td>
+                            <td>
+                                <button type="button" class="btn btn-danger" ng-click="delDetCont(dc)" ng-hide="dc.id == 0">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Template de la modal //Este usa el controlador ModalInstanceCtrl-->
+<script type="text/ng-template" id="modalDetConfCobros.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Detalle de cobros</h3>
+    </div>
+    <div class="modal-body">
+        <form class="form-inline" name="frmDetCnf" id="frmDetCnf" ng-submit="frmDetCnf.$valid && addDet(detcnf)" novalidate>
+            <div class="form-group">
+                <label for="txtCntDet">Cantidad:</label>
+                <input name="txtCntDet" id="txtCntDet" type="number" class="form-control" style="width: 6em" ng-model="detcnf.cantidad" min="1" required/>
+            </div>
+            <div class="form-group">
+                <label for="txtDescDet">Descripci&oacute;n:</label>
+                <input name="txtDescDet" id="txtDescDet" type="text" class="form-control" ng-model="detcnf.descripcion" maxlength="70" required/>
+            </div>
+            <div class="form-group">
+                <label for="txtPrecUDet">Precio unitario:</label>
+                <input name="txtPrecUDet" id="txtPrecUDet" type="number" class="form-control" style="width: 10em" ng-model="detcnf.preciounitario" min="0" step="0.01" required/>
+            </div>
+            <div class="btn-group" role="group" aria-label="...">
+                <button type="submit" class="btn btn-warning" ng-disabled="frmDetCnf.$invalid || generados" ng-hide="detcnf.id > 0">
+                    <span class="glyphicon glyphicon-floppy-save"></span>
+                </button>
+                <button type="button" class="btn btn-warning" ng-disabled="frmDetCnf.$invalid || generados" ng-show="detcnf.id > 0" ng-click="updDet(detcnf)">
+                    <span class="glyphicon glyphicon-floppy-save"></span>
+                </button>
+                <button type="button" class="btn btn-danger" ng-disabled="frmDetCnf.$invalid || generados" ng-show="detcnf.id > 0" ng-click="delDet(detcnf)">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </button>
+                <button type="button" class="btn btn-warning" ng-disabled="generados" ng-show="detcnf.id > 0" ng-click="resetDet()">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </button>
+            </div>
+        </form>
+        <hr/>
+        <table class="table table-condensed table-hover">
+            <thead>
+            <tr>
+                <th style="text-align: right">Cantidad</th>
+                <th>Descripci&oacute;n</th>
+                <th style="text-align: right">Precio unitario</th>
+                <th style="text-align: right">Total</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="det in config.detalle" ng-click="getDet(det.id)">
+                <td style="text-align: right">{{det.cantidad | number:0}}</td>
+                <td>{{det.descripcion}}</td>
+                <td style="text-align: right">{{det.preciounitario | number:2}}</td>
+                <td style="text-align: right">{{det.precio | number: 2}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="modal-footer">
+        <!--<button class="btn btn-warning" type="button" ng-click="ok()">Aceptar</button>-->
+        <button class="btn btn-warning" type="button" ng-click="cancel()">Terminar</button>
+    </div>
+</script>
+<!--Fin de Template de la modal-->
+<!--Template de la modal //Este usa el controlador ModalInstanceCtrl-->
+<script type="text/ng-template" id="modalCargos.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Cobros del contrato GCF{{contrato.idcliente | padNumber:4}}-{{contrato.correlativo | padNumber:4}}</h3>
+        <h4>{{contrato.cliente}}</h4>
+    </div>
+    <div class="modal-body" style="overflow-y: auto; height: 400px">
+        <table class="table table-condensed table-hover">
+            <thead>
+            <tr>
+                <th style="text-align: right">No. Renta</th>
+                <th>Fecha de cobro</th>
+                <th style="text-align: right">Monto</th>
+                <th style="text-align: center">Facturado</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="det in cargos">
+                <td style="text-align: right">{{+det.norenta > 0 ? (det.norenta | number:0) : ''}}</td>
+                <td>{{det.fechacobro | date:'dd/MM/yyyy'}}</td>
+                <td style="text-align: right">{{det.moneda}}&nbsp;{{det.monto | number:2}}</td>
+                <td style="text-align: center">
+                    <input name="chkFact_{{det.id}}" id="chkFact_{{det.id}}" type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="det.facturado" ng-click="setFacturado(det)"/>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="modal-footer">
+        <!--<button class="btn btn-warning" type="button" ng-click="ok()">Aceptar</button>-->
+        <button class="btn btn-warning" type="button" ng-click="cancel()">Terminar</button>
+    </div>
+</script>
+<!--Fin de Template de la modal-->

@@ -1,0 +1,178 @@
+<div class="container" ng-controller="rptCasosCerradosCtrl">
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">Casos cerrados</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="txtDel">Del:</label>
+                            <input name="txtDel" id="txtDel" type="date" class="form-control input-sm" ng-model="params.del"/>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="txtAl">Al:</label>
+                            <input name="txtAl" id="txtAl" type="date" class="form-control input-sm" ng-model="params.al"/>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>T&eacute;nico:</label>
+                            <ui-select multiple ng-model="params.lostecs" title="Seleccione los t&eacute;nicos..." theme="bootstrap"
+                                       autofocus="true" append-to-body="true" sortable="true">
+                                <ui-select-match placeholder="Buscar t&eacute;nico..." allow-clear="true">
+                                    <span>{{$item.nombre}}</span>
+                                </ui-select-match>
+                                <ui-select-choices repeat="item in tecnicos | filter:$select.search">
+                                    <div ng-bind-html="item.nombre | highlight: $select.search"></div>
+                                </ui-select-choices>
+                                <ui-select-no-choice>
+                                    No hay resultados...
+                                </ui-select-no-choice>
+                            </ui-select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Tipo de caso:</label>
+                            <ui-select multiple ng-model="params.lostiposc" title="Seleccione tipos de caso..." theme="bootstrap"
+                                       autofocus="true" append-to-body="true" sortable="true">
+                                <ui-select-match placeholder="Buscar tipo de caso..." allow-clear="true">
+                                    <span>{{$item.fuentecaso}} - {{$item.descripcion}}</span>
+                                </ui-select-match>
+                                <ui-select-choices repeat="item in tiposcaso | filter:$select.search">
+                                    <div ng-bind-html="item.descripcion | highlight: $select.search"></div>
+                                    <small>
+                                        <strong>Fuente:</strong>&nbsp;<span ng-bind-html="item.fuentecaso | highlight: $select.search" ></span>
+                                    </small>
+                                </ui-select-choices>
+                                <ui-select-no-choice>
+                                    No hay resultados...
+                                </ui-select-no-choice>
+                            </ui-select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Tipo de soluci&oacute;n:</label>
+                            <ui-select multiple ng-model="params.lostipossol" title="Seleccione los tipos de soluci&oacute;n..." theme="bootstrap"
+                                       autofocus="true" append-to-body="true" sortable="true">
+                                <ui-select-match placeholder="Buscar tipos de soluci&oacute;n..." allow-clear="true">
+                                    <span>{{$item.descripcion}}</span>
+                                </ui-select-match>
+                                <ui-select-choices repeat="item in tipossolucion | filter:$select.search">
+                                    <div ng-bind-html="item.descripcion | highlight: $select.search"></div>
+                                </ui-select-choices>
+                                <ui-select-no-choice>
+                                    No hay resultados...
+                                </ui-select-no-choice>
+                            </ui-select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Ubicaci&oacute;n:</label>
+                            <ui-select multiple ng-model="params.lasubica" title="Seleccione las ubicaciones..." theme="bootstrap"
+                                       autofocus="true" append-to-body="true" sortable="true">
+                                <ui-select-match placeholder="Buscar ubicaci&oacute;n..." allow-clear="true">
+                                    <span>{{$item.descripcion}}</span>
+                                </ui-select-match>
+                                <ui-select-choices repeat="item in ubicaciones | filter:$select.search">
+                                    <div ng-bind-html="item.descripcion | highlight: $select.search"></div>
+                                </ui-select-choices>
+                                <ui-select-no-choice>
+                                    No hay resultados...
+                                </ui-select-no-choice>
+                            </ui-select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Tipo de llamada:</label>
+                            <ui-select multiple ng-model="params.lostiposll" title="Seleccione los tipos de llamada..." theme="bootstrap"
+                                       autofocus="true" append-to-body="true" sortable="true">
+                                <ui-select-match placeholder="Buscar tipo de llamada..." allow-clear="true">
+                                    <span>{{$item.descripcion}}</span>
+                                </ui-select-match>
+                                <ui-select-choices repeat="item in tiposllamada | filter:$select.search">
+                                    <div ng-bind-html="item.descripcion | highlight: $select.search"></div>
+                                </ui-select-choices>
+                                <ui-select-no-choice>
+                                    No hay resultados...
+                                </ui-select-no-choice>
+                            </ui-select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Fuente:</label>
+                            <ui-select multiple ng-model="params.lasfuentes" title="Seleccione las fuentes..." theme="bootstrap"
+                                       autofocus="true" append-to-body="true" sortable="true">
+                                <ui-select-match placeholder="Buscar fuente..." allow-clear="true">
+                                    <span>{{$item.descripcion}}</span>
+                                </ui-select-match>
+                                <ui-select-choices repeat="item in fuentes | filter:$select.search">
+                                    <div ng-bind-html="item.descripcion | highlight: $select.search"></div>
+                                </ui-select-choices>
+                                <ui-select-no-choice>
+                                    No hay resultados...
+                                </ui-select-no-choice>
+                            </ui-select>
+                        </div>
+                    </div>
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4"></div>
+                </div>
+            </div>
+            <div class="panel-footer" style="text-align: right">
+                <button type="button" class="btn btn-default btn-sm" ng-click="getRepHtml()">
+                    <i class="fa fa-html5 fa-2x" aria-hidden="true"></i>
+                </button>
+                <button type="button" class="btn btn-default btn-sm" ng-click="getRepPdf()">
+                    <i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-show="cerrados.length > 0">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <small>
+                    <table class="table table-striped table-hover table-condensed">
+                        <thead>
+                        <tr>
+                            <th>No. caso</th>
+                            <th>Equipo</th>
+                            <th>Ubicaci&oacute;n</th>
+                            <th>Llamada</th>
+                            <th>Tipo</th>
+                            <th>Soluci&oacute;n</th>
+                            <th>T&eacute;cnico</th>
+                            <th>Apertura</th>
+                            <th>Cierre</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="c in cerrados">
+                            <td>{{c.nocaso}}</td>
+                            <td>{{c.equipo}}</td>
+                            <td>{{c.ubicacion}}</td>
+                            <td>{{c.tipollamada}}</td>
+                            <td>{{c.tipocaso}}</td>
+                            <td>{{c.tiposolucion}}</td>
+                            <td>{{c.tecnico}}</td>
+                            <td>{{c.fhapertura | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+                            <td>{{c.fhcierre | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </small>
+            </div>
+        </div>
+    </div>
+</div>

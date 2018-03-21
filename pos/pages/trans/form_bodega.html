@@ -1,0 +1,15 @@
+<div class="container-fluid">
+  <form class="form-horizontal" ng-submit="iniciarVenta(bod)">
+    <div class="form-group form-group-sm">
+      <label for="selectBodega" class="col-sm-2 control-label">Bodega:</label>
+      <div class="col-sm-8">
+        <select name="bodega" class="form-control" required="true" ng-model="bod.idbodega" ng-options="obj.id as obj.nombre for obj in bodegas"></select>
+      </div>
+      <div class="col-sm-2">
+        <button type="submit" class="btn btn-sm btn-default">
+          <i class="glyphicon glyphicon-ok"></i> Aceptar
+        </button>
+      </div>
+    </div>
+  </form>
+</div>  

@@ -1,0 +1,75 @@
+<div class="container" ng-controller="tecnicoCtrl">
+    <div class="panel panel-primary">
+        <div class="panel-heading">T&eacute;cnicos</div>
+        <div class="panel-body">
+            <form name="frmTecnico" id="frmTecnico" ng-submit="frmTecnico.$valid && addTecnico(tecnico)" novalidate>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group" ng-class="{'has-error':frmTecnico.txtNombre.$invalid && !frmTecnico.txtNombre.$pristine}">
+                            <label for="txtNombre">Nombre:</label>
+                            <input name="txtNombre" id="txtNombre" type="text" class="form-control" maxlength="250" ng-model="tecnico.nombre" required/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group" ng-class="{'has-error':frmTecnico.txtDireccion.$invalid && !frmTecnico.txtDireccion.$pristine}">
+                            <label for="txtDireccion">Direcci&oacute;n:</label>
+                            <input name="txtDireccion" id="txtDireccion" type="text" class="form-control" maxlength="250" ng-model="tecnico.direccion"/>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group" ng-class="{'has-error':frmTecnico.txtTelefono.$invalid && !frmTecnico.txtTelefono.$pristine}">
+                            <label for="txtTelefono">Celular:</label>
+                            <input name="txtTelefono" id="txtTelefono" type="text" class="form-control" maxlength="16" ng-model="tecnico.celular"/>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group" ng-class="{'has-error':frmTecnico.txtContacto.$invalid && !frmTecnico.txtContacto.$pristine}">
+                            <label for="txtContacto">E-mail:</label>
+                            <input name="txtContacto" id="txtContacto" type="email" class="form-control" maxlength="250" ng-model="tecnico.email"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn-group" role="group" aria-label="...">
+                    <button type="submit" class="btn btn-primary" ng-disabled="frmTecnico.$invalid || !permiso.c" ng-hide="+tecnico.id > 0">
+                        <span class="glyphicon glyphicon-floppy-save"></span>
+                    </button>
+                    <button type="button" class="btn btn-primary" ng-disabled="frmTecnico.$invalid || !permiso.m" ng-show="+tecnico.id > 0" ng-click="updTecnico(tecnico)">
+                        <span class="glyphicon glyphicon-floppy-save"></span>
+                    </button>
+                    <button type="button" class="btn btn-warning" ng-disabled="frmTecnico.$invalid || !permiso.e" ng-show="+tecnico.id > 0" ng-click="delTecnico(tecnico)">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                    <button type="button" class="btn btn-primary" ng-disabled="!permiso.c" ng-show="+tecnico.id > 0" ng-click="resetTecnico()">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                </div>
+            </form>
+            <hr/>
+            <div class="table-responsive">
+                <table class="table table-condensed table-hover">
+                    <caption>
+                        <input ng-model="buscar.$" class="form-control" placeholder="Buscar t&eacute;cnico..." style="width: 100%;" />
+                    </caption>
+                    <thead>
+                    <tr>
+                        <th style="white-space: nowrap">Nombre</th>
+                        <th>Direcci&oacute;n</th>
+                        <th style="white-space: nowrap">Celular</th>
+                        <th style="text-align: center">E-mail</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="t in tecnicos | filter:buscar" ng-click="getTecnico(t.id)">
+                        <td style="white-space: nowrap">{{t.nombre}}</td>
+                        <td>{{t.direccion}}</td>
+                        <td style="white-space: nowrap">{{t.celular}}</td>
+                        <td style="text-align: center">{{t.email}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

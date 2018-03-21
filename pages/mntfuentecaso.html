@@ -1,0 +1,100 @@
+<div class="container" ng-controller="fuenteCasoCtrl">
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a show-tab href="#divFrmFuente" data-toggle="tab">FUENTES</a>
+        </li>
+        <li ng-show="+fuente.id > 0">
+            <a show-tab href="#divFrmTipoCaso" data-toggle="tab">TIPOS DE CASO</a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div id="divFrmFuente" class="tab-pane fade in active">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Fuentes</div>
+                <div class="panel-body">
+                    <form name="frmFuente" id="frmFuente" class="form-inline" ng-submit="frmFuente.$valid && addFuente(fuente)" novalidate>
+                        <div class="form-group" ng-class="{'has-error':frmFuente.txtDescFuente.$invalid && !frmFuente.txtDescFuente.$pristine}">
+                            <label for="txtDescFuente">Descripci&oacute;n:</label>
+                            <input name="txtDescFuente" id="txtDescFuente" type="text" class="form-control" style="width: 50em;" maxlength="75" ng-model="fuente.descripcion" required/>
+                        </div>
+                        <div class="btn-group" role="group" aria-label="...">
+                            <button type="submit" class="btn btn-primary" ng-disabled="frmFuente.$invalid || !permiso.c" ng-hide="+fuente.id > 0">
+                                <span class="glyphicon glyphicon-floppy-save"></span>
+                            </button>
+                            <button type="button" class="btn btn-primary" ng-disabled="frmFuente.$invalid || !permiso.m" ng-show="+fuente.id > 0" ng-click="updFuente(fuente)">
+                                <span class="glyphicon glyphicon-floppy-save"></span>
+                            </button>
+                            <button type="button" class="btn btn-warning" ng-disabled="frmFuente.$invalid || !permiso.e" ng-show="+fuente.id > 0" ng-click="delFuente(fuente)">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                            <button type="button" class="btn btn-primary" ng-disabled="!permiso.c" ng-show="+fuente.id > 0" ng-click="resetFuente()">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </button>
+                        </div>
+                    </form>
+                    <hr/>
+                    <div class="table-responsive">
+                        <table class="table table-condensed table-hover">
+                            <thead>
+                            <tr>
+                                <th>Descripci&oacute;n</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="f in fuentes" ng-click="getFuente(f.id)">
+                                <td>{{f.descripcion}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="divFrmTipoCaso" class="tab-pane fade">
+            <div class="panel panel-success">
+                <div class="panel-heading">Tipos de caso&nbsp;<span class="badge" style="color: white;">Fuente: {{fuente.descripcion}}</span></div>
+                <div class="panel-body">
+                    <form name="frmTipoCaso" id="frmTipoCaso" class="form-inline" ng-submit="frmTipoCaso.$valid && addTipoCaso(tipocaso)" novalidate>
+                        <div class="form-group" ng-class="{'has-error':frmTipoCaso.txtDescTipoCaso.$invalid && !frmTipoCaso.txtDescTipoCaso.$pristine}">
+                            <label for="txtDescTipoCaso">Descripci&oacute;n:</label>
+                            <input name="txtDescTipoCaso" id="txtDescTipoCaso" type="text" class="form-control" style="width: 50em;" maxlength="250" ng-model="tipocaso.descripcion" required/>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error':frmTipoCaso.chkMostrar.$invalid && !frmTipoCaso.chkMostrar.$pristine}">
+                            <label for="chkMostrar">Mostrar:</label>
+                            <input name="chkMostrar" id="chkMostrar" type="checkbox" ng-model="tipocaso.mostrar" ng-true-value="'1'" ng-false-value="'0'"/>
+                        </div>
+                        <div class="btn-group" role="group" aria-label="...">
+                            <button type="submit" class="btn btn-primary" ng-disabled="frmTipoCaso.$invalid || !permiso.c" ng-hide="+tipocaso.id > 0">
+                                <span class="glyphicon glyphicon-floppy-save"></span>
+                            </button>
+                            <button type="button" class="btn btn-primary" ng-disabled="frmTipoCaso.$invalid || !permiso.m" ng-show="+tipocaso.id > 0" ng-click="updTipoCaso(tipocaso)">
+                                <span class="glyphicon glyphicon-floppy-save"></span>
+                            </button>
+                            <button type="button" class="btn btn-warning" ng-disabled="frmTipoCaso.$invalid || !permiso.e" ng-show="+tipocaso.id > 0" ng-click="delTipoCaso(tipocaso)">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                            <button type="button" class="btn btn-primary" ng-disabled="!permiso.c" ng-show="+tipocaso.id > 0" ng-click="resetTipoCaso()">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </button>
+                        </div>
+                    </form>
+                    <hr/>
+                    <div class="table-responsive">
+                        <table class="table table-condensed table-hover">
+                            <thead>
+                            <tr>
+                                <th>Descripci&oacute;n</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="tc in tiposcaso" ng-click="getTipoCaso(tc.id)">
+                                <td>{{tc.descripcion}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,200 @@
+<div class="container-fluid" ng-controller="ventaController">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#/pos/trans/venta">Venta</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <form class="navbar-form navbar-left" ng-submit="buscar(bus)">
+            <div class="form-group">
+              <input type="text" ng-model="bus.model" class="form-control" placeholder="Buscar venta">
+            </div>
+            <button type="submit" class="btn btn-default">
+                <i class="glyphicon glyphicon-search"></i>
+            </button>
+          </form>
+          <button type="button" class="btn btn-xs btn-default navbar-btn" ng-click="mostrarForm()">
+              <i class="glyphicon glyphicon-plus"></i> Nueva
+          </button>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+    <div class="panel panel-default" ng-show="formulario">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-4">
+                    <button type="button" class="btn btn-sm btn-block" ng-click="generarPago()">
+                        <i class="glyphicon glyphicon-chevron-{{ divPago ? 'left':'right' }}"></i> {{ divPago ? 'Seguir agregando':'Pago' }}
+                    </button>
+                    <table class="table table-condensed">
+                        <tbody>
+                            <tr ng-repeat="a in agregados">
+                                <td>
+                                    <a href="javascript:;" ng-click="quitarItem(a)" style="color:red;" ng-show="btnItem">
+                                        <i class="glyphicon glyphicon-remove"></i>
+                                    </a> 
+                                    {{ a.descripcion }}<br>
+                                    <small>{{ a.cantidad | number:0 }} unidad(es), {{ a.preciounitario | number:2 }}/u</small>
+                                </td>
+                                <td class="text-right">
+                                    {{ a.cantidad * a.preciounitario | number:2 }}
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td class="text-right">TOTAL</td>
+                                <td class="text-right"><strong>{{ totalVenta | number:2 }}</strong></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <div class="col-sm-8">
+                    <div class="well well-sm" ng-show="buscadorProducto">
+                        <form ng-submit="buscarProducto(pro)">
+                            <div class="form-group">
+                                <input type="text" ng-model="pro.termino" class="form-control" placeholder="Buscar producto">
+                            </div>
+                        </form>
+                        <table class="table table-condensed" ng-show="listaProductos">
+                            <thead>
+                                <tr>
+                                    <th>Codigo</th>
+                                    <th>Descripción</th>
+                                    <th>Marca</th>
+                                    <th>Precio</th>
+                                    <th>Cantidad</th>
+                                    <th class="text-right"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="p in productos track by $index">
+                                    <td>{{ p.codigointerno }}</td>
+                                    <td>{{ p.descripcion }}</td>
+                                    <td>{{ p.marca }}</td>
+                                    <td>{{ p.precio | number:2 }}</td>
+                                    <td>
+                                        <input type="number" ng-value="{{ p.cantidad }}" string-to-number ng-model="p.cantidad" style="width: 100px;" min="1">
+                                    </td>
+                                    <td class="text-right">
+                                        <button class="btn btn-xs" ng-click="agregarItem($index)">
+                                            <i class="glyphicon glyphicon-plus"></i> Agregar
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="jumbotron" ng-show="divPago">
+                        <form class="form-horizontal" ng-submit="generarVenta(ven)">
+                          <input ng-hide="true" ng-model="ven.cliente" ng-required="required">
+                          <div class="form-group form-group-sm">
+                            <label for="inputNit" class="col-sm-2 control-label">NIT:</label>
+                            <div class="col-sm-4">
+                              <input type="text" class="form-control" id="inputNit" ng-model="ven.nit" ng-required="required" ng-blur="buscarNit(ven.nit)">
+                            </div>
+                            <label for="inputDireccion" class="col-sm-2 control-label">Dirección:</label>
+                            <div class="col-sm-4">
+                              <input type="text" class="form-control" id="inputDireccion" ng-model="ven.direccion" ng-required="required">
+                            </div>
+                          </div>
+                          <div class="form-group form-group-sm">
+                            <label for="inputNombre" class="col-sm-2 control-label">Nombre:</label>
+                            <div class="col-sm-10">
+                              <input type="text" class="form-control" id="inputNombre" ng-model="ven.nombre" ng-required="required">
+                            </div>
+                          </div>
+                          <div class="form-group form-group-sm">
+                            <div class="col-sm-offset-2 col-sm-10">
+                              <label class="radio-inline" ng-repeat="mp in metodoPago">
+                                <input type="radio" id="{{ 'metodo' + mp.id }}" ng-value="{{ mp.id }}" ng-model="idmetodopago" name="idmetodopago"> {{ mp.descripcion }}
+                              </label>
+                            </div>
+                          </div>
+                          <div class="form-group form-group-sm">
+                            <label for="inputMonto" class="col-sm-2 control-label">Monto:</label>
+                            <div class="col-sm-4">
+                              <input type="number" step="0.01" class="form-control" id="inputMonto" ng-model="ven.monto" ng-required="required" style="font-size: 30px;height: 50px;">
+                            </div>
+
+                            <label for="inputVuelto" class="col-sm-2 control-label">Vuelto:</label>
+                            <div class="col-sm-4">
+                              <input type="number" step="0.01" class="form-control" ng-value="ven.monto - totalVenta" id="inputVuelto" ng-model="ven.vuelto" ng-required="required" ng-readonly="true" style="font-size: 30px;height: 50px;">
+                            </div>
+                          </div>
+                          <div class="form-group form-group-sm">
+                            <label for="areaConcepto" class="col-sm-2 control-label">Concepto:</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" ng-model="ven.conceptomayor" rows="2" placeholder="(opcional)" id="areaConcepto"></textarea>
+                            </div>
+                          </div>
+                          <div class="form-group form-group-sm">
+                            <div class="col-sm-offset-2 col-sm-10 text-right">
+                              <button type="submit" class="btn btn-sm btn-default">
+                                  <i class="glyphicon glyphicon-ok"></i> Aceptar
+                              </button>
+                            </div>
+                          </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-primary" ng-show="vista">
+      <div class="panel-body" ng-include="verventa"></div>
+    </div>
+
+    <div class="panel panel-default" ng-show="resultados">
+      <div class="table-responsive">
+        <table class="table table-hover table-condensed">
+          <thead>
+            <tr>
+              <th>Fecha</th>
+              <th>Cliente</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody ng-cloak>
+            <tr ng-repeat="v in ventas track by $index" ng-click="getVenta($index)">
+              <td>{{ v.fecha | date:"dd/MM/yyyy 'at' h:mma" }} </td>
+              <td>{{ v.nombre }}</td>
+              <td>{{ v.total }}</td>
+            </tr>
+          </tbody>
+          <tfoot ng-show="buscarmas">
+            <tr>
+              <td colspan="5" class="text-center">
+                <button type="button" class="btn btn-default" ng-click="mas()">Más</button>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="mdlPos">
+  <div class="modal-dialog" role="document" id="mdlPosTamanio">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="mdlPosTitulo">POS</h4>
+      </div>
+      <div class="modal-body">
+        <div ng-include="mdlurl"></div>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+</div>

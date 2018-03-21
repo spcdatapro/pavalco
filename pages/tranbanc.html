@@ -1,0 +1,479 @@
+<div class="container" ng-controller="tranBancCtrl">
+
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a show-tab href="#divFrmTransaccion" data-toggle="tab">TRANSACCI&Oacute;N BANCARIA</a>
+        </li>
+        <li ng-show="editando">
+            <a show-tab href="#divFrmDocSoporte" data-toggle="tab">DOCUMENTO(S) SOPORTE</a>
+        </li>
+        <li ng-show="conconta">
+            <a show-tab href="#divFrmDetContable" data-toggle="tab">DETALLE CONTABLE</a>
+        </li>
+        <li ng-show="false">
+            <a show-tab href="#divPrintVer" data-toggle="tab">VERSI&Oacute;N IMPRIMIBLE</a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <div id="divFrmTransaccion" class="tab-pane fade in active">
+            <div class="panel panel-primary">
+        <div class="panel-heading">Transacci&oacute;n bancaria <span class="badge">{{strTran}}</span></div>
+        <div class="panel-body">
+            <form name="frmTranBan" id="frmTranBan" ng-submit="frmTranBan.$valid && addTran(laTran)" novalidate>
+                <div class="row" ng-show="false">
+                    <div class="col-md-12">
+                        <div class="form-group" ng-class="{'has-error':frmTranBan.selEmpresa.$invalid && !frmTranBan.selEmpresa.$pristine}">
+                            <label for="selEmpresa">Empresa:</label>
+                            <select name="selEmpresa" id="selEmpresa" class="form-control" ng-model="laEmpresa"
+                                    ng-options="obj.nomempresa for obj in lasEmpresas track by obj.id" ng-change="getLstBancos()" required>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group" ng-class="{'has-error':frmTranBan.selBanco.$invalid && !frmTranBan.selBanco.$pristine}">
+                            <label for="selBanco">Banco:</label>
+                            <select name="selBanco" id="selBanco" class="form-control" ng-model="laTran.objBanco"
+                                    ng-options="obj.bancomoneda for obj in losBancos track by obj.id" ng-change="getLstTran()" required>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group" ng-class="{'has-error':frmTranBan.selTipoTrans.$invalid && !frmTranBan.selTipoTrans.$pristine}">
+                            <label for="selTipoTrans">Tipo de transacci&oacute;n:</label>
+                            <select name="selTipoTrans" id="selTipoTrans" class="form-control" ng-model="laTran.objTipotrans"
+                                    ng-options="obj.abreviadesc for obj in tipotrans track by obj.abreviatura" ng-change="getNumCheque()" required>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3" ng-show="(laTran.objTipotrans.abreviatura.toUpperCase() == 'R' || laTran.objTipotrans.abreviatura.toUpperCase() == 'B')">
+                        <div class="form-group" ng-class="{'has-error':frmTranBan.chkAjuste.$invalid && !frmTranBan.chkAjuste.$pristine}">
+                            <label for="chkAjuste">¿Ajuste por diferencial cambiario?</label>
+                            <input name="chkAjuste" id="chkAjuste" type="checkbox" class="form-control" ng-model="laTran.esajustedc"
+                                   ng-true-value="1" ng-false-value="0"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group" ng-class="{'has-error':frmTranBan.txtNumero.$invalid && !frmTranBan.txtNumero.$pristine}">
+                            <label for="txtNumero">N&uacute;mero:</label>
+                            <input name="txtNumero" id="txtNumero" type="number" class="form-control" ng-model="laTran.numero" min="1"
+                                   placeholder="N&uacute;mero de transacci&oacute;n" required />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group" ng-class="{'has-error':frmTranBan.txtFecha.$invalid && !frmTranBan.txtFecha.$pristine}">
+                            <label for="txtFecha">Fecha de transacci&oacute;n:</label>
+                            <input name="txtFecha" id="txtFecha" type="date" class="form-control"
+                                   ng-model="laTran.fecha" required />
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group" ng-class="{'has-error':frmTranBan.txtMonto.$invalid && !frmTranBan.txtMonto.$pristine}">
+                            <label for="txtMonto">Monto:</label>
+                            <input name="txtMonto" id="txtMonto" type="text" class="form-control" ng-model="laTran.monto" min="0"
+                                   placeholder="Monto de la transacci&oacute;n" required fcsa-number="{ maxDecimals: 2 }" />
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group" ng-class="{'has-error':frmTranBan.txtTC.$invalid && !frmTranBan.txtTC.$pristine}">
+                            <label for="txtTC">Tipo de cambio:</label>
+                            <input name="txtTC" id="txtTC" type="text" class="form-control" ng-model="laTran.tipocambio" min="1.0000000000"
+                                   placeholder="Tipo de cambio" required fcsa-number="{ min:1, maxDecimals: dectc }" />
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group" ng-class="{'has-error':frmTranBan.chkAnticipo.$invalid && !frmTranBan.chkAnticipo.$pristine}">
+                            <label for="chkAnticipo">¿Es anticipo?</label>
+                            <input name="chkAnticipo" id="chkAnticipo" type="checkbox" class="form-control" ng-model="laTran.anticipo"
+                                   ng-true-value="1" ng-false-value="0"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" ng-show="laTran.anticipo === 1">
+                    <div class="col-md-5">
+                        <div class="form-group" ng-class="{'has-error':frmTranBan.selBene.$invalid && !frmTranBan.selBene.$pristine}">
+                            <label for="selBene">Beneficiario:</label>
+                            <input name="txtFiltroBene" id="txtFiltroBene" type="text" class="form-control" ng-model="searchbene"
+                                   placeholder="N.I.T., Nombre..."/>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="form-group" ng-class="{'has-error':frmTranBan.selBene.$invalid && !frmTranBan.selBene.$pristine}">
+                            <label for="selBene">&nbsp;</label>
+                            <select name="selBene" id="selBene" class="form-control" ng-model="laTran.objBeneficiario"
+                                    ng-options="obj.beneficiario group by obj.grupo for obj in beneficiarios | filter:{beneficiario:searchbene}"
+                                    ng-change="setNombreBene(laTran.objBeneficiario[0])" multiple>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group" ng-class="{'has-error':frmTranBan.txtBene.$invalid && !frmTranBan.txtBene.$pristine}">
+                            <label for="txtBene">Beneficiario:</label>
+                            <input name="txtBene" id="txtBene" type="text" class="form-control" ng-model="laTran.beneficiario" maxlength="300"
+                                   placeholder="Beneficiario" required />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="txtConcepto">Concepto:</label>
+                            <textarea name="txtConcepto" id="txtConcepto" class="form-control"
+                                      ng-model="laTran.concepto" placeholder="Concepto de la transacci&oacute;n" maxlength="2000">
+                            </textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" ng-show="laTran.anulado === 1">
+                    <div class="col-md-12">
+                        <div class="well well-sm">
+                            <p>Cheque anulado el {{laTran.fechaanula | date:'dd/MM/yyyy'}} por: {{laTran.razon}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn-group" role="group" aria-label="...">
+                    <button type="submit" class="btn btn-primary" ng-disabled="frmTranBan.$invalid" ng-hide="editando">
+                        <span class="glyphicon glyphicon-floppy-save"></span>
+                    </button>
+                    <button type="button" class="btn btn-primary" ng-disabled="frmTranBan.$invalid || laTran.anulado === 1" ng-show="editando" ng-click="updTran(laTran, laTran.id)">
+                        <span class="glyphicon glyphicon-floppy-save"></span>
+                    </button>
+                    <button type="button" class="btn btn-warning" ng-disabled="frmTranBan.$invalid || laTran.anulado === 1" ng-show="editando && laTran.tipotrans === 'C'" ng-click="anular(laTran)">
+                        <span class="glyphicon glyphicon-ban-circle"></span>
+                    </button>
+                    <a class="btn btn-primary" target="_blank" ng-href="php/printcheck.php?c={{laTran.id}}" ng-show="editando && laTran.tipotrans === 'C'"
+                       ng-disabled="frmTranBan.$invalid || laTran.anulado === 1 || laTran.impreso === 1" ng-click="laTran.impreso = 1">
+                        <span class="glyphicon glyphicon-print">&nbsp;Cheque</span>
+                    </a>
+                    <button type="button" class="btn btn-primary" ng-show="editando" ng-click="printVersion()">
+                        <span class="glyphicon glyphicon-print"></span>
+                    </button>
+                    <button type="button" class="btn btn-primary" ng-show="editando" ng-click="resetLaTran()">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                </div>
+            </form>
+            <hr/>
+            <!--<datatable-wrapper>-->
+                <table datatable="ng" dt-options="dtOptions" class="table table-responsive table-hover">
+                    <thead>
+                        <tr>
+                            <th>Banco</th>
+                            <th>Tipo</th>
+                            <th>N&uacute;mero</th>
+                            <th>Fecha</th>
+                            <th>Monto</th>
+                            <th>Beneficiario</th>
+                            <th>Concepto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="lt in lasTran" ng-click="getDataTran(lt.id)">
+                            <td>{{lt.nombanco}}</td>
+                            <td>
+                                <span editable-select="lt.tipotrans" e-name="tipotrans" e-form="rowform"
+                                      e-ng-options="s.value as s.text for s in tipotrans"
+                                      e-required e-class="form-control">
+                                    {{lt.tipotrans}}
+                                </span>
+                            </td>
+                            <td>
+                                <span editable-text="lt.numero" e-name="numero" e-form="rowform" e-required
+                                      e-class="form-control" e-type="number" e-min="1">
+                                    {{lt.numero}}
+                                </span>
+                            </td>
+                            <td>
+                                <span editable-text="lt.fecha" e-name="fecha" e-form="rowform" e-required
+                                      e-class="form-control" e-type="date">
+                                    {{lt.fecha | date:'dd/MM/yyyy'}}
+                                </span>
+                            </td>
+                            <td>
+                                <span editable-text="lt.monto" e-name="monto" e-form="rowform" e-required
+                                      e-class="form-control" e-type="number" e-min="0" e-step="0.01">
+                                    {{lt.monto | number:2}}
+                                </span>
+                            </td>
+                            <td>
+                                <span editable-text="lt.beneficiario" e-name="beneficiario" e-form="rowform" e-required
+                                      e-class="form-control" e-type="text" e-maxlength="300">
+                                    {{lt.beneficiario}}
+                                </span>
+                            </td>
+                            <td>
+                                <span editable-textarea="lt.concepto" e-name="concepto" e-form="rowform" e-class="form-control">
+                                    {{lt.anticipo === 1 ? '(Anticipo) ': ''}}{{lt.concepto}}
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            <!--</datatable-wrapper>-->
+        </div>
+    </div>
+        </div>
+        <div id="divFrmDocSoporte" class="tab-pane fade">
+            <div class="panel panel-success">
+                <div class="panel-heading">Documento(s) de soporte de <span class="badge" style="color: white">{{strTran}}</span></div>
+                <div class="panel-body">
+                    <form name="frmDocSop" id="frmDocSop" ng-submit="frmDocSop.$valid && addDocSop(elDocSop)" novalidate>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group" ng-class="{'has-error':frmDocSop.selTipoDocTB.$invalid && !frmDocSop.selTipoDocTB.$pristine}">
+                                    <label for="selTipoDocTB">Tipo:</label>
+                                    <select name="selTipoDocTB" id="selTipoDocTB" class="form-control" ng-model="elDocSop.objTipoDocTB"
+                                            ng-options="obj.abreviadesc for obj in losTiposDocTB track by obj.id"
+                                            ng-change="getDocs(elDocSop.objTipoDocTB)" required>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="form-group" ng-class="{'has-error':frmDocSop.selDocsExis.$invalid && !frmDocSop.selDocsExis.$pristine}">
+                                    <label for="selDocsExis">Documentos pendientes de pago:</label>
+                                    <select name="selDocsExis" id="selDocsExis" class="form-control" ng-model="elDocSop.objDocsPendientes"
+                                            ng-options="obj.cadena for obj in compraspendientes track by obj.id"
+                                            ng-change="setData(elDocSop.objDocsPendientes[0])" multiple>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group" ng-class="{'has-error':frmDocSop.txtFechaDocSop.$invalid && !frmDocSop.txtFechaDocSop.$pristine}">
+                                    <label for="txtFechaDocSop">Fecha:</label>
+                                    <input name="txtFechaDocSop" id="txtFechaDocSop" type="date" class="form-control"
+                                           ng-model="elDocSop.fechadoc" required />
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="form-group" ng-class="{'has-error':frmDocSop.txtSerie.$invalid && !frmDocSop.txtSerie.$pristine}">
+                                    <label for="txtSerie">Serie:</label>
+                                    <input name="txtSerie" id="txtSerie" type="text" class="form-control" ng-model="elDocSop.serie" placeholder="Serie" maxlength="15"/>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group" ng-class="{'has-error':frmDocSop.txtDocu.$invalid && !frmDocSop.txtDocu.$pristine}">
+                                    <label for="txtDocu">Documento:</label>
+                                    <input name="txtDocu" id="txtDocu" type="text" class="form-control" ng-model="elDocSop.documento"
+                                           placeholder="Documento" required />
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group" ng-class="{'has-error':frmDocSop.txtMontoDS.$invalid && !frmDocSop.txtMontoDS.$pristine}">
+                                    <label for="txtMontoDS">Monto:</label>
+                                    <input name="txtMontoDS" id="txtMontoDS" type="text" class="form-control" ng-model="elDocSop.monto" min="0"
+                                           placeholder="Monto" required fcsa-number="{ maxDecimals: 2 }" />
+                                </div>
+                            </div>
+                            <div class="col-md-3" ng-show="laTran.anticipo === 1">
+                                <div class="form-group" ng-class="{'has-error':frmDocSop.txtFechaLiq.$invalid && !frmDocSop.txtFechaLiq.$pristine}">
+                                    <label for="txtFechaLiq">Fecha de liquidaci&oacute;n:</label>
+                                    <input name="txtFechaLiq" id="txtFechaLiq" type="date" class="form-control"
+                                           ng-model="elDocSop.fechaliquida"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="btn-group" role="group" aria-label="...">
+                            <button type="submit" class="btn btn-success" ng-disabled="frmDocSop.$invalid || laTran.anulado === 1">
+                                <span class="glyphicon glyphicon-floppy-save"></span>
+                            </button>
+                        </div>
+                    </form>
+                    <hr/>
+                    <table datatable="ng" dt-options="dtOptions" class="table table-responsive table-hover">
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Tipo</th>
+                                <th>Serie</th>
+                                <th>Documento</th>
+                                <th>Monto</th>
+                                <th>&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="lds in losDocsSoporte">
+                                <td>{{lds.fechadoc | date:'dd/MM/yyyy'}}</td>
+                                <td>{{lds.desctipodoc}}</td>
+                                <td>{{lds.serie}}</td>
+                                <td>{{lds.documento}}</td>
+                                <td style="text-align: right;">{{lds.monto | number:2}}</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div id="divFrmDetContable" class="tab-pane fade">
+            <div class="panel panel-info">
+                <div class="panel-heading">Detalle contable de <span class="badge">{{strTran}}</span></div>
+                <div class="panel-body">
+                    <form name="frmDetCont" id="frmDetCont" ng-submit="frmDetCont.$valid && addDetCont(elDetCont)" novalidate>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="selCta">Cuenta:</label>
+                                    <input name="txtFiltroCta" id="txtFiltroCta" type="text" class="form-control" ng-model="searchcta"
+                                           placeholder="Cuenta contable"/>
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="form-group" ng-class="{'has-error':frmDetCont.selCta.$invalid && !frmDetCont.selCta.$pristine}">
+                                    <label for="selCta">&nbsp;</label>
+                                    <select name="selCta" id="selCta" class="form-control" ng-model="elDetCont.objCuenta"
+                                            ng-options="obj.codcta for obj in lasCuentasMov | filter:{codcta:searchcta}" multiple required>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group" ng-class="{'has-error':frmDetCont.txtDebe.$invalid && !frmDetCont.txtDebe.$pristine}">
+                                    <label for="txtDebe">Debe:</label>
+                                    <input name="txtDebe" id="txtDebe" type="text" class="form-control" ng-model="elDetCont.debe"
+                                           placeholder="Debe" fcsa-number="{ maxDecimals: 2 }" ng-change="zeroHaber(elDetCont.debe)" required />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group" ng-class="{'has-error':frmDetCont.txtHaber.$invalid && !frmDetCont.txtHaber.$pristine}">
+                                    <label for="txtHaber">Haber:</label>
+                                    <input name="txtHaber" id="txtHaber" type="text" class="form-control" ng-model="elDetCont.haber"
+                                           placeholder="Haber" fcsa-number="{ maxDecimals: 2 }" ng-change="zeroDebe(elDetCont.haber)" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group" ng-class="{'has-error':frmDetCont.txtConceptoMayor.$invalid && !frmDetCont.txtConceptoMayor.$pristine}">
+                                    <label for="txtConceptoMayor">Concepto mayor:</label>
+                                    <textarea name="txtConceptoMayor" id="txtConceptoMayor" class="form-control"
+                                              ng-model="elDetCont.conceptomayor" placeholder="Concepto para el libro mayor"
+                                              style="width:100%" rows="3" required>
+                                    </textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="btn-group" role="group" aria-label="...">
+                            <button type="submit" class="btn btn-info" ng-disabled="frmDetCont.$invalid || laTran.anulado === 1">
+                                <span class="glyphicon glyphicon-floppy-save"></span>
+                            </button>
+                        </div>
+                    </form>
+                    <hr/>
+                    <table datatable="ng" dt-options="dtOptionsDetCont" class="table table-responsive table-hover">
+                        <thead>
+                            <tr>
+                                <th>Cuenta</th>
+                                <th style="text-align: right">Debe</th>
+                                <th style="text-align: right">Haber</th>
+                                <th>Concepto mayor</th>
+                                <th>&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="dc in losDetCont">
+                                <td>{{dc.desccuentacont}}</td>
+                                <td style="text-align: right">{{dc.debe | number:2}}</td>
+                                <td style="text-align: right">{{dc.haber | number:2}}</td>
+                                <td>{{dc.conceptomayor}}</td>
+                                <td>
+                                    <button type="button" class="btn btn-danger" ng-click="delDetCont(dc)" ng-hide="dc.id == 0">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <hr/>
+                    <div ng-show="liquidacion.length > 0">
+                    <table datatable="ng" dt-options="dtOptionsDetContLiquidacion" class="table table-responsive table-hover">
+                        <caption>
+                            <h4>Liquidaci&oacute;n de documento</h4>
+                            <h5>Documento liquidado el {{laTran.fechaliquida | date:'dd/MM/yyyy'}}</h5>
+                        </caption>
+                        <thead>
+                        <tr>
+                            <th>Cuenta</th>
+                            <th style="text-align: right">Debe</th>
+                            <th style="text-align: right">Haber</th>
+                            <th>Concepto mayor</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="dcl in liquidacion">
+                            <td>{{dcl.desccuentacont}}</td>
+                            <td style="text-align: right">{{dcl.debe | number:2}}</td>
+                            <td style="text-align: right">{{dcl.haber | number:2}}</td>
+                            <td>{{dcl.conceptomayor}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="divPrintVer" class="tab-pane fade">
+            <div id="toPrint">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h4>{{strTran}}</h4>
+                        <h4>{{laTran.concepto}}</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <table class="table table-condensed table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Cuenta</th>
+                                <th style="text-align: right">Debe</th>
+                                <th style="text-align: right">Haber</th>
+                                <th>Concepto mayor</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="dc in losDetCont" ng-class="{'linea-de-totales' : dc.desccuentacont.toUpperCase().indexOf('TOTAL DE PARTIDA') > 0}">
+                                <td>{{dc.desccuentacont}}</td>
+                                <td style="text-align: right">{{dc.debe > 0 ? (dc.debe | number:2) : ''}}</td>
+                                <td style="text-align: right">{{dc.haber > 0 ? (dc.haber | number:2) : ''}}</td>
+                                <td>{{dc.conceptomayor}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Template de la modal //Este usa el controlador ModalAnulacionCtrl-->
+<script type="text/ng-template" id="modalAnulacion.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Razón de anulaci&oacute;n</h3>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="selRazon">Por favor, seleccione la razón de anulaci&oacute;n:</label>
+            <select name="selRazon" id="selRazon" class="form-control" ng-model="razon"
+                    ng-options="obj.razon for obj in razones" required>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="txtFecAnul">Fecha de anulaci&oacute;n:</label>
+            <input name="txtFecAnul" id="txtFecAnul" type="date" class="form-control" ng-model="anuladata.fechaanula" required/>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="ok()" ng-disabled="razon.id == null || razon.id == undefined">Aceptar</button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">Cancelar</button>
+    </div>
+</script>
+<!--Fin de Template de la modal-->

@@ -1,0 +1,69 @@
+<div class="container" ng-controller="conciliaCtrl">
+    <div class="panel panel-primary">
+        <div class="panel-heading">Conciliaci&oacute;n bancaria</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="selEmpresa">Empresa:</label>
+                    <select name="selEmpresa" id="selEmpresa" class="form-control" ng-model="laEmpresa"
+                            ng-options="obj.nomempresa for obj in lasEmpresas track by obj.id" ng-change="getLstBancos()" required>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="selBanco">Banco:</label>
+                    <select name="selBanco" id="selBanco" class="form-control" ng-model="elBanco"
+                            ng-options="obj.bmc for obj in losBancos track by obj.id" ng-change="getLstTran()" required>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="txtAFecha">A fecha:</label>
+                        <input name="txtAFecha" id="txtAFecha" type="date" class="form-control" ng-model="afecha" ng-change="getLstTran()" required/>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="txtFConc">Fecha de conciliaci&oacute;n:</label>
+                        <input name="txtFConc" id="txtFConc" type="date" class="form-control" ng-model="fechaconcilia" required/>
+                    </div>
+                </div>
+            </div>
+            <hr/>
+            <table class="table table-responsive table-hover table-condensed">
+                <caption>
+                    <input type="text" class="form-control" placeholder="Buscar documento..."/>
+                </caption>
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Tipo</th>
+                        <th>N&uacute;mero</th>
+                        <th>Beneficiario</th>
+                        <th>Concepto</th>
+                        <th style="text-align: right; white-space: nowrap">Cr&eacute;dito (Q)</th>
+                        <th style="text-align: right; white-space: nowrap">D&eacute;bito (Q)</th>
+                        <th>Operado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="tb in lasTran">
+                        <td>{{tb.fecha | date:'dd/MM/yyyy'}}</td>
+                        <td>{{tb.tipotrans}}</td>
+                        <td>{{tb.numero}}</td>
+                        <td>{{tb.beneficiario}}</td>
+                        <td>{{tb.concepto}}</td>
+                        <td style="text-align: right">{{+tb.creditos > 0 ? (tb.creditos | number:2) : ''}}</td>
+                        <td style="text-align: right">{{+tb.debitos > 0 ? (tb.debitos | number:2) : ''}}</td>
+                        <td>
+                            <button type="button" class="btn" ng-class="{'btn-success': tb.operado, 'btn-warning': !tb.operado }" ng-click="updOperado(tb, tb.id)">
+                                <span class="glyphicon" ng-class="{'glyphicon-ok': tb.operado, 'glyphicon-remove': !tb.operado}"></span>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

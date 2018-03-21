@@ -1,0 +1,83 @@
+<div class="container" ng-controller="ubicacionCtrl">
+    <div class="panel panel-primary">
+        <div class="panel-heading">Ubicaciones</div>
+        <div class="panel-body">
+            <form name="frmUbicacion" id="frmUbicacion" ng-submit="frmUbicacion.$valid && addUbicacion(ubicacion)" novalidate>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group" ng-class="{'has-error':frmUbicacion.txtDescUbicacion.$invalid && !frmUbicacion.txtDescUbicacion.$pristine}">
+                            <label for="txtDescUbicacion">Descripci&oacute;n:</label>
+                            <input name="txtDescUbicacion" id="txtDescUbicacion" type="text" class="form-control" maxlength="250" ng-model="ubicacion.descripcion" required/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group" ng-class="{'has-error':frmUbicacion.txtDireccion.$invalid && !frmUbicacion.txtDireccion.$pristine}">
+                            <label for="txtDireccion">Direcci&oacute;n:</label>
+                            <input name="txtDireccion" id="txtDireccion" type="text" class="form-control" maxlength="250" ng-model="ubicacion.direccion" required/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group" ng-class="{'has-error':frmUbicacion.txtTelefono.$invalid && !frmUbicacion.txtTelefono.$pristine}">
+                            <label for="txtTelefono">Tel&eacute;fono:</label>
+                            <input name="txtTelefono" id="txtTelefono" type="text" class="form-control" maxlength="16" ng-model="ubicacion.telefono"/>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group" ng-class="{'has-error':frmUbicacion.txtContacto.$invalid && !frmUbicacion.txtContacto.$pristine}">
+                            <label for="txtContacto">Contacto:</label>
+                            <input name="txtContacto" id="txtContacto" type="text" class="form-control" maxlength="250" ng-model="ubicacion.contacto"/>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group" ng-class="{'has-error':frmUbicacion.chkDeBaja.$invalid && !frmUbicacion.chkDeBaja.$pristine}">
+                            <label for="chkDeBaja">De baja:</label>
+                            <input name="chkDeBaja" id="chkDeBaja" type="checkbox" class="form-control" ng-true-value="'1'" ng-false-value="'0'" ng-model="ubicacion.debaja"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn-group" role="group" aria-label="...">
+                    <button type="submit" class="btn btn-primary" ng-disabled="frmUbicacion.$invalid || !permiso.c" ng-hide="+ubicacion.id > 0">
+                        <span class="glyphicon glyphicon-floppy-save"></span>
+                    </button>
+                    <button type="button" class="btn btn-primary" ng-disabled="frmUbicacion.$invalid || !permiso.m" ng-show="+ubicacion.id > 0" ng-click="updUbicacion(ubicacion)">
+                        <span class="glyphicon glyphicon-floppy-save"></span>
+                    </button>
+                    <button type="button" class="btn btn-warning" ng-disabled="frmUbicacion.$invalid || !permiso.e" ng-show="+ubicacion.id > 0" ng-click="delUbicacion(ubicacion)">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                    <button type="button" class="btn btn-primary" ng-disabled="!permiso.c" ng-show="+ubicacion.id > 0" ng-click="resetUbicacion()">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                </div>
+            </form>
+            <hr/>
+            <div class="table-responsive">
+                <table class="table table-condensed table-hover">
+                    <caption>
+                        <input ng-model="buscar.$" class="form-control" placeholder="Buscar ubicaci&oacute;n..." style="width: 100%;" />
+                    </caption>
+                    <thead>
+                    <tr>
+                        <th style="white-space: nowrap">Descripci&oacute;n</th>
+                        <th>Direcci&oacute;n</th>
+                        <th style="white-space: nowrap">Tel&eacute;fono</th>
+                        <th style="text-align: center">De baja</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="u in ubicaciones | filter:buscar" ng-click="getUbicacion(u.id)">
+                        <td style="white-space: nowrap">{{u.descripcion}}</td>
+                        <td>{{u.direccion}}</td>
+                        <td style="white-space: nowrap">{{u.telefono}}</td>
+                        <td style="text-align: center">{{+u.debaja == 0 ? 'No' : 'Sí'}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

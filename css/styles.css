@@ -1,0 +1,132 @@
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu>.dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -6px;
+    margin-left: -1px;
+    -webkit-border-radius: 0 6px 6px 6px;
+    -moz-border-radius: 0 6px 6px;
+    border-radius: 0 6px 6px 6px;
+}
+
+.dropdown-submenu:hover>.dropdown-menu {
+    display: block;
+}
+
+.dropdown-submenu>a:after {
+    display: block;
+    content: " ";
+    float: right;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    border-left-color: #ccc;
+    margin-top: 5px;
+    margin-right: -10px;
+}
+
+.dropdown-submenu:hover>a:after {
+    border-left-color: #fff;
+}
+
+.dropdown-submenu.pull-left {
+    float: none;
+}
+
+.dropdown-submenu.pull-left>.dropdown-menu {
+    left: -100%;
+    margin-left: 10px;
+    -webkit-border-radius: 6px 0 6px 6px;
+    -moz-border-radius: 6px 0 6px 6px;
+    border-radius: 6px 0 6px 6px;
+}
+
+.partida-cuadrada { background-color: #e5ffe5; }
+
+.partida-descuadrada { background-color: #ffe6e6; }
+
+/* centered columns styles */
+.row-centered {
+    text-align:center;
+}
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
+}
+
+.linea-de-totales {
+    background-color: lightgray;
+    font-weight: bolder;
+    font-style: italic;
+}
+
+.linea-de-saldos {
+    background-color: #ffcdcd;
+    font-weight: bolder;
+    font-style: italic;
+}
+
+.texto-en-negrita{
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.tbl-caption-contrato {
+    background-color: #264CC1;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+}
+
+.td-contrato {
+    width:25%;
+}
+
+.td-head-contrato {
+    background-color: #C0C0C0;
+}
+
+.modal-error {
+    border-style: solid;
+    border-color: #CB171E;
+    border-width: 0.5em;
+}
+
+.factura-pagada{
+    text-align: center;
+    background-color: #DCF8C6;
+}
+
+.lbl-bold{
+    font-weight: bold;
+}
+
+.perdida-ejercicio{
+    background-color: #ffe6e6;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.ganancia-ejercicio{
+    background-color: #e5ffe5;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.nopadding {
+    padding: 0.3em !important;
+    margin: 0em !important;
+}
+
+.numero{
+    text-align: right;
+}

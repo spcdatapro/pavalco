@@ -1,0 +1,45 @@
+<div class="container" ng-controller="marcaCtrl">
+    <div class="panel panel-primary">
+        <div class="panel-heading">Marcas de partes</div>
+        <div class="panel-body">
+            <form name="frmMarca" id="frmMarca" class="form-inline" ng-submit="frmMarca.$valid && addMarca(marca)" novalidate>
+                <div class="form-group" ng-class="{'has-error':frmMarca.txtDescMarca.$invalid && !frmMarca.txtDescMarca.$pristine}">
+                    <label for="txtDescMarca">Descripci&oacute;n:</label>
+                    <input name="txtDescMarca" id="txtDescMarca" type="text" class="form-control" style="width: 50em" maxlength="250" ng-model="marca.descripcion" required/>
+                </div>
+                <div class="btn-group" role="group" aria-label="...">
+                    <button type="submit" class="btn btn-primary" ng-disabled="frmMarca.$invalid || !permiso.c" ng-hide="+marca.id > 0">
+                        <span class="glyphicon glyphicon-floppy-save"></span>
+                    </button>
+                    <button type="button" class="btn btn-primary" ng-disabled="frmMarca.$invalid || !permiso.m" ng-show="+marca.id > 0" ng-click="updMarca(marca)">
+                        <span class="glyphicon glyphicon-floppy-save"></span>
+                    </button>
+                    <button type="button" class="btn btn-warning" ng-disabled="frmMarca.$invalid || !permiso.e" ng-show="+marca.id > 0" ng-click="delMarca(marca)">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                    <button type="button" class="btn btn-primary" ng-disabled="!permiso.c" ng-show="+marca.id > 0" ng-click="resetMarca()">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                </div>
+            </form>
+            <hr/>
+            <div class="table-responsive">
+                <table class="table table-condensed table-hover">
+                    <caption>
+                        <input ng-model="buscar.$" class="form-control" placeholder="Buscar marca..." style="width: 100%;" />
+                    </caption>
+                    <thead>
+                    <tr>
+                        <th>Descripci&oacute;n</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="m in marcas | filter:buscar" ng-click="getMarca(m.id)">
+                        <td>{{m.descripcion}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

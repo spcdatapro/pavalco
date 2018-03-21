@@ -1,0 +1,167 @@
+<div class="container" ng-controller="promCliCtrl">
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a show-tab href="#divPromotores" data-toggle="tab">PROMOTOR(ES)</a>
+        </li>
+        <li>
+            <a show-tab href="#divClientes" data-toggle="tab">CLIENTE(S)</a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div id="divPromotores" class="tab-pane fade in active">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Promotor(es)</div>
+                <div class="panel-body">
+                    <form name="frmPromotor" id="frmPromotor" ng-submit="frmPromotor.$valid && ejecutar('c', objeto, 1)" novalidate>
+                        <div class="form-group" ng-class="{'has-error':frmPromotor.txtNombre.$invalid && !frmPromotor.txtNombre.$pristine}">
+                            <label for="txtNombre">Nombre:</label>
+                            <input name="txtNombre" id="txtNombre" type="text" class="form-control"
+                                   ng-model="objeto.nombre" placeholder="Nombre" maxlength="150" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="txtTelefono">Tel&eacute;fono:</label>
+                            <input name="txtTelefono" id="txtTelefono" type="text" class="form-control"
+                                   ng-model="objeto.telefono" placeholder="Tel&eacute;fono" maxlength="32"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtCorreoe">E-mail:</label>
+                            <input name="txtCorreoe" id="txtCorreoe" type="email" class="form-control"
+                                   ng-model="objeto.correoe" placeholder="E-mail" maxlength="50"/>
+                        </div>
+                        <div class="btn-group" role="group" aria-label="...">
+                            <button type="submit" class="btn btn-primary" ng-disabled="frmPromotor.$invalid">
+                                <span class="glyphicon glyphicon-floppy-save"></span>
+                            </button>
+                        </div>
+                    </form>
+                    <hr/>
+                    <table datatable="ng" dt-options="dtOptions" class="table table-responsive table-hover">
+                        <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Tel&eacute;fono</th>
+                            <th>E-mail</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="p in lstPromotores">
+                            <td>{{p.nombre}}</td>
+                            <td>{{p.telefono}}</td>
+                            <td>{{p.correoe}}</td>
+                            <td style="white-space: nowrap">
+                                <button type="button" class="btn btn-danger" ng-click="eliminarRegistro('d', {id: p.id}, 1)">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div id="divClientes" class="tab-pane fade">
+            <div class="panel panel-success">
+                <div class="panel-heading">Cliente(s)</div>
+                <div class="panel-body">
+                    <form name="frmCliente" id="frmCliente" ng-submit="frmCliente.$valid && ejecutar('c', objeto, 2)" novalidate>
+                        <div class="form-group" ng-class="{'has-error':frmCliente.selPromotor.$invalid && !frmCliente.selPromotor.$pristine}">
+                            <label for="selPromotor">Promotor:</label>
+                            <select id="selPromotor" name="selPromotor" class="form-control"
+                                    ng-options="obj.nombre for obj in lstPromotores track by obj.id" ng-model="objeto.objPromotor" required>
+                            </select>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error':frmCliente.selTitulo.$invalid && !frmCliente.selTitulo.$pristine}">
+                            <label for="selTitulo">T&iacute;tulo:</label>
+                            <select id="selTitulo" name="selTitulo" class="form-control"
+                                    ng-options="obj.descripcion for obj in lstTitulos track by obj.id" ng-model="objeto.objTitulo" required>
+                            </select>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error':frmCliente.txtNombreCliente.$invalid && !frmCliente.txtNombreCliente.$pristine}">
+                            <label for="txtNombreCliente">Nombre:</label>
+                            <input name="txtNombreCliente" id="txtNombreCliente" type="text" class="form-control"
+                                   ng-model="objeto.nombre" placeholder="Nombre del cliente" maxlength="150" required />
+                        </div>
+                        <div class="form-group" ng-class="{'has-error':frmCliente.txtNitCliente.$invalid && !frmCliente.txtNitCliente.$pristine}">
+                            <label for="txtNitCliente">N.I.T.:</label>
+                            <input name="txtNitCliente" id="txtNitCliente" type="text" class="form-control"
+                                   ng-model="objeto.nit" placeholder="N.I.T. del cliente" maxlength="30" />
+                        </div>
+                        <div class="form-group">
+                            <label for="txtTelCliente">Tel&eacute;fono:</label>
+                            <input name="txtTelCliente" id="txtTelCliente" type="text" class="form-control"
+                                   ng-model="objeto.telefono" placeholder="Tel&eacute;fono del cliente" maxlength="32"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtPuestoCliente">Puesto:</label>
+                            <input name="txtPuestoCliente" id="txtPuestoCliente" type="text" class="form-control"
+                                   ng-model="objeto.puesto" placeholder="Puesto del cliente" maxlength="200"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtEmpreCliente">Empresa:</label>
+                            <input name="txtEmpreCliente" id="txtEmpreCliente" type="text" class="form-control"
+                                   ng-model="objeto.empresa" placeholder="Empresa del cliente" maxlength="150"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtDirCliente">Direcci&oacute;n:</label>
+                            <input name="txtDirCliente" id="txtDirCliente" type="text" class="form-control"
+                                   ng-model="objeto.direccion" placeholder="Direcci&oacute;n del cliente" maxlength="200"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="selPaisCliente">Pa&iacute;s:</label>
+                            <select id="selPaisCliente" name="selPaisCliente" class="form-control"
+                                    ng-options="obj.nombre for obj in lstPaises track by obj.id" ng-model="objeto.objPais">
+                            </select>
+                        </div>
+                        <div class="btn-group" role="group" aria-label="...">
+                            <button type="submit" class="btn btn-success" ng-disabled="frmCliente.$invalid" ng-hide="objeto.id > 0">
+                                <span class="glyphicon glyphicon-floppy-save"></span>
+                            </button>
+                            <button type="button" class="btn btn-success" ng-disabled="frmCliente.$invalid" ng-show="objeto.id > 0" ng-click="updCliente(objeto)">
+                                <span class="glyphicon glyphicon-floppy-save"></span>
+                            </button>
+                            <button type="button" class="btn btn-success" ng-disabled="frmCliente.$invalid" ng-show="objeto.id > 0" ng-click="resetObjeto()">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </button>
+                        </div>
+                    </form>
+                    <hr/>
+                    <table datatable="ng" dt-options="dtOptions" class="table table-responsive table-hover">
+                        <thead>
+                        <tr>
+                            <th style="text-align: right">C&oacute;digo</th>
+                            <th>Promotor</th>
+                            <th>T&iacute;tulo</th>
+                            <th>Nombre</th>
+                            <th>Tel&eacute;fono</th>
+                            <!--<th>Puesto</th>-->
+                            <th>Empresa</th>
+                            <th>Direcci&oacute;n</th>
+                            <th>Pa&iacute;s</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="c in lstClientes" ng-click="loadOne(2, c.id)">
+                            <td style="text-align: right">{{c.id | padNumber:4}}</td>
+                            <td>{{c.promotor}}</td>
+                            <td>{{c.titulo}}</td>
+                            <td>{{c.nombre}}</td>
+                            <td>{{c.telefono}}</td>
+                            <!--<td>{{c.puesto}}</td>-->
+                            <td>{{c.empresa}}</td>
+                            <td>{{c.direccion}}</td>
+                            <td>{{c.pais}}</td>
+                            <td style="white-space: nowrap">
+                                <button type="button" class="btn btn-danger" ng-click="eliminarRegistro('d', {id: c.id}, 2)">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

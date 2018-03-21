@@ -1,0 +1,71 @@
+<div class="container" ng-controller="periodoContableCtrl">
+    <div class="panel panel-primary">
+        <div class="panel-heading">Per&iacute;odos de trabajo</div>
+        <div class="panel-body">
+            <form name="frmPCont" id="frmPCont" ng-submit="frmPCont.$valid && addPeriodo(elPeriodo)" novalidate>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group" ng-class="{'has-error':frmPCont.txtDel.$invalid && !frmPCont.txtDel.$pristine}">
+                            <label for="txtDel">Del:</label>
+                            <input name="txtDel" id="txtDel" type="date" class="form-control"
+                                   ng-model="elPeriodo.del" required />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group" ng-class="{'has-error':frmPCont.txtAl.$invalid && !frmPCont.txtAl.$pristine}">
+                            <label for="txtAl">Al:</label>
+                            <input name="txtAl" id="txtAl" type="date" class="form-control" ng-model="elPeriodo.al" required />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group" ng-class="{'has-error':frmPCont.chkAbierto.$invalid && !frmPCont.chkAbierto.$pristine}">
+                            <center><label for="chkAbierto">Abierto:</label>
+                            <input name="chkAbierto" id="chkAbierto" type="checkbox" class="checkbox"
+                                   ng-model="elPeriodo.abierto" ng-true-value="1" ng-false-value="0"/></center>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn-group" role="group" aria-label="...">
+                    <button type="submit" class="btn btn-primary" ng-disabled="frmPCont.$invalid">
+                        <span class="glyphicon glyphicon-floppy-save"></span>
+                    </button>
+                </div>
+            </form>
+            <hr/>
+            <table class="table table-responsive table-hover">
+                <thead>
+                    <tr>
+                        <th>Del</th>
+                        <th>Al</th>
+                        <th>Abierto</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="p in losPeriodos">
+                        <td>
+                            {{p.del | date:'dd/MM/yyyy'}}
+                        </td>
+                        <td>
+                            {{p.al | date:'dd/MM/yyyy'}}
+                        </td>
+                        <td>
+                            {{p.abierto === 1 ? 'Sí' : 'No'}}
+                        </td>
+                        <td style="white-space: nowrap">
+                            <div class="btn-group btn-group-sm" role="group" aria-label="...">
+                                <button type="button" class="btn btn-primary btn-sm" ng-disabled="!permiso.m" ng-click="updPeriodo(p)">
+                                    <i class="fa fa-folder-open-o" aria-hidden="true" ng-show="+p.abierto == 0">&nbsp;Abrir</i>
+                                    <i class="fa fa-folder-o" aria-hidden="true" ng-show="+p.abierto == 1">&nbsp;Cerrar</i>
+                                </button>
+                                <button type="button" class="btn btn-danger btn-sm" ng-disabled="!permiso.e" ng-click="delPeriodo(p.id)">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

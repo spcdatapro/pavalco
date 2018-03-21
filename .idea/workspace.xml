@@ -1,0 +1,1820 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="9a5f2214-dc49-4fec-8939-ad25c31273d6" name="Default" comment="" />
+    <ignored path="cpm.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <ignored path=".idea/dataSources.local.xml" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DatabaseView">
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_TABLE_DETAILS" value="true" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <PATH>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
+      </PATH_ELEMENT>
+    </PATH>
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="cpm" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="tranpagos.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pages/tranpagos.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tranpagosctrl.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/controllers/tranpagosctrl.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tranpagos.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/services/tranpagos.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pago.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/php/pago.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-13.307693">
+              <caret line="92" column="0" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
+              <folding>
+                <marker date="1491340272874" expanded="true" signature="850:953" placeholder="SELECT idcom..detpagocompra..." />
+                <marker date="1491340272874" expanded="true" signature="3087:3128" placeholder="SELECT corre..banco..." />
+                <marker date="1491340272874" expanded="true" signature="3168:3293" placeholder="INSERT INTO tranban..." />
+                <marker date="1491340272874" expanded="true" signature="3747:3805" placeholder="UPDATE banco..." />
+                <marker date="1491340272874" expanded="true" signature="3978:4072" placeholder="SELECT idcue..detcontempresa..." />
+                <marker date="1491340272874" expanded="true" signature="4123:4162" placeholder="SELECT idcue..banco..." />
+                <marker date="1491340272874" expanded="true" signature="4253:4344" placeholder="INSERT INTO detallecontable..." />
+                <marker date="1491340272874" expanded="true" signature="4643:4734" placeholder="INSERT INTO detallecontable..." />
+                <marker date="1491340272874" expanded="true" signature="5167:5220" placeholder="INSERT INTO detpagocompra..." />
+                <marker date="1491340272874" expanded="true" signature="5502:5613" placeholder="SELECT GROUP..tranban..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="jsreportsrvc.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/services/jsreportsrvc.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="53" column="74" selection-start-line="53" selection-start-column="74" selection-end-line="53" selection-end-column="74" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="rptconciliabco.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pages/rptconciliabco.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.38636363">
+              <caret line="56" column="22" selection-start-line="56" selection-start-column="22" selection-end-line="56" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="rptconciliabcoctrl.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/controllers/rptconciliabcoctrl.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="28" column="66" selection-start-line="28" selection-start-column="66" selection-end-line="28" selection-end-column="66" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="Html5" />
+        <option value="JavaScript File" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="GradleLocalSettings">
+    <option name="externalProjectsViewState">
+      <projects_view />
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/js/controllers/equipoctrl.js" />
+        <option value="$PROJECT_DIR$/pages/mntfuentecaso.html" />
+        <option value="$PROJECT_DIR$/js/services/tipollamada.js" />
+        <option value="$PROJECT_DIR$/php/tipollamada.php" />
+        <option value="$PROJECT_DIR$/js/controllers/tipollamadactrl.js" />
+        <option value="$PROJECT_DIR$/pages/mnttipollamada.html" />
+        <option value="$PROJECT_DIR$/php/tiposolucion.php" />
+        <option value="$PROJECT_DIR$/js/services/tiposolucionsrvc.js" />
+        <option value="$PROJECT_DIR$/js/controllers/tiposolucionctrl.js" />
+        <option value="$PROJECT_DIR$/pages/mnttiposolucion.html" />
+        <option value="$PROJECT_DIR$/php/tecnico.php" />
+        <option value="$PROJECT_DIR$/js/services/tecnicosrvc.js" />
+        <option value="$PROJECT_DIR$/pages/mnttecnico.html" />
+        <option value="$PROJECT_DIR$/js/controllers/tecnicoctrl.js" />
+        <option value="$PROJECT_DIR$/php/marca.php" />
+        <option value="$PROJECT_DIR$/js/services/tipollamadasrvc.js" />
+        <option value="$PROJECT_DIR$/js/services/marcasrvc.js" />
+        <option value="$PROJECT_DIR$/js/controllers/marcactrl.js" />
+        <option value="$PROJECT_DIR$/pages/mntmarca.html" />
+        <option value="$PROJECT_DIR$/js/services/fuentecasosrvc.js" />
+        <option value="$PROJECT_DIR$/js/services/grupopartesrvc.js" />
+        <option value="$PROJECT_DIR$/pages/mntgrupoparte.html" />
+        <option value="$PROJECT_DIR$/js/controllers/grupopartectrl.js" />
+        <option value="$PROJECT_DIR$/php/parte.php" />
+        <option value="$PROJECT_DIR$/js/services/partesrvc.js" />
+        <option value="$PROJECT_DIR$/js/app.js" />
+        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/cpmidx.html" />
+        <option value="$PROJECT_DIR$/php/grupoparte.php" />
+        <option value="$PROJECT_DIR$/pages/mntparte.html" />
+        <option value="$PROJECT_DIR$/js/controllers/partectrl.js" />
+        <option value="$PROJECT_DIR$/js/controllers/indexctrl.js" />
+        <option value="$PROJECT_DIR$/js/services/periodocontable.js" />
+        <option value="$PROJECT_DIR$/libs/angularxeditable/js/xeditable.min.js" />
+        <option value="$PROJECT_DIR$/js/controllers/periodocontable.js" />
+        <option value="$PROJECT_DIR$/pages/mntperiodocont.html" />
+        <option value="$PROJECT_DIR$/php/db.php" />
+        <option value="$PROJECT_DIR$/js/controllers/proveedorctrl.js" />
+        <option value="$PROJECT_DIR$/pages/mntprov.html" />
+        <option value="$PROJECT_DIR$/js/controllers/tipocompractrl.js" />
+        <option value="$PROJECT_DIR$/pages/mnttipocompra.html" />
+        <option value="$PROJECT_DIR$/js/services/comprasrvc.js" />
+        <option value="$PROJECT_DIR$/php/compra.php" />
+        <option value="$PROJECT_DIR$/pages/tranfactcompra.html" />
+        <option value="$PROJECT_DIR$/js/controllers/compractrl.js" />
+        <option value="$PROJECT_DIR$/php/tranbanc.php" />
+        <option value="$PROJECT_DIR$/pages/tranbanc.html" />
+        <option value="$PROJECT_DIR$/js/controllers/tranbancctrl.js" />
+        <option value="$PROJECT_DIR$/php/pago.php" />
+        <option value="$PROJECT_DIR$/js/services/jsreportsrvc.js" />
+        <option value="$PROJECT_DIR$/pages/rptconciliabco.html" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" />
+  <component name="JsBuildToolPackageJson" detection-done="true" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Bundled (Maven 3)" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState />
+  </component>
+  <component name="PhpServers">
+    <servers />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" interpreter_name="PHP 5.6.8" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1066" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cpm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cpm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pavalco" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cpm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pavalco" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cpm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pavalco" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="php" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cpm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pavalco" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pages" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cpm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pavalco" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="libs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cpm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pavalco" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="libs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="angularxeditable" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cpm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pavalco" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="libs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="angularxeditable" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cpm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pavalco" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cpm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pavalco" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="services" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cpm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pavalco" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="directives" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cpm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pavalco" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controllers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="settings.editor.selected.configurable" value="angularTemplates.settings" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="PROGRAM_PARAMETERS" />
+      <method />
+    </configuration>
+    <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
+      <module name="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="DEPLOY" value="true" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="USE_COMMAND_LINE" value="true" />
+      <option name="COMMAND_LINE" value="" />
+      <option name="WIPE_USER_DATA" value="false" />
+      <option name="DISABLE_BOOT_ANIMATION" value="false" />
+      <option name="NETWORK_SPEED" value="full" />
+      <option name="NETWORK_LATENCY" value="none" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
+      <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="0" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <option name="SELECTED_CLOUD_DEVICE_CONFIGURATION_ID" value="0" />
+      <option name="SELECTED_CLOUD_DEVICE_PROJECT_ID" value="" />
+      <option name="IS_VALID_CLOUD_MATRIX_SELECTION" value="false" />
+      <option name="INVALID_CLOUD_MATRIX_SELECTION_ERROR" value="" />
+      <option name="IS_VALID_CLOUD_DEVICE_SELECTION" value="false" />
+      <option name="INVALID_CLOUD_DEVICE_SELECTION_ERROR" value="" />
+      <option name="CLOUD_DEVICE_SERIAL_NUMBER" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Tests">
+      <module name="" />
+      <option name="TESTING_TYPE" value="0" />
+      <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="USE_COMMAND_LINE" value="true" />
+      <option name="COMMAND_LINE" value="" />
+      <option name="WIPE_USER_DATA" value="false" />
+      <option name="DISABLE_BOOT_ANIMATION" value="false" />
+      <option name="NETWORK_SPEED" value="full" />
+      <option name="NETWORK_LATENCY" value="none" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
+      <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="0" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <option name="SELECTED_CLOUD_DEVICE_CONFIGURATION_ID" value="0" />
+      <option name="SELECTED_CLOUD_DEVICE_PROJECT_ID" value="" />
+      <option name="IS_VALID_CLOUD_MATRIX_SELECTION" value="false" />
+      <option name="INVALID_CLOUD_MATRIX_SELECTION_ERROR" value="" />
+      <option name="IS_VALID_CLOUD_DEVICE_SELECTION" value="false" />
+      <option name="INVALID_CLOUD_DEVICE_SELECTION_ERROR" value="" />
+      <option name="CLOUD_DEVICE_SERIAL_NUMBER" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <module />
+      <method />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="true" type="ArquillianTestNG" factoryName="">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="myFilePath" />
+      <option name="GLUE" />
+      <option name="myNameFilter" />
+      <option name="myGeneratedName" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="FlashRunConfigurationType" factoryName="Flash App">
+      <option name="BCName" value="" />
+      <option name="IOSSimulatorSdkPath" value="" />
+      <option name="adlOptions" value="" />
+      <option name="airProgramParameters" value="" />
+      <option name="appDescriptorForEmulator" value="Android" />
+      <option name="debugTransport" value="USB" />
+      <option name="debuggerSdkRaw" value="BC SDK" />
+      <option name="emulator" value="NexusOne" />
+      <option name="emulatorAdlOptions" value="" />
+      <option name="fastPackaging" value="true" />
+      <option name="fullScreenHeight" value="0" />
+      <option name="fullScreenWidth" value="0" />
+      <option name="launchUrl" value="false" />
+      <option name="launcherParameters">
+        <LauncherParameters>
+          <option name="browser" value="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" />
+          <option name="launcherType" value="OSDefault" />
+          <option name="newPlayerInstance" value="false" />
+          <option name="playerPath" value="FlashPlayerDebugger.exe" />
+        </LauncherParameters>
+      </option>
+      <option name="mobileRunTarget" value="Emulator" />
+      <option name="moduleName" value="" />
+      <option name="overriddenMainClass" value="" />
+      <option name="overriddenOutputFileName" value="" />
+      <option name="overrideMainClass" value="false" />
+      <option name="runTrusted" value="true" />
+      <option name="screenDpi" value="0" />
+      <option name="screenHeight" value="0" />
+      <option name="screenWidth" value="0" />
+      <option name="url" value="http://" />
+      <option name="usbDebugPort" value="7936" />
+      <method />
+    </configuration>
+    <configuration default="true" type="FlexUnitRunConfigurationType" factoryName="FlexUnit" appDescriptorForEmulator="Android" class_name="" emulatorAdlOptions="" method_name="" package_name="" scope="Class">
+      <option name="BCName" value="" />
+      <option name="launcherParameters">
+        <LauncherParameters>
+          <option name="browser" value="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" />
+          <option name="launcherType" value="OSDefault" />
+          <option name="newPlayerInstance" value="false" />
+          <option name="playerPath" value="FlashPlayerDebugger.exe" />
+        </LauncherParameters>
+      </option>
+      <option name="moduleName" value="" />
+      <option name="trusted" value="true" />
+      <method />
+    </configuration>
+    <configuration default="true" type="GradleRunConfiguration" factoryName="Gradle">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list />
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <method />
+    </configuration>
+    <configuration default="true" type="GrailsRunConfigurationType" factoryName="Grails">
+      <module name="" />
+      <setting name="vmparams" value="" />
+      <setting name="cmdLine" value="run-app" />
+      <setting name="depsClasspath" value="false" />
+      <setting name="passParentEnv" value="true" />
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <setting name="launchBrowser" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="true" type="JUnitTestDiscovery" factoryName="JUnit Test Discovery" changeList="All">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="true" type="JarApplication" factoryName="JAR Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="Java Scratch" factoryName="Java Scratch">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="SCRATCH_FILE_ID" value="0" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType" factoryName="Kotlin">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="cpm" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" working-dir="">
+      <method />
+    </configuration>
+    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
+      <method />
+    </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+      <method />
+    </configuration>
+    <configuration default="true" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="TestNGTestDiscovery" factoryName="TestNG Test Discovery" changeList="All">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <pass-parent-envs>true</pass-parent-envs>
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run-script" />
+      <scripts />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
+      <node-options />
+      <working-directory>$PROJECT_DIR$</working-directory>
+      <pass-parent-env>true</pass-parent-env>
+      <envs />
+      <ui>bdd</ui>
+      <extra-mocha-options />
+      <test-kind>DIRECTORY</test-kind>
+      <test-directory />
+      <recursive>false</recursive>
+      <method />
+    </configuration>
+    <configuration default="true" type="osgi.bnd.run" factoryName="Run Launcher">
+      <method />
+    </configuration>
+    <configuration default="true" type="osgi.bnd.run" factoryName="Test Launcher (JUnit)">
+      <method />
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9a5f2214-dc49-4fec-8939-ad25c31273d6" name="Default" comment="" />
+      <created>1448151293903</created>
+      <option name="number" value="Default" />
+      <updated>1448151293903</updated>
+      <workItem from="1448151295187" duration="4093000" />
+      <workItem from="1448333781469" duration="2646000" />
+      <workItem from="1448399169675" duration="5920000" />
+      <workItem from="1448900244784" duration="8026000" />
+      <workItem from="1449152919946" duration="3163000" />
+      <workItem from="1449252103901" duration="2139000" />
+      <workItem from="1449498850128" duration="16984000" />
+      <workItem from="1449584522257" duration="29012000" />
+      <workItem from="1449758243169" duration="16642000" />
+      <workItem from="1450374121510" duration="250000" />
+      <workItem from="1450374393091" duration="5603000" />
+      <workItem from="1450666935777" duration="10281000" />
+      <workItem from="1450708197623" duration="15699000" />
+      <workItem from="1450801444746" duration="3218000" />
+      <workItem from="1450805235149" duration="6303000" />
+      <workItem from="1451955978308" duration="1254000" />
+      <workItem from="1452005107275" duration="5994000" />
+      <workItem from="1452020954611" duration="16584000" />
+      <workItem from="1452186675798" duration="8757000" />
+      <workItem from="1452266223816" duration="3222000" />
+      <workItem from="1452278439239" duration="155000" />
+      <workItem from="1452278610062" duration="4930000" />
+      <workItem from="1452467421618" duration="10605000" />
+      <workItem from="1452525085568" duration="38000" />
+      <workItem from="1452525138139" duration="16414000" />
+      <workItem from="1452609105798" duration="4120000" />
+      <workItem from="1452694896255" duration="14882000" />
+      <workItem from="1452781194640" duration="4294000" />
+      <workItem from="1452797378970" duration="6000" />
+      <workItem from="1453239583961" duration="1522000" />
+      <workItem from="1453300599453" duration="14168000" />
+      <workItem from="1453399981546" duration="8772000" />
+      <workItem from="1453510273544" duration="2034000" />
+      <workItem from="1453591777420" duration="4420000" />
+      <workItem from="1453675580740" duration="766000" />
+      <workItem from="1453736037582" duration="13240000" />
+      <workItem from="1453856979458" duration="11186000" />
+      <workItem from="1453913586045" duration="16328000" />
+      <workItem from="1454083510519" duration="6783000" />
+      <workItem from="1454336370220" duration="13367000" />
+      <workItem from="1454422127706" duration="10347000" />
+      <workItem from="1454512681991" duration="2672000" />
+      <workItem from="1454596071205" duration="2919000" />
+      <workItem from="1454621984784" duration="599000" />
+      <workItem from="1454696380218" duration="3686000" />
+      <workItem from="1454940667912" duration="7585000" />
+      <workItem from="1455026900776" duration="7242000" />
+      <workItem from="1455114891797" duration="1536000" />
+      <workItem from="1455118093375" duration="12041000" />
+      <workItem from="1455201198913" duration="1987000" />
+      <workItem from="1455209913118" duration="357000" />
+      <workItem from="1455210368901" duration="11781000" />
+      <workItem from="1455247417911" duration="191000" />
+      <workItem from="1455247627668" duration="5049000" />
+      <workItem from="1455642773976" duration="9216000" />
+      <workItem from="1455719320291" duration="5071000" />
+      <workItem from="1455804951149" duration="4976000" />
+      <workItem from="1455892538942" duration="7964000" />
+      <workItem from="1456148501683" duration="1921000" />
+      <workItem from="1456844881701" duration="1933000" />
+      <workItem from="1456855020213" duration="8836000" />
+      <workItem from="1456928008311" duration="8450000" />
+      <workItem from="1457014387039" duration="17228000" />
+      <workItem from="1457063260344" duration="14476000" />
+      <workItem from="1457371427493" duration="9487000" />
+      <workItem from="1457384506771" duration="3714000" />
+      <workItem from="1457446063109" duration="1740000" />
+      <workItem from="1457539618658" duration="15000" />
+      <workItem from="1459784625147" duration="844000" />
+      <workItem from="1459801721517" duration="39000" />
+      <workItem from="1459801776092" duration="6946000" />
+      <workItem from="1459868145817" duration="7552000" />
+      <workItem from="1459957848003" duration="17200000" />
+      <workItem from="1460041893258" duration="4038000" />
+      <workItem from="1460047488395" duration="6729000" />
+      <workItem from="1460062773025" duration="7610000" />
+      <workItem from="1460394461994" duration="19690000" />
+      <workItem from="1460472025653" duration="13915000" />
+      <workItem from="1460557789671" duration="19540000" />
+      <workItem from="1461596728052" duration="20579000" />
+      <workItem from="1461683187675" duration="37281000" />
+      <workItem from="1461768894907" duration="14864000" />
+      <workItem from="1461858914262" duration="18857000" />
+      <workItem from="1462573118775" duration="1687000" />
+      <workItem from="1462809009651" duration="20220000" />
+      <workItem from="1462893571529" duration="12281000" />
+      <workItem from="1463005685983" duration="1301000" />
+      <workItem from="1463062789831" duration="18392000" />
+      <workItem from="1463152025301" duration="8981000" />
+      <workItem from="1463496085267" duration="22000" />
+      <workItem from="1463582905383" duration="44000" />
+      <workItem from="1464218753179" duration="645000" />
+      <workItem from="1464275435937" duration="15502000" />
+      <workItem from="1464623111678" duration="20338000" />
+      <workItem from="1464702997812" duration="20733000" />
+      <workItem from="1464795710289" duration="832000" />
+      <workItem from="1464799095581" duration="1775000" />
+      <workItem from="1464802466502" duration="15406000" />
+      <workItem from="1464882023621" duration="17298000" />
+      <workItem from="1465254439061" duration="162000" />
+      <workItem from="1465399416414" duration="20964000" />
+      <workItem from="1465486880954" duration="7923000" />
+      <workItem from="1465829180471" duration="3061000" />
+      <workItem from="1465838084476" duration="11956000" />
+      <workItem from="1465914819802" duration="2340000" />
+      <workItem from="1465924463211" duration="13027000" />
+      <workItem from="1466004577271" duration="13899000" />
+      <workItem from="1466090911769" duration="16146000" />
+      <workItem from="1466195309621" duration="6539000" />
+      <workItem from="1466454176721" duration="16294000" />
+      <workItem from="1466540559685" duration="26000" />
+      <workItem from="1466608584562" duration="18655000" />
+      <workItem from="1466692280209" duration="27369000" />
+      <workItem from="1466778893667" duration="9973000" />
+      <workItem from="1467043966917" duration="4915000" />
+      <workItem from="1467123245479" duration="12000" />
+      <workItem from="1467295115887" duration="12456000" />
+      <workItem from="1467589672103" duration="618000" />
+      <workItem from="1467644172519" duration="9586000" />
+      <workItem from="1467739919001" duration="20951000" />
+      <workItem from="1467911101509" duration="1889000" />
+      <workItem from="1468248498507" duration="19990000" />
+      <workItem from="1468331740873" duration="1259000" />
+      <workItem from="1468512963209" duration="4615000" />
+      <workItem from="1468520394324" duration="13107000" />
+      <workItem from="1468725287819" duration="1071000" />
+      <workItem from="1468855771653" duration="11595000" />
+      <workItem from="1468947358274" duration="3155000" />
+      <workItem from="1469050736789" duration="4490000" />
+      <workItem from="1469113252671" duration="14529000" />
+      <workItem from="1469223235696" duration="5680000" />
+      <workItem from="1469456368959" duration="1490000" />
+      <workItem from="1469460024293" duration="11435000" />
+      <workItem from="1469543559244" duration="16568000" />
+      <workItem from="1469596659618" duration="1556000" />
+      <workItem from="1469631445581" duration="19556000" />
+      <workItem from="1469719446679" duration="7209000" />
+      <workItem from="1469744243280" duration="18903000" />
+      <workItem from="1470061292813" duration="1153000" />
+      <workItem from="1470245015752" duration="16687000" />
+      <workItem from="1470312892405" duration="1713000" />
+      <workItem from="1470368759582" duration="2146000" />
+      <workItem from="1470422347588" duration="2931000" />
+      <workItem from="1470659542077" duration="2549000" />
+      <workItem from="1470756788775" duration="1433000" />
+      <workItem from="1471325498867" duration="22000" />
+      <workItem from="1471325529683" duration="67000" />
+      <workItem from="1471354233593" duration="3337000" />
+      <workItem from="1471529845328" duration="3694000" />
+      <workItem from="1471877155937" duration="9525000" />
+      <workItem from="1471921216423" duration="66000" />
+      <workItem from="1471922554162" duration="10943000" />
+      <workItem from="1471965269702" duration="3267000" />
+      <workItem from="1472052091902" duration="11693000" />
+      <workItem from="1472137459386" duration="7000" />
+      <workItem from="1472165054224" duration="2697000" />
+      <workItem from="1472225859455" duration="11000" />
+      <workItem from="1472243851377" duration="599000" />
+      <workItem from="1472484247849" duration="3503000" />
+      <workItem from="1472488396745" duration="6310000" />
+      <workItem from="1472573089302" duration="7000" />
+      <workItem from="1472654494468" duration="4317000" />
+      <workItem from="1472742327257" duration="12153000" />
+      <workItem from="1472850143895" duration="4416000" />
+      <workItem from="1473044039492" duration="8030000" />
+      <workItem from="1473090043477" duration="1632000" />
+      <workItem from="1473096932323" duration="77000" />
+      <workItem from="1473097016248" duration="1517000" />
+      <workItem from="1473175195754" duration="10998000" />
+      <workItem from="1473263521381" duration="9085000" />
+      <workItem from="1473295483386" duration="2402000" />
+      <workItem from="1473346302979" duration="20000" />
+      <workItem from="1473700906030" duration="17899000" />
+      <workItem from="1473744224900" duration="201000" />
+      <workItem from="1473779141479" duration="16000" />
+      <workItem from="1474324198361" duration="1834000" />
+      <workItem from="1474382571525" duration="21461000" />
+      <workItem from="1474460715545" duration="1119000" />
+      <workItem from="1474471477437" duration="6953000" />
+      <workItem from="1474553541029" duration="5864000" />
+      <workItem from="1474566328228" duration="10300000" />
+      <workItem from="1474638676727" duration="601000" />
+      <workItem from="1474641330610" duration="4704000" />
+      <workItem from="1474740636098" duration="10150000" />
+      <workItem from="1474821351192" duration="16901000" />
+      <workItem from="1474867427566" duration="432000" />
+      <workItem from="1474868378354" duration="715000" />
+      <workItem from="1474907830472" duration="17000" />
+      <workItem from="1474913411686" duration="1205000" />
+      <workItem from="1474990919954" duration="27000" />
+      <workItem from="1475010027696" duration="1878000" />
+      <workItem from="1475015961499" duration="4004000" />
+      <workItem from="1475021603609" duration="622000" />
+      <workItem from="1475037316616" duration="43000" />
+      <workItem from="1475077962053" duration="18000" />
+      <workItem from="1475097633160" duration="802000" />
+      <workItem from="1475172658780" duration="77000" />
+      <workItem from="1475173387258" duration="1218000" />
+      <workItem from="1475267946287" duration="100000" />
+      <workItem from="1475683466948" duration="12052000" />
+      <workItem from="1475768711645" duration="8312000" />
+      <workItem from="1475804552621" duration="30000" />
+      <workItem from="1475869763474" duration="646000" />
+      <workItem from="1476112595042" duration="28000" />
+      <workItem from="1476223377956" duration="9820000" />
+      <workItem from="1476312394368" duration="601000" />
+      <workItem from="1476370555981" duration="7234000" />
+      <workItem from="1476397072846" duration="3745000" />
+      <workItem from="1476460739008" duration="11837000" />
+      <workItem from="1476715199772" duration="20286000" />
+      <workItem from="1476765371466" duration="16120000" />
+      <workItem from="1476786500128" duration="640000" />
+      <workItem from="1476807628823" duration="619000" />
+      <workItem from="1476913315233" duration="1405000" />
+      <workItem from="1477082346107" duration="2253000" />
+      <workItem from="1477324063677" duration="12430000" />
+      <workItem from="1477409041448" duration="410000" />
+      <workItem from="1477924285193" duration="13486000" />
+      <workItem from="1478002244369" duration="16227000" />
+      <workItem from="1478100511703" duration="6622000" />
+      <workItem from="1478130242080" duration="5000" />
+      <workItem from="1478133555778" duration="3118000" />
+      <workItem from="1478529881452" duration="13069000" />
+      <workItem from="1478621870458" duration="1385000" />
+      <workItem from="1478780265963" duration="1286000" />
+      <workItem from="1478895680330" duration="8293000" />
+      <workItem from="1479142373891" duration="2194000" />
+      <workItem from="1479147986426" duration="3324000" />
+      <workItem from="1479503458941" duration="3955000" />
+      <workItem from="1479740514948" duration="1865000" />
+      <workItem from="1479742589075" duration="4451000" />
+      <workItem from="1479916002909" duration="435000" />
+      <workItem from="1480094640705" duration="337000" />
+      <workItem from="1480350921607" duration="212000" />
+      <workItem from="1480591666001" duration="4379000" />
+      <workItem from="1480954676141" duration="8205000" />
+      <workItem from="1481029955564" duration="7455000" />
+      <workItem from="1481191579104" duration="7529000" />
+      <workItem from="1481215132022" duration="1658000" />
+      <workItem from="1481217057901" duration="2475000" />
+      <workItem from="1481226210375" duration="1148000" />
+      <workItem from="1481559476734" duration="6000" />
+      <workItem from="1481640968780" duration="12107000" />
+      <workItem from="1481735193382" duration="46000" />
+      <workItem from="1482166949538" duration="4602000" />
+      <workItem from="1482249799429" duration="6000" />
+      <workItem from="1482769226016" duration="7711000" />
+      <workItem from="1482848634443" duration="4000" />
+      <workItem from="1483541324144" duration="11192000" />
+      <workItem from="1483629405992" duration="2400000" />
+      <workItem from="1483974530194" duration="22248000" />
+      <workItem from="1484060068905" duration="14239000" />
+      <workItem from="1484104690308" duration="5000" />
+      <workItem from="1484147504855" duration="21000" />
+      <workItem from="1484601019008" duration="8934000" />
+      <workItem from="1484759745898" duration="5931000" />
+      <workItem from="1485195558411" duration="3479000" />
+      <workItem from="1485268941256" duration="19052000" />
+      <workItem from="1485355464659" duration="49000" />
+      <workItem from="1485445087688" duration="16397000" />
+      <workItem from="1485552984657" duration="2964000" />
+      <workItem from="1486240132466" duration="1224000" />
+      <workItem from="1486390781739" duration="14052000" />
+      <workItem from="1486472239479" duration="2915000" />
+      <workItem from="1486653347631" duration="11394000" />
+      <workItem from="1486749680889" duration="313000" />
+      <workItem from="1487689518578" duration="12084000" />
+      <workItem from="1487854955897" duration="8000" />
+      <workItem from="1488210181254" duration="10025000" />
+      <workItem from="1488292673200" duration="2364000" />
+      <workItem from="1488304782734" duration="4743000" />
+      <workItem from="1488392989183" duration="11000" />
+      <workItem from="1489527111140" duration="2091000" />
+      <workItem from="1489591164557" duration="2722000" />
+      <workItem from="1489678302078" duration="5972000" />
+      <workItem from="1489701719578" duration="3411000" />
+      <workItem from="1489785148014" duration="8348000" />
+      <workItem from="1490025307238" duration="1790000" />
+      <workItem from="1490113810283" duration="17311000" />
+      <workItem from="1490194663197" duration="195000" />
+      <workItem from="1490306430853" duration="5000" />
+      <workItem from="1491317871461" duration="18351000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="1923421000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36405006" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15405117" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32942432" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2489339" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="PHP-CGI Server" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Database Console" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37299034" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.626409" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+    <layout-to-restore>
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32942432" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2489339" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="PHP-CGI Server" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36405006" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Database Console" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37299034" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15565032" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.626409" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
+    </layout-to-restore>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/php/venta.php</url>
+          <line>159</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="13" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/js/controllers/grupopartectrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.1633554">
+          <caret line="62" column="50" selection-start-line="62" selection-start-column="50" selection-end-line="62" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/mntgrupoparte.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.8159091">
+          <caret line="94" column="10" selection-start-line="94" selection-start-column="10" selection-end-line="94" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3620309">
+          <caret line="36" column="84" selection-start-line="36" selection-start-column="84" selection-end-line="36" selection-end-column="84" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/services/proveedorsrvc.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.07505519">
+          <caret line="4" column="27" selection-start-line="4" selection-start-column="27" selection-end-line="4" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/services/grupopartesrvc.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="4" column="42" selection-start-line="4" selection-start-column="28" selection-end-line="4" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/grupoparte.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.423077">
+          <caret line="46" column="6" selection-start-line="46" selection-start-column="6" selection-end-line="46" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/mntparte.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.14886364">
+          <caret line="161" column="53" selection-start-line="161" selection-start-column="53" selection-end-line="161" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/controllers/partectrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.061810154">
+          <caret line="74" column="53" selection-start-line="74" selection-start-column="53" selection-end-line="74" selection-end-column="53" />
+          <folding>
+            <element signature="e#1241#1486#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/services/partesrvc.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.13134658">
+          <caret line="7" column="16" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/parte.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.019318182">
+          <caret line="16" column="3" selection-start-line="16" selection-start-column="3" selection-end-line="16" selection-end-column="3" />
+          <folding>
+            <marker date="1490126941356" expanded="true" signature="244:822" placeholder="SELECT a.id,..parte..." />
+            <marker date="1490126941356" expanded="true" signature="1744:1855" placeholder="INSERT INTO parte..." />
+            <marker date="1490126941356" expanded="true" signature="1744:2010" placeholder="INSERT INTO grupoparte..." />
+            <marker date="1490126941356" expanded="true" signature="2303:2464" placeholder="UPDATE parte..." />
+            <marker date="1490126941356" expanded="true" signature="2303:2563" placeholder="UPDATE grupo..." />
+            <marker date="1490126941356" expanded="true" signature="2729:2769" placeholder="DELETE FROM ..." />
+            <marker date="1490126941356" expanded="true" signature="2798:2827" placeholder="DELETE FROM ..." />
+            <marker date="1490126941356" expanded="true" signature="2969:3050" placeholder="SELECT a.id,..imagenparte..." />
+            <marker date="1490126941356" expanded="true" signature="2969:3051" placeholder="SELECT a.id,..imagenparte..." />
+            <marker date="1490126941356" expanded="true" signature="2969:3082" placeholder="SELECT a.id,..imagenparte..." />
+            <marker date="1490126941356" expanded="true" signature="3217:3294" placeholder="SELECT a.id,..imagenparte..." />
+            <marker date="1490126941356" expanded="true" signature="3217:3300" placeholder="SELECT a.id,..imagenparte..." />
+            <marker date="1490126941356" expanded="true" signature="3470:3528" placeholder="INSERT INTO imagenparte..." />
+            <marker date="1490126941356" expanded="true" signature="3816:3839" placeholder="UPDATE image..." />
+            <marker date="1490126941356" expanded="true" signature="3816:3899" placeholder="UPDATE image..." />
+            <marker date="1490126941356" expanded="true" signature="4066:4101" placeholder="DELETE FROM ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.018182">
+          <caret line="13" column="46" selection-start-line="13" selection-start-column="43" selection-end-line="13" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cpmidx.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.25113636">
+          <caret line="13" column="46" selection-start-line="13" selection-start-column="43" selection-end-line="13" selection-end-column="46" />
+          <folding>
+            <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/controllers/indexctrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.13134658">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/controllers/cpmidxctrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.53090507">
+          <caret line="42" column="69" selection-start-line="42" selection-start-column="12" selection-end-line="42" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/services/bancosrvc.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/controllers/usrctrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libs/angularxeditable/js/xeditable.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.87030715">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/directives/editrowform.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/editrowform.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/services/authsrvc.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/mntperiodocont.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.307693">
+          <caret line="39" column="40" selection-start-line="39" selection-start-column="40" selection-end-line="39" selection-end-column="40" />
+          <folding>
+            <element signature="n#style#0;n#td#3;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/controllers/periodocontable.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.26821193">
+          <caret line="36" column="42" selection-start-line="36" selection-start-column="42" selection-end-line="36" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/services/periodocontable.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.37527594">
+          <caret line="20" column="10" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/periodocontable.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1457361218000" expanded="true" signature="249:324" placeholder="SELECT id, d..periodocontable..." />
+            <marker date="1457361218000" expanded="true" signature="526:586" placeholder="SELECT id, d..periodocontable..." />
+            <marker date="1457361218000" expanded="true" signature="830:934" placeholder="INSERT INTO periodocontable..." />
+            <marker date="1457361218000" expanded="true" signature="1125:1236" placeholder="UPDATE perio..." />
+            <marker date="1457361218000" expanded="true" signature="1434:1473" placeholder="DELETE FROM ..." />
+            <marker date="1457361218000" expanded="true" signature="1677:1797" placeholder="SELECT COUNT..periodocontable..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/services/tranbancsrvc.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/usr.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.28977272">
+          <caret line="21" column="34" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="34" />
+          <folding>
+            <marker date="1466117516644" expanded="true" signature="3886:3950" placeholder="SELECT id, n..usuario..." />
+            <marker date="1466117516644" expanded="true" signature="4157:4235" placeholder="INSERT INTO permiso..." />
+            <marker date="1466117516644" expanded="true" signature="4200:4235" placeholder="SELECT ${$id..itemmenu..." />
+            <marker date="1466117516644" expanded="true" signature="5116:5183" placeholder="UPDATE permi..." />
+            <marker date="1466117516644" expanded="true" signature="5388:5454" placeholder="INSERT INTO usuario..." />
+            <marker date="1466117516644" expanded="true" signature="5884:5958" placeholder="UPDATE usuar..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/mntbco.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.8461537">
+          <caret line="12" column="30" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/controllers/bancoctrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="24" column="111" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="111" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/mntprov.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.5384617">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/controllers/proveedorctrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="35" column="105" selection-start-line="35" selection-start-column="20" selection-end-line="35" selection-end-column="105" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/mnttipocompra.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.2692308">
+          <caret line="5" column="33" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/controllers/tipocompractrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="50" column="57" selection-start-line="50" selection-start-column="57" selection-end-line="50" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/services/comprasrvc.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="23" column="10" selection-start-line="23" selection-start-column="10" selection-end-line="23" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/rptanticliente.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.13522728">
+          <caret line="7" column="65" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/tranfactcompra.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-17.653847">
+          <caret line="27" column="69" selection-start-line="27" selection-start-column="58" selection-end-line="27" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/controllers/compractrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.931034">
+          <caret line="365" column="222" selection-start-line="365" selection-start-column="222" selection-end-line="365" selection-end-column="222" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/proveedor.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="13.730769">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1465424001628" expanded="true" signature="1337:1420" placeholder="INSERT INTO proveedor..." />
+            <marker date="1465424001628" expanded="true" signature="1963:2064" placeholder="UPDATE prove..." />
+            <marker date="1465424001628" expanded="true" signature="2632:2665" placeholder="DELETE FROM ..." />
+            <marker date="1465424001628" expanded="true" signature="2715:2759" placeholder="DELETE FROM ..." />
+            <marker date="1465424001628" expanded="true" signature="4575:4622" placeholder="INSERT INTO detcontprov..." />
+            <marker date="1465424001628" expanded="true" signature="4878:4942" placeholder="UPDATE detco..." />
+            <marker date="1465424001628" expanded="true" signature="5141:5176" placeholder="DELETE FROM ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/compra.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.730769">
+          <caret line="113" column="22" selection-start-line="113" selection-start-column="22" selection-end-line="113" selection-end-column="22" />
+          <folding>
+            <element signature="n#insertaDetalleContable#0;n#!!top" expanded="false" />
+            <marker date="1491331460853" expanded="true" signature="3192:3236" placeholder="SELECT idcue..tipocompra..." />
+            <marker date="1491331460853" expanded="true" signature="3328:3421" placeholder="SELECT idcue..detcontempresa..." />
+            <marker date="1491331460853" expanded="true" signature="3472:3565" placeholder="SELECT idcue..detcontempresa..." />
+            <marker date="1491331460853" expanded="true" signature="3614:3707" placeholder="SELECT idcue..detcontempresa..." />
+            <marker date="1491331460853" expanded="true" signature="3748:3841" placeholder="SELECT idcue..detcontempresa..." />
+            <marker date="1491331460853" expanded="true" signature="3980:4071" placeholder="INSERT INTO detallecontable..." />
+            <marker date="1491331460853" expanded="true" signature="4349:4440" placeholder="INSERT INTO detallecontable..." />
+            <marker date="1491331460853" expanded="true" signature="4696:4787" placeholder="INSERT INTO detallecontable..." />
+            <marker date="1491331460853" expanded="true" signature="5027:5118" placeholder="INSERT INTO detallecontable..." />
+            <marker date="1491331460853" expanded="true" signature="5343:5434" placeholder="INSERT INTO detallecontable..." />
+            <marker date="1491331460853" expanded="true" signature="5794:5840" placeholder="SELECT reten..proveedor..." />
+            <marker date="1491331460853" expanded="true" signature="5975:6085" placeholder="INSERT INTO compra..." />
+            <marker date="1491331460853" expanded="true" signature="7346:7392" placeholder="SELECT reten..proveedor..." />
+            <marker date="1491331460853" expanded="true" signature="7504:7521" placeholder="UPDATE compr..." />
+            <marker date="1491331460853" expanded="true" signature="8530:8604" placeholder="DELETE FROM ..." />
+            <marker date="1491331460853" expanded="true" signature="9050:9110" placeholder="DELETE FROM ..." />
+            <marker date="1491331460853" expanded="true" signature="9141:9171" placeholder="DELETE FROM ..." />
+            <marker date="1491331460853" expanded="true" signature="9680:9864" placeholder="UPDATE compr..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/db.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.4615383">
+          <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+          <folding>
+            <element signature="n#__destruct#0;n#dbcpm#0;n#!!top" expanded="false" />
+            <marker date="1491328542662" expanded="true" signature="1688:1860" placeholder="SELECT id, d..isr..." />
+            <marker date="1491328542662" expanded="true" signature="3456:3496" placeholder="SELECT conco..empresa..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/tranbanc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.6923075">
+          <caret line="204" column="29" selection-start-line="204" selection-start-column="29" selection-end-line="204" selection-end-column="29" />
+          <folding>
+            <element signature="n#insertaDetalleContable#0;n#!!top" expanded="false" />
+            <element signature="e#14095#17020#0#PHP" expanded="false" />
+            <marker date="1491339529957" expanded="true" signature="1851:1890" placeholder="SELECT idemp..banco..." />
+            <marker date="1491339529957" expanded="true" signature="1943:1982" placeholder="SELECT idcue..banco..." />
+            <marker date="1491339529957" expanded="true" signature="2175:2264" placeholder="SELECT idcue..detcontempresa..." />
+            <marker date="1491339529957" expanded="true" signature="2344:2435" placeholder="INSERT INTO detallecontable..." />
+            <marker date="1491339529957" expanded="true" signature="2657:2748" placeholder="INSERT INTO detallecontable..." />
+            <marker date="1491339529957" expanded="true" signature="3112:3259" placeholder="INSERT INTO tranban..." />
+            <marker date="1491339529957" expanded="true" signature="3668:3726" placeholder="UPDATE banco..." />
+            <marker date="1491339529957" expanded="true" signature="3977:4016" placeholder="SELECT idcue..banco..." />
+            <marker date="1491339529957" expanded="true" signature="4091:4182" placeholder="INSERT INTO detallecontable..." />
+            <marker date="1491339529957" expanded="true" signature="4585:4636" placeholder="UPDATE tranb..." />
+            <marker date="1491339529957" expanded="true" signature="5244:5304" placeholder="DELETE FROM ..." />
+            <marker date="1491339529957" expanded="true" signature="5335:5366" placeholder="DELETE FROM ..." />
+            <marker date="1491339529957" expanded="true" signature="6537:6624" placeholder="UPDATE tranb..." />
+            <marker date="1491339529957" expanded="true" signature="6770:6895" placeholder="UPDATE tranb..." />
+            <marker date="1491339529957" expanded="true" signature="6948:7019" placeholder="UPDATE detal..." />
+            <marker date="1491339529957" expanded="true" signature="7073:7115" placeholder="SELECT orige..tranban..." />
+            <marker date="1491339529957" expanded="true" signature="7193:7237" placeholder="DELETE FROM ..." />
+            <marker date="1491339529957" expanded="true" signature="7297:7350" placeholder="UPDATE reemb..." />
+            <marker date="1491339529957" expanded="true" signature="7459:7581" placeholder="SELECT id, C..proveedor..." />
+            <marker date="1491339529957" expanded="true" signature="7459:7587" placeholder="SELECT id, C..." />
+            <marker date="1491339529957" expanded="true" signature="7605:7742" placeholder="SELECT id, C..beneficiario..." />
+            <marker date="1491339529957" expanded="true" signature="7965:8050" placeholder="SELECT b.idm..tranban..." />
+            <marker date="1491339529957" expanded="true" signature="8615:8718" placeholder="SELECT idcom..detpagocompra..." />
+            <marker date="1491339529957" expanded="true" signature="9595:9725" placeholder="SELECT idree..compra..." />
+            <marker date="1491339529957" expanded="true" signature="10952:11018" placeholder="SELECT SUM(m..doctotranban..." />
+            <marker date="1491339529957" expanded="true" signature="11206:11247" placeholder="SELECT estat..reembolso..." />
+            <marker date="1491339529957" expanded="true" signature="11304:11366" placeholder="UPDATE reemb..." />
+            <marker date="1491339529957" expanded="true" signature="11440:11529" placeholder="UPDATE reemb..." />
+            <marker date="1491339529957" expanded="true" signature="11700:11784" placeholder="INSERT INTO detallecontable..." />
+            <marker date="1491339529957" expanded="true" signature="12387:12484" placeholder="SELECT idcue..detcontempresa..." />
+            <marker date="1491339529957" expanded="true" signature="12553:12683" placeholder="SELECT SUM(b..compra..." />
+            <marker date="1491339529957" expanded="true" signature="12784:12876" placeholder="INSERT INTO detallecontable..." />
+            <marker date="1491339529957" expanded="true" signature="13240:13330" placeholder="INSERT INTO doctotranban..." />
+            <marker date="1491339529957" expanded="true" signature="13595:13707" placeholder="INSERT INTO detpagocompra..." />
+            <marker date="1491339529957" expanded="true" signature="13958:14025" placeholder="UPDATE tranb..." />
+            <marker date="1491339529957" expanded="true" signature="14176:14262" placeholder="SELECT b.ide..tranban..." />
+            <marker date="1491339529957" expanded="true" signature="14332:14426" placeholder="SELECT idcue..detcontempresa..." />
+            <marker date="1491339529957" expanded="true" signature="14480:14574" placeholder="SELECT idcue..detcontempresa..." />
+            <marker date="1491339529957" expanded="true" signature="14629:14671" placeholder="SELECT tipoc..tranban..." />
+            <marker date="1491339529957" expanded="true" signature="14740:14781" placeholder="SELECT tipoc..compra..." />
+            <marker date="1491339529957" expanded="true" signature="15162:15257" placeholder="SELECT idcue..detcontempresa..." />
+            <marker date="1491339529957" expanded="true" signature="15381:15476" placeholder="SELECT idcue..detcontempresa..." />
+            <marker date="1491339529957" expanded="true" signature="15573:15665" placeholder="INSERT INTO detallecontable..." />
+            <marker date="1491339529957" expanded="true" signature="16035:16127" placeholder="INSERT INTO detallecontable..." />
+            <marker date="1491339529957" expanded="true" signature="16628:16720" placeholder="INSERT INTO detallecontable..." />
+            <marker date="1491339529957" expanded="true" signature="17290:17409" placeholder="UPDATE docto..." />
+            <marker date="1491339529957" expanded="true" signature="17728:17764" placeholder="DELETE FROM ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/trandirectas.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6568182">
+          <caret line="91" column="48" selection-start-line="74" selection-start-column="36" selection-end-line="91" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/tranbanc.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.65384614">
+          <caret line="223" column="135" selection-start-line="223" selection-start-column="135" selection-end-line="223" selection-end-column="135" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/controllers/tranbancctrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.24138">
+          <caret line="286" column="161" selection-start-line="286" selection-start-column="161" selection-end-line="286" selection-end-column="161" />
+          <folding>
+            <element signature="e#1822#1993#0" expanded="false" />
+            <element signature="e#2387#2558#0" expanded="false" />
+            <element signature="e#2877#2924#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/tranpagos.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/controllers/tranpagosctrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/services/tranpagos.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/rptantiproveedor.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.13522728">
+          <caret line="7" column="65" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/pago.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.307693">
+          <caret line="92" column="0" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
+          <folding>
+            <marker date="1491340272874" expanded="true" signature="850:953" placeholder="SELECT idcom..detpagocompra..." />
+            <marker date="1491340272874" expanded="true" signature="3087:3128" placeholder="SELECT corre..banco..." />
+            <marker date="1491340272874" expanded="true" signature="3168:3293" placeholder="INSERT INTO tranban..." />
+            <marker date="1491340272874" expanded="true" signature="3747:3805" placeholder="UPDATE banco..." />
+            <marker date="1491340272874" expanded="true" signature="3978:4072" placeholder="SELECT idcue..detcontempresa..." />
+            <marker date="1491340272874" expanded="true" signature="4123:4162" placeholder="SELECT idcue..banco..." />
+            <marker date="1491340272874" expanded="true" signature="4253:4344" placeholder="INSERT INTO detallecontable..." />
+            <marker date="1491340272874" expanded="true" signature="4643:4734" placeholder="INSERT INTO detallecontable..." />
+            <marker date="1491340272874" expanded="true" signature="5167:5220" placeholder="INSERT INTO detpagocompra..." />
+            <marker date="1491340272874" expanded="true" signature="5502:5613" placeholder="SELECT GROUP..tranban..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/services/jsreportsrvc.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="53" column="74" selection-start-line="53" selection-start-column="74" selection-end-line="53" selection-end-column="74" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/controllers/rptconciliabcoctrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="28" column="66" selection-start-line="28" selection-start-column="66" selection-end-line="28" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/rptconciliabco.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.38636363">
+          <caret line="56" column="22" selection-start-line="56" selection-start-column="22" selection-end-line="56" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

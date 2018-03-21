@@ -1,0 +1,51 @@
+<div class="container" ng-controller="rptPDCasosTecnicosCtrl">
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-body" style="text-align: right">
+                <div class="row" style="text-align: left">
+                    <div class="col-md-3 col-sm-3">
+                        <div class="form-group">
+                            <label for="txtDel">Del:</label>
+                            <input name="txtDel" id="txtDel" type="date" class="form-control" ng-model="params.del" placeholder="Del"/>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-3">
+                        <div class="form-group">
+                            <label for="txtAl">Al:</label>
+                            <input name="txtAl" id="txtAl" type="date" class="form-control" ng-model="params.al" placeholder="Al"/>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-default btn-sm" ng-click="getRepHtml()">
+                    <i class="fa fa-html5 fa-2x" aria-hidden="true"></i>
+                </button>
+                <button type="button" class="btn btn-default btn-sm" ng-click="getRepPdf()">
+                    <i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-show="promedios.promedios.length > 0">
+        <div class="col-md-12">
+            <table class="table table-responsive table-hover table-striped">
+                <caption style="text-align: center">
+                    <h5>{{promedios.diashabiles}} d&iacute;as h&aacute;biles</h5>
+                </caption>
+                <thead>
+                <tr>
+                    <th>T&eacute;cnico</th>
+                    <th class="numero">Cantidad</th>
+                    <th class="numero">Porcentaje</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="p in promedios.promedios">
+                    <td>{{p.nombre}}</td>
+                    <td class="numero">{{p.cantidad | number:0}}</td>
+                    <td class="numero">{{p.porcentaje | number:2}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,204 @@
+<div class="container" ng-controller="rptLibroComprasCtrl">
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-body" style="text-align: right">
+                <div class="row" style="text-align: left">
+                    <div class="col-md-4 col-sm-4">
+                        <div class="form-group">
+                            <label for="selMes">Mes:</label>
+                            <select name="selMes" id="selMes" class="form-control" ng-model="params.mes" ng-change="resetData()">
+                                <option value="1">Enero</option>
+                                <option value="2">Febrero</option>
+                                <option value="3">Marzo</option>
+                                <option value="4">Abril</option>
+                                <option value="5">Mayo</option>
+                                <option value="6">Junio</option>
+                                <option value="7">Julio</option>
+                                <option value="8">Agosto</option>
+                                <option value="9">Septiembre</option>
+                                <option value="10">Octubre</option>
+                                <option value="11">Noviembre</option>
+                                <option value="12">Diciembre</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                        <div class="form-group">
+                            <label for="txtAnio">A&ntilde;o:</label>
+                            <input name="txtAnio" id="txtAnio" type="number" class="form-control" ng-model="params.anio" placeholder="A&ntilde;o" ng-change="resetData()"/>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-primary btn-sm" ng-click="getLibComp()">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </button>
+                <button type="button" class="btn btn-primary btn-sm" ng-click="printVersion()">
+                    <span class="glyphicon glyphicon-print"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div id="toPrint" style="text-align: left">
+        <table>
+            <tr>
+                <td><strong>LIBRO DE COMPRAS DE BIENES Y SERVICIOS ADQUIRIDOS</strong></td>
+            </tr>
+            <tr>
+                <td><strong>GRUPO CORPORATIVO FINANCIERO, S.A.</strong></td>
+            </tr>
+            <tr>
+                <td>N.I.T. 7836702-6</td>
+            </tr>
+            <tr>
+                <td>PER&Iacute;ODO: {{meses[params.mes - 1].toUpperCase()}}&nbsp;DE&nbsp;{{params.anio | number:0}}</td>
+            </tr>
+        </table>
+        <!--
+        <div class="row">
+            <div style="text-align: left; margin-left: 1em">
+                <h4>LIBRO DE COMPRAS DE BIENES Y SERVICIOS ADQUIRIDOS</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div style="text-align: left; margin-left: 1em">
+                <h3>GRUPO FINANCIERO CORPORATIVO, S.A.</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div style="text-align: left; margin-left: 1em">
+                <p>N.I.T. 7836702-6</p>
+            </div>
+        </div>
+        <div class="row" ng-show="librocompras.length > 0">
+            <div style="text-align: left; margin-left: 1em">
+                <h4>PER&Iacute;ODO: {{meses[params.mes - 1].toUpperCase()}}&nbsp;DE&nbsp;{{params.anio | number:0}}</h4>
+            </div>
+        </div>
+        -->
+        <hr/>
+        <table class="table table-bordered table-responsive table-condensed" ng-show="librocompras.length > 0">
+            <thead>
+            <tr>
+                <th colspan="7">&nbsp;</th>
+                <th colspan="2" style="text-align: center">GRAVADOS</th>
+                <th colspan="2" style="text-align: center">EXENTOS</th>
+                <th colspan="3">&nbsp;</th>
+            </tr>
+            <tr>
+                <th>Fecha</th>
+                <th>Tipo de documento</th>
+                <th>Serie</th>
+                <th style="text-align: right">No. de documento</th>
+                <th>N.I.T.</th>
+                <th>Nombre del proveedor</th>
+                <th style="text-align: right">Combustible</th>
+                <th style="text-align: right">Bienes</th>
+                <th style="text-align: right">Servicios</th>
+                <th style="text-align: right">Bienes</th>
+                <th style="text-align: right">Servicios</th>
+                <th style="text-align: right">Importaciones</th>
+                <th style="text-align: right">I.V.A.</th>
+                <th style="text-align: right">Total</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="lc in librocompras" ng-class="{'linea-de-totales': lc.proveedor.toUpperCase().indexOf('TOTAL') > -1}">
+                <td>{{lc.fechafactura | date:'dd/MM/yyyy'}}</td>
+                <td style="white-space: nowrap">{{lc.tipodocumento}}</td>
+                <td style="white-space: nowrap">{{lc.serie}}</td>
+                <td style="text-align: right">{{lc.documento > 0 ? lc.documento : ''}}</td>
+                <td style="white-space: nowrap">{{lc.nit}}</td>
+                <td>{{lc.proveedor}}</td>
+                <td style="text-align: right">{{lc.combustible | number:2}}</td>
+                <td style="text-align: right">{{lc.bien | number:2}}</td>
+                <td style="text-align: right">{{lc.servicio | number:2}}</td>
+                <td style="text-align: right">{{lc.bienex | number:2}}</td>
+                <td style="text-align: right">{{lc.servicioex | number:2}}</td>
+                <td style="text-align: right">{{lc.importaciones | number:2}}</td>
+                <td style="text-align: right">{{lc.iva | number:2}}</td>
+                <td style="text-align: right">{{lc.totfact | number:2}}</td>
+            </tr>
+            </tbody>
+        </table>
+        <hr/>
+        <p ng-show="librocompras.length > 0">TOTAL DE DOCUMENTOS: {{librocompras.length - 1}}</p>
+        <hr/>
+        <table ng-show="librocompras.length > 0" class="table" style="width: 50em">
+            <thead>
+            <tr>
+                <th>DESCRIPCI&Oacute;N</th>
+                <th style="text-align: right">BASE</th>
+                <th style="text-align: right">I.V.A.</th>
+                <th style="text-align: right">TOTALES</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th>COMBUSTIBLES</th>
+                <td style="text-align: right">{{librocompras[librocompras.length-1].combustible | number:2}}</td>
+                <td style="text-align: right">{{totiva.combustible | number:2}}</td>
+                <th style="text-align: right">{{(librocompras[librocompras.length-1].combustible + totiva.combustible) | number:2}}</th>
+            </tr>
+            <tr>
+                <th>BIENES</th>
+                <td style="text-align: right">{{librocompras[librocompras.length-1].bien | number:2}}</td>
+                <td style="text-align: right">{{totiva.bien | number:2}}</td>
+                <th style="text-align: right">{{(librocompras[librocompras.length-1].bien + totiva.bien) | number:2}}</th>
+            </tr>
+            <tr>
+                <th>SERVICIOS</th>
+                <td style="text-align: right">{{librocompras[librocompras.length-1].servicio | number:2}}</td>
+                <td style="text-align: right">{{totiva.servicio | number:2}}</td>
+                <th style="text-align: right">{{(librocompras[librocompras.length-1].servicio + totiva.servicio) | number:2}}</th>
+            </tr>
+            <tr>
+                <th>EXENTOS</th>
+                <td style="text-align: right">{{(librocompras[librocompras.length-1].bienex + librocompras[librocompras.length-1].servicioex) | number:2}}</td>
+                <td style="text-align: right">0.00</td>
+                <th style="text-align: right">{{(librocompras[librocompras.length-1].bienex + librocompras[librocompras.length-1].servicioex) | number:2}}</th>
+            </tr>
+            <tr>
+                <th>IMPORTACIONES</th>
+                <td style="text-align: right">{{librocompras[librocompras.length-1].importaciones | number:2}}</td>
+                <td style="text-align: right">{{totiva.importaciones | number:2}}</td>
+                <th style="text-align: right">{{(librocompras[librocompras.length-1].importaciones + totiva.importaciones) | number:2}}</th>
+            </tr>
+            <tr>
+                <th>TOTALES</th>
+                <td style="text-align: right">
+                    {{(
+                    librocompras[librocompras.length-1].combustible +
+                    librocompras[librocompras.length-1].bien +
+                    librocompras[librocompras.length-1].servicio +
+                    librocompras[librocompras.length-1].bienex +
+                    librocompras[librocompras.length-1].servicioex +
+                    librocompras[librocompras.length-1].importaciones
+                    ) | number : 2}}
+                </td>
+                <td style="text-align: right">
+                    {{(
+                    totiva.combustible +
+                    totiva.bien +
+                    totiva.servicio +
+                    totiva.importaciones
+                    ) | number:2}}
+                </td>
+                <th style="text-align: right">
+                    {{(
+                    librocompras[librocompras.length-1].combustible +
+                    librocompras[librocompras.length-1].bien +
+                    librocompras[librocompras.length-1].servicio +
+                    librocompras[librocompras.length-1].bienex +
+                    librocompras[librocompras.length-1].servicioex +
+                    librocompras[librocompras.length-1].importaciones +
+                    totiva.combustible +
+                    totiva.bien +
+                    totiva.servicio +
+                    totiva.importaciones
+                    ) | number:2}}
+                </th>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

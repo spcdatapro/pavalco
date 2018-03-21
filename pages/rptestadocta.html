@@ -1,0 +1,153 @@
+<div class="container" ng-controller="rptEstadoCtaCtrl">
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-body" style="text-align: right">
+                <div class="row" style="text-align: left">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="selBanco">Banco:</label>
+                            <input name="txtFiltroProv" id="txtFiltroProv" type="text" class="form-control" ng-model="search" placeholder="Banco"/>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="form-group">
+                            <label for="selBanco">&nbsp;</label>
+                            <select name="selBanco" id="selBanco" class="form-control" ng-model="objBanco"
+                                    ng-options="obj.bmc for obj in losBancos | filter:{bmc:search}" multiple required>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="text-align: left">
+                    <div class="col-md-2 col-sm-2">
+                        <div class="form-group">
+                            <label for="txtDel">Fecha del:</label>
+                            <input name="txtDel" id="txtDel" type="date" class="form-control" ng-model="params.fDel" placeholder="Del" required/>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-2">
+                        <div class="form-group">
+                            <label for="txtAl">al:</label>
+                            <input name="txtAl" id="txtAl" type="date" class="form-control" ng-model="params.fAl" placeholder="Al" required/>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-2">
+                        <div class="form-group">
+                            <label for="chkTC">Con tipo de cambio:</label>
+                            <input name="chkTC" id="chkTC" type="checkbox" class="form-control" ng-model="params.contc" ng-true-value="1" ng-false-value="0"/>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-2">
+                        <div class="form-group">
+                            <label for="chkQuetz">Quetzalizado:</label>
+                            <input name="chkQuetz" id="chkQuetz" type="checkbox" class="form-control" ng-model="params.quetzalizado" ng-true-value="1" ng-false-value="0"/>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-primary btn-sm" ng-click="getData()" ng-disabled="objBanco.length == 0">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </button>
+                <button type="button" class="btn btn-primary btn-sm" ng-click="printVersion()">
+                    <span class="glyphicon glyphicon-print"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toPrint">
+        <div class="row">
+            <div style="text-align: center">
+                <h2>ESTADO DE CUENTA</h2>
+            </div>
+        </div>
+
+        <div class="panel panel-default" ng-hide="data.saldoinicial === null || data.saldoinicial === undefined">
+            <div class="panel-heading" style="text-align: center">
+                <div class="row">
+                    <div class="col-xs-4 col-md-4">
+                        <label>Banco:&nbsp;</label>{{objBanco[0].bancomoneda}}
+                    </div>
+                    <div class="col-xs-4 col-md-4">
+                        <label>Del:&nbsp;</label>{{params.fDel | date:'dd/MM/yyyy'}}
+                    </div>
+                    <div class="col-xs-4 col-md-4">
+                        <label>Al:&nbsp;</label>{{params.fAl | date:'dd/MM/yyyy'}}
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <table class="table table-responsive table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Tipo</th>
+                            <th style="text-align: right">N&uacute;mero</th>
+                            <th>Beneficiario</th>
+                            <th>Concepto</th>
+                            <th style="text-align: right" ng-show="+params.contc == 1">TC</th>
+                            <th style="text-align: right">Cr&eacute;dito</th>
+                            <th style="text-align: right">D&eacute;bito</th>
+                            <th style="text-align: right">Saldo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="{{+params.contc == 1 ? 6 : 5}}" style="text-align: right"><strong>Saldo inicial:</strong></td>
+                            <td>&nbsp;</td><td>&nbsp;</td>
+                            <td style="text-align: right"><strong>{{data.saldoinicial | number:2}}</strong></td>
+                        </tr>
+                        <tr ng-repeat="t in data.tran">
+                            <td>{{t.fecha | date:'dd/MM/yyyy'}}</td>
+                            <td>{{t.tipo}}</td>
+                            <td style="text-align: right">{{t.numero}}</td>
+                            <td style="white-space: nowrap">{{t.beneficiario}}</td>
+                            <td>{{t.concepto}}</td>
+                            <td style="text-align: right" ng-show="+params.contc == 1">{{t.tipocambio | number:dectc}}</td>
+                            <td style="text-align: right">{{t.credito > 0 ? (t.credito | number:2) : (0.00 | number:2)}}</td>
+                            <td style="text-align: right">{{t.debito > 0 ? (t.debito | number:2) : (0.00 | number:2)}}</td>
+                            <td style="text-align: right">{{t.saldo | number:2}}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="{{+params.contc == 1 ? 6 : 5}}" style="text-align: right"><strong>Saldo final:</strong></td>
+                            <td>&nbsp;</td><td>&nbsp;</td>
+                            <td style="text-align: right"><strong>{{data.saldofinal | number:2}}</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="panel-footer">
+                <table class="table table-responsive table-condensed">
+                    <caption style="text-align: center"><strong>RES&Uacute;MEN</strong></caption>
+                    <thead>
+                        <tr>
+                            <th style="text-align: center">Cantidad</th>
+                            <th>Tipo</th>
+                            <th style="text-align: right">Monto</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="2" style="text-align: right"><strong>Saldo inicial:</strong></td>
+                            <td style="text-align: right"><strong>{{data.saldoinicial | number:2}}</strong></td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr ng-repeat="r in data.resumen">
+                            <td style="text-align: center">{{r.cantidad}}</td>
+                            <td>{{r.tipo}}</td>
+                            <td style="text-align: right">{{r.monto | number:2}}</td>
+                            <td>{{r.operacion}}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: right"><strong>Saldo final:</strong></td>
+                            <td style="text-align: right"><strong>{{data.saldofinal | number:2}}</strong></td>
+                            <td>&nbsp;</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+</div>

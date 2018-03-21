@@ -1,0 +1,39 @@
+<div class="container" ng-controller="facturaCtrl">
+    <div class="panel panel-primary">
+        <div class="panel-heading">Lista de facturas</div>
+        <div class="panel-body">
+            <div>
+                <label>Ver todas&nbsp;</label>
+                <input type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="verTodas" ng-change="getLstFacturas(verTodas)"/>
+            </div>
+            <table datatable="ng" dt-options="dtOptions" class="table table-responsive table-hover table-condensed">
+                <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Cliente</th>
+                    <th style="text-align: right">Factura</th>
+                    <th style="text-align: right">TC</th>
+                    <th style="text-align: right">Monto</th>
+                    <th>Pagada</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="f in facturas">
+                    <td>{{f.fecha | date:'d/M/y'}}</td>
+                    <td style="white-space: nowrap">{{f.cliente}},&nbsp;{{f.telefono}},&nbsp;{{f.emailenviofact}}</td>
+                    <td style="text-align: right">{{f.factura}}</td>
+                    <td style="text-align: right">{{f.tipocambio | number:dectc}}</td>
+                    <td style="text-align: right">{{f.moneda}}&nbsp;{{f.total | number:2}}</td>
+                    <td style="text-align: center">
+                        <button type="button" class="btn btn-sm btn-primary" ng-disabled="!permiso.m" ng-click="pagarFactura(f)" ng-show="f.pagada === 0"
+                                data-toggle="tooltip" data-placement="auto" title="Marcar como pagada la factura {{f.factura}}">
+                            <span class="glyphicon glyphicon-hourglass"></span>
+                        </button>
+                        <span class="badge" ng-show="f.pagada === 1">Pagada</span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,79 @@
+<div class="container-fluid" ng-controller="ingresoController">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#/pos/trans/venta">Venta</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <form class="navbar-form navbar-left" ng-submit="buscar(bus)">
+            <div class="form-group">
+              <input type="text" ng-model="bus.model" class="form-control" placeholder="Buscar venta">
+            </div>
+            <button type="submit" class="btn btn-default">
+                <i class="glyphicon glyphicon-search"></i>
+            </button>
+          </form>
+          <button type="button" class="btn btn-xs btn-default navbar-btn" ng-click="mostrarForm()">
+              <i class="glyphicon glyphicon-plus"></i> Nueva
+          </button>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+    
+    <div class="panel panel-default" ng-show="formulario">
+        <div class="panel-body">
+            <h1>Hola Ingreso!</h1>
+        </div>
+    </div>
+
+    <div class="panel panel-default" ng-show="resultados">
+      <div class="table-responsive">
+        <table class="table table-hover table-condensed">
+          <thead>
+            <tr>
+              <th>Fecha</th>
+              <th>Cliente</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody ng-cloak>
+            <tr ng-repeat="v in ventas track by $index" ng-click="getVenta($index)">
+              <td>{{ v.fhcreacion | date:"dd/MM/yyyy 'at' h:mma" }} </td>
+              <td>{{ v.nombre }}</td>
+              <td>{{ v.total }}</td>
+            </tr>
+          </tbody>
+          <tfoot ng-show="buscarmas">
+            <tr>
+              <td colspan="5" class="text-center">
+                <button type="button" class="btn btn-default" ng-click="mas()">Más</button>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+
+  <div class="modal fade" tabindex="-1" role="dialog" id="mdlIngreso">
+    <div class="modal-dialog" role="document" id="mdlIngresoTamanio">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="mdlIngresoTitulo">POS</h4>
+        </div>
+        <div class="modal-body">
+          <div ng-include="mdlurl"></div>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+</div>

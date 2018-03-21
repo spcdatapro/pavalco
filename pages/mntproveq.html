@@ -1,0 +1,133 @@
+<div class="container" ng-controller="provEqCtrl">
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a show-tab href="#divProvEq" data-toggle="tab">PROVEEDOR(ES) DE EQUIPO</a>
+        </li>
+        <li>
+            <a show-tab href="#divSectores" data-toggle="tab">SECTOR(ES)</a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <div id="divProvEq" class="tab-pane fade in active">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Proveedor(es) de equipo</div>
+                <div class="panel-body">
+                    <form name="frmProvEq" id="frmProvEq" ng-submit="frmProvEq.$valid && ejecutar('c', objeto)" novalidate>
+                        <div class="form-group" ng-class="{'has-error':frmProvEq.txtNombre.$invalid && !frmProvEq.txtNombre.$pristine}">
+                            <label for="txtNombre">Nombre:</label>
+                            <input name="txtNombre" id="txtNombre" type="text" class="form-control"
+                                   ng-model="objeto.nombre" placeholder="Nombre" maxlength="150" required/>
+                        </div>
+                        <div class="form-group">
+                            <label for="selTitulo">T&iacute;tulo:</label>
+                            <select id="selTitulo" name="selTitulo" class="form-control"
+                                    ng-options="obj.descripcion for obj in lstTitulos track by obj.id" ng-model="objeto.objTitulo">
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtContacto">Contacto:</label>
+                            <input name="txtContacto" id="txtContacto" type="text" class="form-control"
+                                   ng-model="objeto.contactosug" placeholder="Contacto" maxlength="150"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtTel">Tel&eacute;fono:</label>
+                            <input name="txtTel" id="txtTel" type="text" class="form-control"
+                                   ng-model="objeto.telsug" placeholder="Tel&eacute;fono" maxlength="32"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtEmail">E-mail:</label>
+                            <input name="txtEmail" id="txtEmail" type="email" class="form-control"
+                                   ng-model="objeto.correosug" placeholder="E-mail" maxlength="50"/>
+                        </div>
+                        <div class="btn-group" role="group" aria-label="...">
+                            <button type="submit" class="btn btn-primary" ng-disabled="frmProvEq.$invalid" ng-hide="+objeto.id > 0">
+                                <span class="glyphicon glyphicon-floppy-save"></span>
+                            </button>
+                            <button type="button" class="btn btn-primary" ng-disabled="frmProvEq.$invalid" ng-show="+objeto.id > 0" ng-click="ejecutar('u', objeto)">
+                                <span class="glyphicon glyphicon-floppy-save"></span>
+                            </button>
+                            <button type="button" class="btn btn-primary" ng-show="+objeto.id > 0" ng-click="resetObjeto()">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </button>
+                        </div>
+                    </form>
+                    <hr/>
+                    <table datatable="ng" dt-options="dtOptions" class="table table-responsive table-hover">
+                        <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>T&iacute;tulo</th>
+                            <th>Contacto</th>
+                            <th>Tel&eacute;fono</th>
+                            <th>E-mail</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="p in lstProvsEq" ng-click="getProvEquipo(p.id)">
+                            <td>{{p.nombre}}</td>
+                            <td>{{p.titulo}}</td>
+                            <td>{{p.contactosug}}</td>
+                            <td>{{p.telsug}}</td>
+                            <td>{{p.correosug}}</td>
+                            <td>
+                                <!--
+                                <button type="button" class="btn btn-danger" ng-click="eliminarRegistro('d', {id: p.id})">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                                -->
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div id="divSectores" class="tab-pane fade">
+            <div class="panel panel-success">
+                <div class="panel-heading">Sector(es)</div>
+                <div class="panel-body">
+                    <form name="frmSector" id="frmSector" ng-submit="frmSector.$valid && addSector(sector)" novalidate>
+                        <div class="form-group" ng-class="{'has-error':frmSector.txtDescSect.$invalid && !frmSector.txtDescSect.$pristine}">
+                            <label for="txtDescSect">Sector:</label>
+                            <input name="txtDescSect" id="txtDescSect" type="text" class="form-control"
+                                   ng-model="sector.descsector" placeholder="Descripci&oacute;n del sector" maxlength="75" required/>
+                        </div>
+                        <div class="btn-group" role="group" aria-label="...">
+                            <button type="submit" class="btn btn-success" ng-disabled="frmSector.$invalid">
+                                <span class="glyphicon glyphicon-floppy-save"></span>
+                            </button>
+                        </div>
+                    </form>
+                    <hr/>
+                    <table class="table table-responsive table-hover table-condensed">
+                        <thead>
+                        <tr>
+                            <th>Sector</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="s in sectores">
+                            <td>
+                                <span editable-text="s.descsector" e-name="descsector" e-form="rowform" e-required
+                                      e-class="form-control" e-type="text" e-maxlength="75">
+                                {{s.descsector}}
+                            </span>
+                            </td>
+                            <td style="white-space: nowrap">
+                                <edit-row-form
+                                        editing-row="s"
+                                        update-func="updSector(fila, qid)"
+                                        delete-func="delSector(qid)">
+                                </edit-row-form>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

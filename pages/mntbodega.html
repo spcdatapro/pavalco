@@ -1,0 +1,75 @@
+<div class="container" ng-controller="bodegaCtrl">
+    <div class="panel panel-primary">
+        <div class="panel-heading">Bodegas</div>
+        <div class="panel-body">
+            <form name="frmBodega" id="frmBodega" ng-submit="frmBodega.$valid && addBodega(bodega)" novalidate>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group" ng-class="{'has-error':frmBodega.txtDescBodega.$invalid && !frmBodega.txtDescBodega.$pristine}">
+                            <label for="txtDescBodega">Nombre:</label>
+                            <input name="txtDescBodega" id="txtDescBodega" type="text" class="form-control" maxlength="250" ng-model="bodega.nombre" required/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group" ng-class="{'has-error':frmBodega.txtDireccion.$invalid && !frmBodega.txtDireccion.$pristine}">
+                            <label for="txtDireccion">Direcci&oacute;n:</label>
+                            <input name="txtDireccion" id="txtDireccion" type="text" class="form-control" maxlength="250" ng-model="bodega.direccion"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group" ng-class="{'has-error':frmBodega.txtTelefono.$invalid && !frmBodega.txtTelefono.$pristine}">
+                            <label for="txtTelefono">Tel&eacute;fono:</label>
+                            <input name="txtTelefono" id="txtTelefono" type="text" class="form-control" maxlength="16" ng-model="bodega.telefono"/>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group" ng-class="{'has-error':frmBodega.txtContacto.$invalid && !frmBodega.txtContacto.$pristine}">
+                            <label for="txtContacto">Contacto:</label>
+                            <input name="txtContacto" id="txtContacto" type="text" class="form-control" maxlength="250" ng-model="bodega.contacto"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn-group" role="group" aria-label="...">
+                    <button type="submit" class="btn btn-primary" ng-disabled="frmBodega.$invalid || !permiso.c" ng-hide="+bodega.id > 0">
+                        <span class="glyphicon glyphicon-floppy-save"></span>
+                    </button>
+                    <button type="button" class="btn btn-primary" ng-disabled="frmBodega.$invalid || !permiso.m" ng-show="+bodega.id > 0" ng-click="updBodega(bodega)">
+                        <span class="glyphicon glyphicon-floppy-save"></span>
+                    </button>
+                    <button type="button" class="btn btn-warning" ng-disabled="frmBodega.$invalid || !permiso.e" ng-show="+bodega.id > 0" ng-click="delBodega(bodega)">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                    <button type="button" class="btn btn-primary" ng-disabled="!permiso.c" ng-show="+bodega.id > 0" ng-click="resetBodega()">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                </div>
+            </form>
+            <hr/>
+            <div class="table-responsive">
+                <table class="table table-condensed table-hover">
+                    <caption>
+                        <input ng-model="buscar.$" class="form-control" placeholder="Buscar bodega..." style="width: 100%;" />
+                    </caption>
+                    <thead>
+                    <tr>
+                        <th style="white-space: nowrap">Nombre</th>
+                        <th>Direcci&oacute;n</th>
+                        <th style="white-space: nowrap">Tel&eacute;fono</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="b in bodegas | filter:buscar" ng-click="getBodega(b.id)">
+                        <td style="white-space: nowrap">{{b.nombre}}</td>
+                        <td>{{b.direccion}}</td>
+                        <td style="white-space: nowrap">{{b.telefono}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,45 @@
+<div class="container" ng-controller="razonCambioCtrl">
+    <div class="panel panel-primary">
+        <div class="panel-heading">Razones de cambio de pieza o parte</div>
+        <div class="panel-body">
+            <form name="frmRazonCambio" id="frmRazonCambio" class="form-inline" ng-submit="frmRazonCambio.$valid && addRazonCambio(razoncambio)" novalidate>
+                <div class="form-group" ng-class="{'has-error':frmRazonCambio.txtDescTipoLlamada.$invalid && !frmRazonCambio.txtDescTipoLlamada.$pristine}">
+                    <label for="txtDescTipoLlamada">Descripci&oacute;n:</label>
+                    <input name="txtDescTipoLlamada" id="txtDescTipoLlamada" type="text" class="form-control" style="width: 50em" maxlength="250" ng-model="razoncambio.descripcion" required/>
+                </div>
+                <div class="btn-group" role="group" aria-label="...">
+                    <button type="submit" class="btn btn-primary" ng-disabled="frmRazonCambio.$invalid || !permiso.c" ng-hide="+razoncambio.id > 0">
+                        <span class="glyphicon glyphicon-floppy-save"></span>
+                    </button>
+                    <button type="button" class="btn btn-primary" ng-disabled="frmRazonCambio.$invalid || !permiso.m" ng-show="+razoncambio.id > 0" ng-click="updRazonCambio(razoncambio)">
+                        <span class="glyphicon glyphicon-floppy-save"></span>
+                    </button>
+                    <button type="button" class="btn btn-warning" ng-disabled="frmRazonCambio.$invalid || !permiso.e" ng-show="+razoncambio.id > 0" ng-click="delRazonCambio(razoncambio)">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                    <button type="button" class="btn btn-primary" ng-disabled="!permiso.c" ng-show="+razoncambio.id > 0" ng-click="resetRazonCambio()">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                </div>
+            </form>
+            <hr/>
+            <div class="table-responsive">
+                <table class="table table-condensed table-hover">
+                    <caption>
+                        <input ng-model="buscar.$" class="form-control" placeholder="Buscar razon de cambio..." style="width: 100%;" />
+                    </caption>
+                    <thead>
+                    <tr>
+                        <th>Descripci&oacute;n</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="r in razonescambio | filter:buscar" ng-click="getRazonCambio(r.id)">
+                        <td>{{r.descripcion}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,274 @@
+<div class="container" ng-controller="mntGenClientesCtrl">
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a show-tab href="#divPaises" data-toggle="tab">PA&Iacute;S(ES)</a>
+        </li>
+        <li>
+            <a show-tab href="#divTitulos" data-toggle="tab">T&Iacute;TULO(S)</a>
+        </li>
+        <li>
+            <a show-tab href="#divPeriodicidad" data-toggle="tab">PERIODICIDAD</a>
+        </li>
+        <li>
+            <a show-tab href="#divCobroPrimRenta" data-toggle="tab">COBRO PRIMERA RENTA</a>
+        </li>
+        <li>
+            <a show-tab href="#divTipoFinanciera" data-toggle="tab">TIPO(S) DE FINANCIERA</a>
+        </li>
+        <li>
+            <a show-tab href="#divFinanciera" data-toggle="tab">FINANCIERA(S)</a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <div id="divPaises" class="tab-pane fade in active">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Pa&iacute;s(es)</div>
+                <div class="panel-body">
+                    <form name="frmPais" id="frmPais" ng-submit="frmPais.$valid && ejecutar('c', objeto, 1)" novalidate>
+                        <div class="form-group" ng-class="{'has-error':frmPais.txtAbreviatura.$invalid && !frmPais.txtAbreviatura.$pristine}">
+                            <label for="txtAbreviatura">Abreviatura:</label>
+                            <input name="txtAbreviatura" id="txtAbreviatura" type="text" class="form-control"
+                                   ng-model="objeto.abreviatura" placeholder="Abreviatura" maxlength="3" required />
+                        </div>
+                        <div class="form-group" ng-class="{'has-error':frmPais.txtNombre.$invalid && !frmPais.txtNombre.$pristine}">
+                            <label for="txtNombre">Nombre:</label>
+                            <input name="txtNombre" id="txtNombre" type="text" class="form-control"
+                                   ng-model="objeto.nombre" placeholder="Nombre del país" maxlength="30" required />
+                        </div>
+                        <div class="btn-group" role="group" aria-label="...">
+                            <button type="submit" class="btn btn-primary" ng-disabled="frmPais.$invalid">
+                                <span class="glyphicon glyphicon-floppy-save"></span>
+                            </button>
+                        </div>
+                    </form>
+                    <hr/>
+                    <table datatable="ng" dt-options="dtOptions" class="table table-responsive table-hover">
+                        <thead>
+                        <tr>
+                            <th>Abreviatura</th>
+                            <th>Nombre</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="p in lstPaises">
+                            <td>{{p.abreviatura}}</td>
+                            <td>{{p.nombre}}</td>
+                            <td style="white-space: nowrap">
+                                <button type="button" class="btn btn-danger" ng-click="eliminarRegistro('d', {id: p.id}, 1)">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div id="divTitulos" class="tab-pane fade">
+            <div class="panel panel-success">
+                <div class="panel-heading">T&iacute;tulo(s)</div>
+                <div class="panel-body">
+                    <form name="frmTitulo" id="frmTitulo" ng-submit="frmTitulo.$valid && ejecutar('c', objeto, 2)" novalidate>
+                        <div class="form-group" ng-class="{'has-error':frmTitulo.txtDescTitulo.$invalid && !frmTitulo.txtDescTitulo.$pristine}">
+                            <label for="txtDescTitulo">Descripci&oacute;n:</label>
+                            <input name="txtDescTitulo" id="txtDescTitulo" type="text" class="form-control"
+                                   ng-model="objeto.descripcion" placeholder="Descripci&oacute;n del t&iacute;tulo" maxlength="150" required />
+                        </div>
+                        <div class="btn-group" role="group" aria-label="...">
+                            <button type="submit" class="btn btn-success" ng-disabled="frmTitulo.$invalid">
+                                <span class="glyphicon glyphicon-floppy-save"></span>
+                            </button>
+                        </div>
+                    </form>
+                    <hr/>
+                    <table datatable="ng" dt-options="dtOptions" class="table table-responsive table-hover">
+                        <thead>
+                        <tr>
+                            <th>Descripci&oacute;n</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="t in lstTitulos">
+                            <td>{{t.descripcion}}</td>
+                            <td style="white-space: nowrap">
+                                <button type="button" class="btn btn-danger" ng-click="eliminarRegistro('d', {id: t.id}, 2)">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div id="divPeriodicidad" class="tab-pane fade">
+            <div class="panel panel-info">
+                <div class="panel-heading">Periodicidad</div>
+                <div class="panel-body">
+                    <form name="frmPeriodicidad" id="frmPeriodicidad" ng-submit="frmPeriodicidad.$valid && ejecutar('c', objeto, 3)" novalidate>
+                        <div class="form-group" ng-class="{'has-error':frmPeriodicidad.txtDescPeriodicidad.$invalid && !frmPeriodicidad.txtDescPeriodicidad.$pristine}">
+                            <label for="txtDescPeriodicidad">Periodicidad:</label>
+                            <input name="txtDescPeriodicidad" id="txtDescPeriodicidad" type="text" class="form-control"
+                                   ng-model="objeto.descripcion" placeholder="Periodicidad" maxlength="50" required />
+                        </div>
+                        <div class="form-group" ng-class="{'has-error':frmPeriodicidad.txtDias.$invalid && !frmPeriodicidad.txtDias.$pristine}">
+                            <label for="txtDias">D&iacute;as:</label>
+                            <input name="txtDias" id="txtDias" type="number" class="form-control"
+                                   ng-model="objeto.dias" placeholder="Días que contiene la periodicidad" min="1" required />
+                        </div>
+                        <div class="btn-group" role="group" aria-label="...">
+                            <button type="submit" class="btn btn-info" ng-disabled="frmTitulo.$invalid">
+                                <span class="glyphicon glyphicon-floppy-save"></span>
+                            </button>
+                        </div>
+                    </form>
+                    <hr/>
+                    <table datatable="ng" dt-options="dtOptions" class="table table-responsive table-hover">
+                        <thead>
+                        <tr>
+                            <th>Periodicidad</th>
+                            <th style="text-align: right">D&iacute;as</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="e in lstPeriodicidad">
+                            <td>{{e.descripcion}}</td>
+                            <td style="text-align: right">{{e.dias}}</td>
+                            <td style="white-space: nowrap">
+                                <button type="button" class="btn btn-danger" ng-click="eliminarRegistro('d', {id: e.id}, 3)">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div id="divCobroPrimRenta" class="tab-pane fade">
+            <div class="panel panel-warning">
+                <div class="panel-heading">Cobro primera renta</div>
+                <div class="panel-body">
+                    <form name="frmCPR" id="frmCPR" ng-submit="frmCPR.$valid && ejecutar('c', objeto, 4)" novalidate>
+                        <div class="form-group" ng-class="{'has-error':frmCPR.txtDescCPR.$invalid && !frmCPR.txtDescCPR.$pristine}">
+                            <label for="txtDescCPR">Cobro primera renta:</label>
+                            <input name="txtDescCPR" id="txtDescCPR" type="text" class="form-control"
+                                   ng-model="objeto.descripcion" placeholder="Cobro primera renta" maxlength="50" required />
+                        </div>
+                        <div class="btn-group" role="group" aria-label="...">
+                            <button type="submit" class="btn btn-warning" ng-disabled="frmCPR.$invalid">
+                                <span class="glyphicon glyphicon-floppy-save"></span>
+                            </button>
+                        </div>
+                    </form>
+                    <hr/>
+                    <table datatable="ng" dt-options="dtOptions" class="table table-responsive table-hover">
+                        <thead>
+                        <tr>
+                            <th>Cobro primera renta</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="c in lstCobroPrimRenta">
+                            <td>{{c.descripcion}}</td>
+                            <td style="white-space: nowrap">
+                                <button type="button" class="btn btn-danger" ng-click="eliminarRegistro('d', {id: c.id}, 4)">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div id="divTipoFinanciera" class="tab-pane fade">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Tipo(s) de financiera</div>
+                <div class="panel-body">
+                    <form name="frmTFinan" id="frmTFinan" ng-submit="frmTFinan.$valid && ejecutar('c', objeto, 5)" novalidate>
+                        <div class="form-group" ng-class="{'has-error':frmTFinan.txtDescTF.$invalid && !frmTFinan.txtDescTF.$pristine}">
+                            <label for="txtDescTF">Tipo de financiera:</label>
+                            <input name="txtDescTF" id="txtDescTF" type="text" class="form-control"
+                                   ng-model="objeto.descripcion" placeholder="Tipo de financiera" maxlength="150" required />
+                        </div>
+                        <div class="btn-group" role="group" aria-label="...">
+                            <button type="submit" class="btn btn-primary" ng-disabled="frmTFinan.$invalid">
+                                <span class="glyphicon glyphicon-floppy-save"></span>
+                            </button>
+                        </div>
+                    </form>
+                    <hr/>
+                    <table datatable="ng" dt-options="dtOptions" class="table table-responsive table-hover">
+                        <thead>
+                        <tr>
+                            <th>Tipo de financiera</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="tf in lstTiposFinanciera">
+                            <td>{{tf.descripcion}}</td>
+                            <td style="white-space: nowrap">
+                                <button type="button" class="btn btn-danger" ng-click="eliminarRegistro('d', {id: tf.id}, 5)">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div id="divFinanciera" class="tab-pane fade">
+            <div class="panel panel-success">
+                <div class="panel-heading">Financiera(s)</div>
+                <div class="panel-body">
+                    <form name="frmFinan" id="frmFinan" ng-submit="frmFinan.$valid && ejecutar('c', objeto, 6)" novalidate>
+                        <div class="form-group" ng-class="{'has-error':frmFinan.selTF.$invalid && !frmFinan.selTF.$pristine}">
+                            <label for="selTF">Tipo de financiera:</label>
+                            <select id="selTF" name="selTF" class="form-control"
+                                    ng-options="obj.descripcion for obj in lstTiposFinanciera track by obj.id" ng-model="objeto.objTipoFinanciera" required>
+                            </select>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error':frmFinan.txtDescF.$invalid && !frmFinan.txtDescF.$pristine}">
+                            <label for="txtDescF">Financiera:</label>
+                            <input name="txtDescF" id="txtDescF" type="text" class="form-control"
+                                   ng-model="objeto.nombre" placeholder="Financiera" maxlength="150" required />
+                        </div>
+                        <div class="btn-group" role="group" aria-label="...">
+                            <button type="submit" class="btn btn-success" ng-disabled="frmFinan.$invalid">
+                                <span class="glyphicon glyphicon-floppy-save"></span>
+                            </button>
+                        </div>
+                    </form>
+                    <hr/>
+                    <table datatable="ng" dt-options="dtOptions" class="table table-responsive table-hover">
+                        <thead>
+                        <tr>
+                            <th>Tipo de financiera - Nombre</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="f in lstFinancieras">
+                            <td>{{f.tipofinanfinan}}</td>
+                            <td style="white-space: nowrap">
+                                <button type="button" class="btn btn-danger" ng-click="eliminarRegistro('d', {id: f.id}, 6)">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

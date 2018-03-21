@@ -1,0 +1,638 @@
+<style>
+    .titulo{ width: 10em; }
+    .btn-full{ width: 100%; }
+    .borderless td, .borderless th, .borderless tr { border: none !important; }
+    .app-modal-window .modal-dialog { width: 900px; }
+    .app-modal-window2 .modal-dialog { width: 1000px; }
+    .app-modal-window3 .modal-dialog { width: 700px; }
+    .bckVerde { background-color: lightgreen !important; }
+    .bckAmarillo { background-color: lightyellow !important; }
+    .bckRojo { background-color: lightpink !important; }
+</style>
+<div class="container" ng-controller="tranSegCasoCtrl">
+    <div class="row">
+        <div class="col-md-10 nopadding">
+            <input name="txtSearch" id="txtSearch" class="form-control input-sm" style="width: 100%;" ng-model="search.$" placeholder="Buscar por no. caso, equipo, ubicaci&oacute;n, usuario, tipo de llamada, aperturado, comentario..."/>
+        </div>
+        <div class="col-md-2 nopadding">
+            <button type="button" class="btn btn-primary btn-sm" ng-disabled="!permiso.c" ng-click="openAddCaso(0)">
+                <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Nuevo caso
+            </button>
+        </div>
+    </div>
+    <hr/>
+    <div class="well well-sm" style="text-align: center">
+        <span class="bckVerde">Sin visita y menos de 24 horas de aperturado</span> -
+        <span class="bckAmarillo">Visitado y sin cerrar despu&eacute;s de 48 horas de aperturado</span> -
+        <span class="bckRojo">Sin visita y m&aacute;s de 24 horas de aperturado</span>
+    </div>
+    <div class="row" style="border: solid 0.1em lightgrey" ng-repeat="abierto in abiertos | filter:search" ng-class="getBckColor(abierto.visitado, abierto.horasaperturado)">
+        <div class="col-md-10 nopadding">
+            <small>
+                <div class="table-responsive">
+                    <table class="table table-condensed table-hover borderless" ng-click="openAddCaso(abierto.id)">
+                        <tr>
+                            <th class="titulo">No. caso:</th>
+                            <td>{{abierto.nocaso}}</td>
+                        </tr>
+                        <tr>
+                            <th class="titulo">Equipo:</th>
+                            <td>{{abierto.equipo}}</td>
+                        </tr>
+                        <tr>
+                            <th class="titulo">Ubicaci&oacute;n:</th>
+                            <td>{{abierto.ubicacion}}</td>
+                        </tr>
+                        <tr>
+                            <th class="titulo">Usuario:</th>
+                            <td>{{abierto.usuarioapertura}}</td>
+                        </tr>
+                        <tr>
+                            <th class="titulo">Tipo de llamada:</th>
+                            <td>{{abierto.tipollamada}}</td>
+                        </tr>
+                        <tr>
+                            <th class="titulo">Aperturado</th>
+                            <td>{{abierto.fhapertura | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+                        </tr>
+                        <tr>
+                            <th class="titulo">Comentario</th>
+                            <td><p>{{abierto.comentario}}</p></td>
+                        </tr>
+                    </table>
+                </div>
+            </small>
+        </div>
+        <div class="col-md-2 nopadding">
+            <small>
+                <div class="table-responsive">
+                    <table class="table table-condensed table-hover borderless">
+                        <tr>
+                            <td>
+                                <button type="button" class="btn btn-default btn-sm btn-full" ng-click="openBitacora(abierto, $index)">
+                                    Bit&aacute;cora
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button type="button" class="btn btn-default btn-sm btn-full" ng-click="openReqPartes(abierto)">
+                                    Requerir partes
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button type="button" class="btn btn-default btn-sm btn-full" ng-click="openCierreCaso(abierto)">
+                                    Cerrar
+                                </button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </small>
+        </div>
+    </div>
+</div>
+<!--Template de la modal //Este usa el controlador ModalAddCasoCtrl-->
+<script type="text/ng-template" id="modalAddCaso.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Agregar/Editar caso</h3>
+    </div>
+    <div class="modal-body">
+        <form name="frmCaso" id="frmCaso" ng-submit="frmCaso.$valid" novalidate>
+            <div class="row">
+                <div class="col-md-6 nopadding">
+                    <div class="form-group">
+                        <label for="txtNoCaso">No. caso:</label>
+                        <input name="txtNoCaso" id="txtNoCaso" type="text" class="form-control" ng-model="caso.nocaso" maxlength="50" required/>
+                    </div>
+                </div>
+                <div class="col-md-6 nopadding">
+                    <div class="form-group">
+                        <label for="selEstatus">Estatus:</label>
+                        <ui-select id="selEstatus"
+                                   ng-model="caso.idestatus"
+                                   title="Seleccione un estatus..."
+                                   theme="bootstrap"
+                                   autofocus="false"
+                                   append-to-body="false"
+                                   ng-required="true">
+                            <ui-select-match placeholder="Buscar estatus..." allow-clear="false">
+                                <span ng-bind="$select.selected.descripcion"></span>
+                            </ui-select-match>
+                            <ui-select-choices repeat="item.id as item in estatus | filter:$select.search">
+                                <div ng-bind-html="item.descripcion | highlight: $select.search"></div>
+                            </ui-select-choices>
+                            <ui-select-no-choice>
+                                No hay resultados...
+                            </ui-select-no-choice>
+                        </ui-select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 nopadding">
+                    <div class="form-group">
+                        <label for="selEquipo">Equipo:</label>
+                        <ui-select id="selEquipo"
+                                   ng-model="caso.idequipo"
+                                   title="Seleccione un equipo..."
+                                   theme="bootstrap"
+                                   autofocus="false"
+                                   append-to-body="false"
+                                   ng-required="true">
+                            <ui-select-match placeholder="Buscar equipo..." allow-clear="false">
+                                <span ng-bind="$select.selected.descripcion"></span>
+                            </ui-select-match>
+                            <ui-select-choices repeat="item.id as item in equipos | filter:$select.search">
+                                <div ng-bind-html="item.descripcion | highlight: $select.search"></div>
+                            </ui-select-choices>
+                            <ui-select-no-choice>
+                                No hay resultados...
+                            </ui-select-no-choice>
+                        </ui-select>
+                    </div>
+                </div>
+                <div class="col-md-6 nopadding">
+                    <div class="form-group">
+                        <label for="selUbicacion">Ubicaci&oacute;n:</label>
+                        <ui-select id="selUbicacion"
+                                   ng-model="caso.idubicacion"
+                                   title="Seleccione una ubicación..."
+                                   theme="bootstrap"
+                                   autofocus="false"
+                                   append-to-body="false"
+                                   ng-required="false">
+                            <ui-select-match placeholder="Buscar ubicación..." allow-clear="true">
+                                <span ng-bind="$select.selected.descripcion"></span>
+                            </ui-select-match>
+                            <ui-select-choices repeat="item.id as item in ubicaciones | filter:$select.search">
+                                <div ng-bind-html="item.descripcion | highlight: $select.search"></div>
+                            </ui-select-choices>
+                            <ui-select-no-choice>
+                                No hay resultados...
+                            </ui-select-no-choice>
+                        </ui-select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 nopadding">
+                    <div class="form-group">
+                        <label for="selTipoLlamada">Tipo de llamada:</label>
+                        <ui-select id="selTipoLlamada"
+                                   ng-model="caso.idtipollamada"
+                                   title="Seleccione un tipo de llamada..."
+                                   theme="bootstrap"
+                                   autofocus="false"
+                                   append-to-body="false"
+                                   ng-required="false">
+                            <ui-select-match placeholder="Buscar tipo de llamada..." allow-clear="true">
+                                <span ng-bind="$select.selected.descripcion"></span>
+                            </ui-select-match>
+                            <ui-select-choices repeat="item.id as item in tiposllamada | filter:$select.search">
+                                <div ng-bind-html="item.descripcion | highlight: $select.search"></div>
+                            </ui-select-choices>
+                            <ui-select-no-choice>
+                                No hay resultados...
+                            </ui-select-no-choice>
+                        </ui-select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 nopadding">
+                    <div class="form-group">
+                        <label for="txtComentario">Comentario:</label>
+                        <textarea name="txtComentario" id="txtComentario" class="form-control" style="width: 100%" ng-model="caso.comentario" rows="3"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 nopadding">
+                    <span><strong>F/H de apertura:&nbsp;</strong>{{caso.fhapertura | date:'dd/MM/yyyy HH:mm:ss'}}</span>
+                </div>
+                <div class="col-md-6 nopadding">
+                    <span><strong>Aperturado por:&nbsp;</strong>{{caso.usuarioapertura}}</span>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <!-- <button class="btn btn-primary" type="button" ng-click="ok()">Aceptar</button> -->
+        <div class="btn-group" role="group" aria-label="...">
+            <button class="btn btn-primary" type="button" ng-click="addCaso(caso)" ng-disabled="frmCaso.$invalid" ng-hide="+caso.id > 0">
+                <i class="fa fa-floppy-o" aria-hidden="true"></i>
+            </button>
+            <button class="btn btn-primary" type="button" ng-click="updCaso(caso)" ng-disabled="frmCaso.$invalid" ng-show="+caso.id > 0">
+                <i class="fa fa-floppy-o" aria-hidden="true"></i>
+            </button>
+            <button class="btn btn-primary" type="button" ng-click="cancel()">
+                <i class="fa fa-times-circle-o" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+</script>
+<!--Fin de Template de la modal-->
+<!--Template de la modal //Este usa el controlador ModalBitacoraCtrl-->
+<script type="text/ng-template" id="modalBitacora.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Agregar/Editar bit&aacute;cora</h3>
+        <h5>
+            No. caso: {{caso.nocaso}}<br/>
+            Estatus: {{caso.estatus}}
+        </h5>
+    </div>
+    <div class="modal-body" style="height: 400px">
+        <small>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="table-responsive" style="overflow-y: auto">
+                        <table class="table table-hover table-condensed">
+                            <thead>
+                            <tr>
+                                <th>F/H</th>
+                                <th>Tipo</th>
+                                <th>comentario</th>
+                                <th>Usuario</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="b in bitacoras" ng-click="getBitacora(+b.id)" data-toggle="tooltip" data-placement="auto" title="{{b.comentario}}">
+                                <td>{{b.fechahora | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+                                <td>{{+b.esvisita == 0 ? '' : 'Visita'}}</td>
+                                <td>{{b.comentario | shortenStr:15}}</td>
+                                <td>{{b.usuario}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <form name="frmBitacora" id="frmBitacora" ng-submit="frmBitacora.$valid && addBitacora(bitacora)" novalidate>
+                        <div class="row">
+                            <div class="col-md-12 nopadding">
+                                <div class="form-group">
+                                    <label for="lblFH">Fecha/Hora bit&aacute;cora:</label>
+                                    <span name="lblFH" id="lblFH">{{bitacora.fechahora | date:'dd/MM/yyyy HH:mm:ss'}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 nopadding">
+                                <div class="form-group">
+                                    <label for="chkEsVisita">Es visita:</label>
+                                    <input name="chkEsVisita" id="chkEsVisita" type="checkbox" class="form-control input-sm" ng-model="bitacora.esvisita" ng-true-value="1" ng-false-value="0"/>
+                                </div>
+                            </div>
+                            <div class="col-md-9 nopadding">
+                                <div class="form-group">
+                                    <label for="txtEnvA">Enviar a:</label>
+                                    <input name="txtEnvA" id="txtEnvA" type="text" class="form-control input-sm" ng-model="bitacora.enviara" maxlength="75" placeholder="Correos a los que desea enviar..." />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 nopadding">
+                                <div class="form-group">
+                                    <label for="txtBitCom">Comentario:</label>
+                                    <textarea name="txtBitCom" id="txtBitCom" class="form-control input-sm" ng-model="bitacora.comentario" placeholder="Comentario de la bit&aacute;cora..." maxlength="5000" rows="3" style="width: 100%" required></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="btn-group" role="group" aria-label="...">
+                            <button class="btn btn-primary" type="button" ng-click="addBitacora(bitacora)" ng-disabled="frmBitacora.$invalid" ng-hide="+bitacora.id > 0">
+                                <i class="fa fa-floppy-o" aria-hidden="true"></i>
+                            </button>
+                            <button class="btn btn-primary" type="button" ng-click="updBitacora(bitacora)" ng-disabled="frmBitacora.$invalid" ng-show="+bitacora.id > 0">
+                                <i class="fa fa-floppy-o" aria-hidden="true"></i>
+                            </button>
+                            <button class="btn btn-primary" type="button" ng-click="resetBitacora()" ng-show="+bitacora.id > 0">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </small>
+    </div>
+    <div class="modal-footer">
+        <!-- <button class="btn btn-primary" type="button" ng-click="ok()">Aceptar</button> -->
+        <div class="btn-group" role="group" aria-label="...">
+            <button class="btn btn-primary" type="button" ng-click="cancel()">
+                <i class="fa fa-times-circle-o" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+</script>
+<!--Fin de Template de la modal-->
+<!--Template de la modal //Este usa el controlador ModalReqParteCtrl-->
+<script type="text/ng-template" id="modalReqParte.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Agregar/Editar requerimiento de partes</h3>
+        <h5>
+            No. caso: {{caso.nocaso}}<br/>
+            Estatus: {{caso.estatus}}
+        </h5>
+    </div>
+    <div class="modal-body" style="height: 400px">
+        <small>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="table-responsive" style="overflow-y: auto">
+                        <table class="table table-hover table-condensed">
+                            <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Raz&oacute;n</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="s in salidas" ng-click="getSalida(+s.id)" data-toggle="tooltip" data-placement="auto" title="Creado por {{s.usrcrea}}">
+                                <td>{{s.fecha | date:'dd/MM/yyyy'}}</td>
+                                <td>{{s.razoncambio}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <form name="frmCasoSalida" id="frmCasoSalida" ng-submit="frmCasoSalida.$valid && addSalida(salida)" novalidate>
+                        <div class="row">
+                            <div class="col-md-3 nopadding">
+                                <div class="form-group">
+                                    <label for="txtFSalida">Fecha:</label>
+                                    <input name="txtFSalida" id="txtFSalida" type="date" class="form-control" ng-model="salida.fecha" required/>
+                                </div>
+                            </div>
+                            <div class="col-md-7 nopadding">
+                                <div class="form-group">
+                                    <label for="selCambioParte">Raz&oacute;n de cambio:</label>
+                                    <small>
+                                        <ui-select id="selCambioParte"
+                                                   ng-model="salida.idrazoncambio"
+                                                   title="Seleccione una raz&oacute;n..."
+                                                   theme="bootstrap"
+                                                   append-to-body="false">
+                                            <ui-select-match placeholder="Buscar..." allow-clear="false">
+                                                <small>
+                                                    <span ng-bind="$select.selected.descripcion"></span>
+                                                </small>
+                                            </ui-select-match>
+                                            <ui-select-choices repeat="item.id as item in razonescambio | filter:$select.search">
+                                                <small>
+                                                    <div ng-bind-html="item.descripcion | highlight: $select.search"></div>
+                                                </small>
+                                            </ui-select-choices>
+                                            <ui-select-no-choice>
+                                                <small>
+                                                    No hay resultados...
+                                                </small>
+                                            </ui-select-no-choice>
+                                        </ui-select>
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="col-md-2 nopadding" style="padding-top: 2em !important;">
+                                <div class="btn-group" role="group" aria-label="...">
+                                    <button class="btn btn-primary" type="button" ng-click="addSalida(salida)" ng-disabled="frmCasoSalida.$invalid" ng-hide="+salida.id > 0">
+                                        <i class="fa fa-floppy-o" aria-hidden="true"></i>
+                                    </button>
+                                    <button class="btn btn-primary" type="button" ng-click="updSalida(salida)" ng-disabled="frmCasoSalida.$invalid" ng-show="+salida.id > 0">
+                                        <i class="fa fa-floppy-o" aria-hidden="true"></i>
+                                    </button>
+                                    <button class="btn btn-primary" type="button" ng-click="resetSalida()" ng-show="+salida.id > 0">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <hr ng-show="+salida.id > 0"/>
+                    <table class="table table-condensed table-hover" ng-show="+salida.id > 0">
+                        <caption>
+                            <div style="text-align: center; width: 100%"><span style="font-weight: bold">Detalle de requerimiento de partes</span></div>
+                            <div style="width: 100%;">
+                                <form name="frmDetSal" id="frmDetSal" ng-submit="frmDetSal.$valid && addDetSalida(detsalida)" novalidate>
+                                    <div class="row">
+                                        <div class="col-md-4 nopadding">
+                                            <ui-select id="selDetBodega"
+                                                       ng-model="detsalida.idbodega"
+                                                       title="Seleccione una bodega..."
+                                                       theme="bootstrap"
+                                                       append-to-body="false"
+                                                       ng-required="true">
+                                                <ui-select-match placeholder="Bodega..." allow-clear="false">
+                                                    <span ng-bind="$select.selected.nombre"></span>
+                                                </ui-select-match>
+                                                <ui-select-choices repeat="item.id as item in bodegas | filter:$select.search">
+                                                    <div ng-bind-html="item.nombre | highlight: $select.search"></div>
+                                                </ui-select-choices>
+                                                <ui-select-no-choice>
+                                                    No hay resultados...
+                                                </ui-select-no-choice>
+                                            </ui-select>
+                                        </div>
+                                        <div class="col-md-3 nopadding">
+                                            <ui-select id="selDetParte"
+                                                       ng-model="detsalida.idparte"
+                                                       title="Seleccione una parte..."
+                                                       theme="bootstrap"
+                                                       append-to-body="false"
+                                                       ng-required="true">
+                                                <ui-select-match placeholder="Parte..." allow-clear="false">
+                                                    <span ng-bind="$select.selected.descripcion"></span>
+                                                </ui-select-match>
+                                                <ui-select-choices repeat="item.id as item in partes | filter:$select.search">
+                                                    <div ng-bind-html="item.descripcion | highlight: $select.search"></div>
+                                                </ui-select-choices>
+                                                <ui-select-no-choice>
+                                                    No hay resultados...
+                                                </ui-select-no-choice>
+                                            </ui-select>
+                                        </div>
+                                        <div class="col-md-2 nopadding">
+                                            <input name="txtDetCant" id="txtDetCant" type="number" class="form-control" ng-model="detsalida.cantidad" min="0.0001" step="0.0001" required/>
+                                        </div>
+                                        <div class="col-md-3 nopadding">
+                                            <div class="btn-group" role="group" aria-label="...">
+                                                <button type="submit" class="btn btn-primary" ng-disabled="frmDetSal.$invalid" ng-hide="+detsalida.id > 0">
+                                                    <i class="fa fa-floppy-o" aria-hidden="true"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-primary" ng-disabled="frmDetSal.$invalid" ng-show="+detsalida.id > 0" ng-click="updDetSalida(detsalida)">
+                                                    <i class="fa fa-floppy-o" aria-hidden="true"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-danger" ng-show="+detsalida.id > 0" ng-click="delDetSalida(detsalida)">
+                                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-primary" ng-show="+detsalida.id > 0" ng-click="resetDetSalida()">
+                                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </caption>
+                        <thead>
+                        <tr>
+                            <th>Bodega</th>
+                            <th>Parte</th>
+                            <th class="numero">Cantidad</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="det in detssalida" ng-click="getDetalleSalida(det.id)">
+                            <td>{{det.bodega}}</td>
+                            <td>{{det.parte}}</td>
+                            <td class="numero">{{det.cantidad | number:4}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </small>
+    </div>
+    <div class="modal-footer">
+        <!-- <button class="btn btn-primary" type="button" ng-click="ok()">Aceptar</button> -->
+        <div class="btn-group" role="group" aria-label="...">
+            <button class="btn btn-primary" type="button" ng-click="cancel()">
+                <i class="fa fa-times-circle-o" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+</script>
+<!--Fin de Template de la modal-->
+<!--Template de la modal //Este usa el controlador ModalCierreCasoCtrl-->
+<script type="text/ng-template" id="modalCierreCaso.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Cerrar caso</h3>
+        <h5>
+            No. caso: {{caso.nocaso}}<br/>
+            Estatus: {{caso.estatus}}
+        </h5>
+    </div>
+    <div class="modal-body" style="overflow-y: auto !important;">
+        <form name="frmCierreCaso" id="frmCierreCaso" ng-submit="frmCierreCaso.$valid && cerrarCaso(caso)" novalidate>
+            <div class="row">
+                <div class="col-md-12 nopadding">
+                    <div class="form-group">
+                        <label for="selEstatus">T&eacute;cnico:</label>
+                        <ui-select id="selCierreTec"
+                                   ng-model="caso.idtecnico"
+                                   title="Seleccione un t&eacute;nico..."
+                                   theme="bootstrap"
+                                   autofocus="true"
+                                   append-to-body="false"
+                                   ng-required="true">
+                            <ui-select-match placeholder="Buscar..." allow-clear="false">
+                                <span ng-bind="$select.selected.nombre"></span>
+                            </ui-select-match>
+                            <ui-select-choices repeat="item.id as item in tecnicos | filter:$select.search">
+                                <div ng-bind-html="item.nombre | highlight: $select.search"></div>
+                            </ui-select-choices>
+                            <ui-select-no-choice>
+                                No hay resultados...
+                            </ui-select-no-choice>
+                        </ui-select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 nopadding">
+                    <div class="form-group">
+                        <label for="selCierreTipoCaso">Tipo de caso:</label>
+                        <ui-select id="selCierreTipoCaso"
+                                   ng-model="caso.idtipocaso"
+                                   title="Seleccione un tipo de caso..."
+                                   theme="bootstrap"
+                                   autofocus="false"
+                                   append-to-body="false"
+                                   ng-required="true">
+                            <ui-select-match placeholder="Buscar..." allow-clear="false">
+                                <span ng-bind="$select.selected.descripcion"></span>
+                            </ui-select-match>
+                            <ui-select-choices repeat="item.id as item in tiposcaso | filter:$select.search">
+                                <div ng-bind-html="item.descripcion | highlight: $select.search"></div>
+                                <small>
+                                    <strong>Fuente:</strong>&nbsp;<span ng-bind-html="item.fuentecaso | highlight: $select.search" ></span>
+                                </small>
+                            </ui-select-choices>
+                            <ui-select-no-choice>
+                                No hay resultados...
+                            </ui-select-no-choice>
+                        </ui-select>
+                    </div>
+                </div>
+                <div class="col-md-6 nopadding">
+                    <div class="form-group">
+                        <label for="selCierreTipoSol">Tipo de soluci&oacute;n:</label>
+                        <ui-select id="selCierreTipoSol"
+                                   ng-model="caso.idtiposolucion"
+                                   title="Seleccione un tipo de soluci&oacute;n..."
+                                   theme="bootstrap"
+                                   autofocus="false"
+                                   append-to-body="false"
+                                   ng-required="true">
+                            <ui-select-match placeholder="Buscar..." allow-clear="false">
+                                <span ng-bind="$select.selected.descripcion"></span>
+                            </ui-select-match>
+                            <ui-select-choices repeat="item.id as item in tipossolucion | filter:$select.search">
+                                <div ng-bind-html="item.descripcion | highlight: $select.search"></div>
+                            </ui-select-choices>
+                            <ui-select-no-choice>
+                                No hay resultados...
+                            </ui-select-no-choice>
+                        </ui-select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 nopadding">
+                    <div class="form-group">
+                        <label for="txtCierreSerieEq1">Serie del equipo (1):</label>
+                        <input name="txtCierreSerieEq1" id="txtCierreSerieEq1" type="text" class="form-control" ng-model="caso.serieequipouno"/>
+                    </div>
+                </div>
+                <div class="col-md-4 nopadding">
+                    <div class="form-group">
+                        <label for="txtCierreSerieEq2">Serie del equipo (2):</label>
+                        <input name="txtCierreSerieEq2" id="txtCierreSerieEq2" type="text" class="form-control" ng-model="caso.serieequipodos"/>
+                    </div>
+                </div>
+                <div class="col-md-4 nopadding">
+                    <div class="form-group">
+                        <label for="txtCierreSerieEq3">Serie del equipo (3):</label>
+                        <input name="txtCierreSerieEq3" id="txtCierreSerieEq3" type="text" class="form-control" ng-model="caso.serieequipotres"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 nopadding">
+                    <div class="form-group">
+                        <label for="txtComentarioCierre">Comentario:</label>
+                        <textarea name="txtComentarioCierre" id="txtComentarioCierre" class="form-control" style="width: 100%" ng-model="caso.comentariocierre" rows="3"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 nopadding">
+                    <span><strong>F/H de cierre:&nbsp;</strong>{{caso.fhcierre | date:'dd/MM/yyyy HH:mm:ss'}}</span>
+                </div>
+                <div class="col-md-6 nopadding">
+                    <span><strong>Cerrado por:&nbsp;</strong>{{caso.usrcierre}}</span>
+                </div>
+            </div>
+            <div class="btn-group" role="group" aria-label="...">
+                <button type="submit" class="btn btn-primary" ng-disabled="frmCierreCaso.$invalid" ng-show="+caso.id > 0">
+                    <i class="fa fa-floppy-o" aria-hidden="true"></i>
+                </button>
+                <button class="btn btn-primary" type="button" ng-click="cancel()">
+                    <i class="fa fa-times-circle-o" aria-hidden="true"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+</script>
+<!--Fin de Template de la modal-->

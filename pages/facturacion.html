@@ -1,0 +1,94 @@
+<div class="container" ng-controller="facturacionCtrl">
+    <div class="panel panel-primary">
+        <div class="panel-heading">Facturaci&oacute;n de cobros pendientes</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="txtFAl">Cobros pendientes al:</label>
+                        <div class="input-group">
+                            <input name="txtFAl" id="txtFAl" type="date" ng-model="params.fal"
+                               class="form-control" required/>
+                            <span class="input-group-btn">
+                                <button class="btn btn-secondary" type="button" ng-click="getLstCobros()">
+                                    <span class="glyphicon glyphicon-search"></span>    
+                                </button>
+                            </span>
+                        </div>                        
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="txtTCD">Tipo de cambio de hoy:</label>
+                        <input name="txtTCD" id="txtTCD" type="text" ng-model="tcdia" class="form-control"
+                               ng-disabled="true" fcsa-number="{ maxDecimals:dectc }"/>
+                    </div>
+                </div>
+            </div>
+            <hr/>
+            <table class="table table-responsive table-hover">
+                <caption>
+                    <tr style="text-align: right" ng-show="cobros.length > 0">
+                        <td colspan="7">
+                            <button type="button" class="btn btn-primary btn-sm" ng-disabled="facturando" ng-click="facturar()">
+                                <span class="glyphicon glyphicon-list-alt"></span>
+                            </button>
+                        </td>
+                    </tr>
+                </caption>
+                <thead>
+                <tr>
+                    <th>Cobro</th>
+                    <th>Cliente</th>
+                    <th style="text-align: right">Contrato No.</th>
+                    <th style="text-align: right">Renta No.</th>
+                    <th>Tel&eacute;fono</th>
+                    <th>E-mail</th>
+                    <th style="text-align: right">Monto</th>
+                    <th style="text-align: center">Facturar</th>
+                </tr>
+                </thead>
+                <tfoot>
+                <tr style="text-align: right" ng-show="cobros.length > 0">
+                    <td colspan="7">
+                        <button type="button" class="btn btn-primary btn-sm" ng-disabled="facturando" ng-click="facturar()">
+                            <span class="glyphicon glyphicon-list-alt"></span>
+                        </button>
+                    </td>
+                </tr>
+                </tfoot>
+                <tbody>
+                <tr ng-repeat="c in cobros">
+                    <td>{{c.fechacobro | date:'dd/MM/yyyy'}}</td>
+                    <td>{{c.cliente}}</td>
+                    <td style="text-align: right">GCF{{c.idcliente | padNumber:4}}-{{c.correlativo | padNumber:4}}</td>
+                    <td style="text-align: right">{{+c.nocuota > 0 ? (c.nocuota.toString() + '/' + c.ultimacuota.toString()) : ''}}</td>
+                    <td>{{c.telefono}}</td>
+                    <td>{{c.emailenviofact}}</td>
+                    <td style="text-align: right">{{c.moneda}}&nbsp;{{c.monto | number:2}}</td>
+                    <td style="text-align: center">
+                        <input type="checkbox" name="chkFact_{{c.id}}" id="chkFact_{{c.id}}" ng-model="c.facturado" ng-true-value="1" ng-false-value="0"/>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script type="text/ng-template" id="modalErrorGFACE.html">
+    <div class="modal-dialog">
+        <div class="modal-content modal-error">
+            <div class="modal-header">
+                <h3 class="modal-title">Error(es) del GFACE</h3>
+            </div>
+            <div class="modal-body">
+                <ol>
+                    <li ng-repeat="e in errores"><strong>{{ e.descripcion }}</strong></li>
+                </ol>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" type="button" ng-click="ok()">Ok</button>
+            </div>
+        </div>
+    </div>
+</script>

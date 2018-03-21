@@ -1,0 +1,54 @@
+<style>
+    .bld{ font-weight: bold }
+</style>
+<div class="container" ng-controller="rptConteoTecnicoFuenteCtrl">
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">Conteo de casos por fuente por t&eacute;cnico</div>
+            <div class="panel-body" style="text-align: right">
+                <div class="row" style="text-align: left">
+                    <div class="col-md-3 col-sm-3">
+                        <div class="form-group">
+                            <label for="txtDel">Del:</label>
+                            <input name="txtDel" id="txtDel" type="date" class="form-control" ng-model="params.del" placeholder="Del"/>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-3">
+                        <div class="form-group">
+                            <label for="txtAl">Al:</label>
+                            <input name="txtAl" id="txtAl" type="date" class="form-control" ng-model="params.al" placeholder="Al"/>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-default btn-sm" ng-click="getRepHtml()">
+                    <i class="fa fa-html5 fa-2x" aria-hidden="true"></i>
+                </button>
+                <button type="button" class="btn btn-default btn-sm" ng-click="getRepPdf()">
+                    <i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <hr ng-show="conteos.length > 0"/>
+    <div class="row" ng-show="conteos.length > 0">
+        <div class="col-md-12">
+            <table class="table table-condensed table-hover table-striped">
+                <thead>
+                <tr>
+                    <th>Fuente</th>
+                    <th ng-repeat="tec in conteos[0].tecnicos" class="numero">{{tec.tecnico}}</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="f in conteos">
+                    <td style="font-weight: bold">{{f.descripcion}}</td>
+                    <td ng-repeat="t in f.tecnicos" class="numero"
+                        ng-class="{'bld':f.descripcion.toUpperCase().indexOf('TOTALES') > -1 || t.tecnico.toUpperCase().indexOf('ACUMULADO') > -1} ">
+                        {{t.conteo | number:0}}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

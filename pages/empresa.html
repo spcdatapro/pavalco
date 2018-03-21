@@ -1,0 +1,151 @@
+<div class="container" ng-controller="empresaCtrl">
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a show-tab href="#divFrmEmpresa" data-toggle="tab">EMPRESAS</a>
+        </li>
+        <li ng-show="editando">
+            <a show-tab href="#divFrmConfCont" data-toggle="tab">CONFIGURACI&Oacute;N CONTABLE</a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <div id="divFrmEmpresa" class="tab-pane fade in active">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Empresas</div>
+                <div class="panel-body">
+                    <form name="frmEmpresa" id="frmEmpresa" class="form-inline" ng-submit="frmEmpresa.$valid && editaEmpresa(laEmpresa, 'c')" novalidate>
+                        <div class="form-group" ng-class="{'has-error':frmEmpresa.txtNombre.$invalid && !frmEmpresa.txtNombre.$pristine}">
+                            <label for="txtNombre">Nombre:</label>
+                            <input type="text" name="txtNombre" id="txtNombre" class="form-control" ng-model="laEmpresa.nomempresa" placeholder="Nombre de la empresa" maxlength="100" required/>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error':frmEmpresa.selMoneda.$invalid && !frmEmpresa.selMoneda.$pristine}">
+                            <label for="selMoneda">Moneda por defecto:</label>
+                            <select id="selMoneda" name="selMoneda" class="form-control"
+                                    ng-options="obj.nommoneda for obj in lasMonedas track by obj.id" ng-model="laEmpresa.objMoneda" required>
+                            </select>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error':frmEmpresa.txtDecTC.$invalid && !frmEmpresa.txtDecTC.$pristine}">
+                            <label for="txtDecTC">Decimales para el tipo de cambio:</label>
+                            <input type="number" name="txtDecTC" id="txtDecTC" class="form-control" ng-model="laEmpresa.dectc"
+                                   placeholder="Decimales para el tipo de cambio:" min="0" max="10" required/>
+                        </div>
+                        <div class="btn-group" role="group" aria-label="...">
+                            <button type="submit" class="btn btn-primary" ng-disabled="frmEmpresa.$invalid || !permiso.c">
+                                <span class="glyphicon glyphicon-floppy-save"></span>
+                            </button>
+                        </div>
+                    </form>
+                    <hr/>
+                    <table class="table table-responsive table-hover">
+                        <thead>
+                        <tr>
+                            <th>Empresa</th>
+                            <th>Moneda por defecto</th>
+                            <th style="text-align: right">Decimales/TC</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="e in lstEmpresas" ng-click="getConfigConta(e)">
+                            <td>
+                            <span editable-text="e.nomempresa" e-name="nomempresa" e-form="rowform" e-required
+                                  e-class="form-control" e-type="text" e-maxlength="100">
+                                {{e.nomempresa}}
+                            </span>
+                            </td>
+                            <td>
+                            <span editable-select="e.idmoneda" e-name="idmoneda" e-form="rowform"
+                                  e-ng-options="obj.id as obj.nommoneda for obj in lasMonedas"
+                                  e-required e-class="form-control">
+                                {{e.nommoneda}} ({{e.simbolo}})
+                            </span>
+                            </td>
+                            <td style="text-align: right">
+                                <span editable-text="e.dectc" e-name="dectc" e-form="rowform" e-required
+                                      e-class="form-control" e-type="number" e-min="0" e-max="10">
+                                {{e.dectc | number:0}}
+                            </span>
+                            </td>
+                            <td style="white-space: nowrap">
+                                <edit-row-form
+                                        editing-row="e"
+                                        update-func="updEmpresa(fila, qid)"
+                                        delete-func="delEmpresa(qid)"
+                                        m="permiso.m" e="permiso.e">
+                                </edit-row-form>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div id="divFrmConfCont" class="tab-pane fade">
+            <div class="panel panel-success">
+                <div class="panel-heading">Configuraci&oacute;n contable de <span class="badge">{{etiqueta.nomempresa}}</span></div>
+                <div class="panel-body">
+                    <form name="frmConfigCont" ng-submit="frmConfigCont.$valid && addConfCont(detConf)" novalidate>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group" ng-class="{'has-error':frmConfigCont.selCta.$invalid && !frmConfigCont.selCta.$pristine}">
+                                    <label for="selTipoConf">Configuraci&oacute;n:</label>
+                                    <select name="selTipoConf" id="selTipoConf" class="form-control" ng-model="detConf.objTipoConf"
+                                            ng-options="obj.desctipoconfconta for obj in losTiposConf track by obj.id" required>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="selCta">Cuenta:</label>
+                                    <input name="txtFiltroCta" id="txtFiltroCta" type="text" class="form-control" ng-model="searchcta"
+                                           placeholder="Cuenta contable"/>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="form-group" ng-class="{'has-error':frmConfigCont.selCta.$invalid && !frmConfigCont.selCta.$pristine}">
+                                    <label for="selCta">&nbsp;</label>
+                                    <select name="selCta" id="selCta" class="form-control" ng-model="detConf.objCuenta"
+                                            ng-options="obj.codcta for obj in lasCtasMov | filter:{codcta:searchcta}" multiple required>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="btn-group" role="group" aria-label="...">
+                            <button type="submit" class="btn btn-success" ng-disabled="frmConfigCont.$invalid || !permiso.c">
+                                <span class="glyphicon glyphicon-floppy-save"></span>
+                            </button>
+                        </div>
+                    </form>
+                    <hr/>
+                    <table class="table table-responsive table-hover">
+                        <thead>
+                            <tr>
+                                <th>Configuraci&oacute;n</th>
+                                <th>Cuenta contable</th>
+                                <th>&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="conf in lasConfsConta">
+                                <td>{{conf.desctipoconfconta}}</td>
+                                <td>{{conf.cuentac}}</td>
+                                <td>
+                                    <button class="btn btn-danger" ng-click="delConfConta(conf.id)" ng-disabled="!permiso.e">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+
+</div>

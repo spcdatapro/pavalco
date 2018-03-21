@@ -1,0 +1,181 @@
+<div class="container-fluid" ng-controller="tranDirectaCtrl">
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a show-tab href="#divFrmDirecta" data-toggle="tab">PARTIDA(S) DIRECTA(S)</a>
+        </li>
+        <li ng-show="editando">
+            <a show-tab href="#divFrmDetContDirecta" data-toggle="tab">DETALLE CONTABLE</a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div id="divFrmDirecta" class="tab-pane fade in active">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Partida(s) directa(s)</div>
+                <div class="panel-body">
+                    <form name="frmDirecta" id="frmDirecta" ng-submit="frmDirecta.$valid && addDirecta(laDirecta)" novalidate>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="txtCorrela">Correlativo:</label>
+                                    <input name="txtCorrela" id="txtCorrela" type="text" class="form-control"
+                                           ng-model="laDirecta.id" style="text-align: right"
+                                           placeholder="Correlativo" ng-disabled="true"/>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group" ng-class="{'has-error':frmDirecta.txtFecha.$invalid && !frmDirecta.txtFecha.$pristine}">
+                                    <label for="txtFecha">Fecha:</label>
+                                    <input name="txtFecha" id="txtFecha" type="date" class="form-control" ng-model="laDirecta.fecha" required/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="btn-group" role="group" aria-label="...">
+                            <button type="submit" class="btn btn-primary" ng-disabled="frmDirecta.$invalid" ng-hide="editando">
+                                <span class="glyphicon glyphicon-floppy-save"></span>
+                            </button>
+                            <button type="button" class="btn btn-primary" ng-disabled="frmDirecta.$invlaid" ng-show="editando" ng-click="updDirecta(laDirecta)">
+                                <span class="glyphicon glyphicon-floppy-save"></span>
+                            </button>
+                            <button type="button" class="btn btn-primary" ng-disabled="frmDirecta.$invalid" ng-show="editando" ng-click="resetDirecta()">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </button>
+                        </div>
+                    </form>
+                    <hr/>
+                    <table datatable="ng" dt-options="dtOptions" class="table table-responsive table-hover">
+                        <thead>
+                            <th>Fecha</th>
+                            <th>Correlativo</th>
+                            <th>&nbsp;</th>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="directa in lasDirectas" ng-click="getPartidaDirecta(directa.id)">
+                                <td>{{directa.fecha | date:'dd/MM/yyyy'}}</td>
+                                <td>{{directa.id}}</td>
+                                <th>
+                                    <button type="button" class="btn btn-danger" ng-click="delDirecta(directa.id)">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </button>
+                                </th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div id="divFrmDetContDirecta" class="tab-pane fade">
+            <div class="panel panel-success">
+                <div class="panel-heading">Detalle contable de <span class="badge">{{directastr}}</span></div>
+                <div class="panel-body">
+                    <form name="frmDetCont" id="frmDetCont" ng-submit="frmDetCont.$valid && addDetCont(elDetCont)" novalidate>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="form-group" ng-class="{'has-error':frmDetCont.selCta.$invalid && !frmDetCont.selCta.$pristine}">
+                                    <label>Cuenta:</label>
+                                    <ui-select ng-model="elDetCont.objCuenta"
+                                               title="Seleccione una cuenta contable..."
+                                               theme="bootstrap"
+                                               autofocus="true"
+                                               append-to-body="true">
+                                        <ui-select-match placeholder="Buscar cuenta contable..." allow-clear="false">
+                                            <span ng-bind="$select.selected.codcta"></span>
+                                        </ui-select-match>
+                                        <ui-select-choices repeat="item in lasCtasMov | filter:$select.search">
+                                            <div ng-bind-html="item.codcta | highlight: $select.search"></div>
+                                            <small>
+                                                <strong>Nombre:</strong>&nbsp;<span ng-bind-html="item.nombrecta | highlight: $select.search" ></span>
+                                            </small>
+                                        </ui-select-choices>
+                                        <ui-select-no-choice>
+                                            No hay resultados...
+                                        </ui-select-no-choice>
+                                    </ui-select>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group" ng-class="{'has-error':frmDetCont.txtDebe.$invalid && !frmDetCont.txtDebe.$pristine}">
+                                    <label for="txtDebe">Debe:</label>
+                                    <input name="txtDebe" id="txtDebe" type="text" class="form-control" ng-model="elDetCont.debe"
+                                           placeholder="Debe" fcsa-number="{ maxDecimals: 2 }" ng-change="zeroHaber(elDetCont.debe)" required />
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group" ng-class="{'has-error':frmDetCont.txtHaber.$invalid && !frmDetCont.txtHaber.$pristine}">
+                                    <label for="txtHaber">Haber:</label>
+                                    <input name="txtHaber" id="txtHaber" type="text" class="form-control" ng-model="elDetCont.haber"
+                                           placeholder="Haber" fcsa-number="{ maxDecimals: 2 }" ng-change="zeroDebe(elDetCont.haber)" required />
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group" ng-class="{'has-error':frmDetCont.selContrato.$invalid && !frmDetCont.selContrato.$pristine}" ng-show="+elDetCont.objCuenta.integracliente == 1">
+                                    <label>Contrato:</label>
+                                    <ui-select ng-model="elDetCont.idcontrato"
+                                               title="Seleccione un contrato..."
+                                               theme="bootstrap"
+                                               autofocus="true"
+                                               append-to-body="true">
+                                        <ui-select-match placeholder="Buscar contrato..." allow-clear="true">
+                                            <span ng-bind="$select.selected.nocontrato"></span>
+                                        </ui-select-match>
+                                        <ui-select-choices repeat="item.id as item in contratos | filter:$select.search">
+                                            <div ng-bind-html="item.nocontrato | highlight: $select.search"></div>
+                                            <small>
+                                                <strong>Cliente:</strong>&nbsp;<span ng-bind-html="item.cliente | highlight: $select.search" ></span>
+                                            </small>
+                                        </ui-select-choices>
+                                        <ui-select-no-choice>
+                                            No hay resultados...
+                                        </ui-select-no-choice>
+                                    </ui-select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group" ng-class="{'has-error':frmDetCont.txtConceptoMayor.$invalid && !frmDetCont.txtConceptoMayor.$pristine}">
+                                    <label for="txtConceptoMayor">Concepto mayor:</label>
+                                    <textarea name="txtConceptoMayor" id="txtConceptoMayor" class="form-control"
+                                              ng-model="elDetCont.conceptomayor" placeholder="Concepto para el libro mayor"
+                                              style="width:100%" rows="3" required>
+                                    </textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="btn-group" role="group" aria-label="...">
+                            <button type="submit" class="btn btn-info" ng-disabled="frmDetCont.$invalid">
+                                <span class="glyphicon glyphicon-floppy-save"></span>
+                            </button>
+                        </div>
+                    </form>
+                    <hr/>
+                    <table datatable="ng" dt-options="dtOptions" class="table table-responsive table-hover">
+                        <thead>
+                        <tr>
+                            <th>Cuenta</th>
+                            <th>Debe</th>
+                            <th>Haber</th>
+                            <th>Concepto mayor</th>
+                            <th>No. Contrato</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="dc in losDetCont">
+                            <td>{{dc.desccuentacont}}</td>
+                            <td>{{dc.debe | number:2}}</td>
+                            <td>{{dc.haber | number:2}}</td>
+                            <td>{{dc.conceptomayor}}</td>
+                            <td>{{dc.nocontrato || '&nbsp;'}}</td>
+                            <td>
+                                <button type="button" class="btn btn-danger" ng-click="delDetCont(dc)" ng-hide="dc.id == 0">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,129 @@
+<div class="container" ng-controller="rptDetContDocsCtrl">
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-body" style="text-align: right">
+                <div class="row" style="text-align: left">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="selBanco">Banco:</label>
+                            <input name="txtFiltroProv" id="txtFiltroProv" type="text" class="form-control" ng-model="search" placeholder="Banco"/>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label for="selBanco">&nbsp;</label>
+                            <select name="selBanco" id="selBanco" class="form-control" ng-model="objBanco"
+                                    ng-options="obj.bancomoneda for obj in losBancos | filter:{bancomoneda:search}" multiple>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="text-align: left">
+                    <div class="col-md-3 col-sm-3">
+                        <div class="form-group">
+                            <label for="txtDel">Fecha del:</label>
+                            <input name="txtDel" id="txtDel" type="date" class="form-control" ng-model="params.fDel" placeholder="Del"/>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-3">
+                        <div class="form-group">
+                            <label for="txtAl">al:</label>
+                            <input name="txtAl" id="txtAl" type="date" class="form-control" ng-model="params.fAl" placeholder="Al"/>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label for="selTipoTrans">Tipo de transacci&oacute;n:</label>
+                            <select name="selTipoTrans" id="selTipoTrans" class="form-control" ng-model="objTipotrans"
+                                    ng-options="obj.abreviadesc for obj in tipotrans track by obj.abreviatura">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-primary btn-sm" ng-click="getDetContDocs()">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </button>
+                <button type="button" class="btn btn-primary btn-sm" ng-click="printVersion()">
+                    <span class="glyphicon glyphicon-print"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toPrint">
+        <div class="row">
+            <div style="text-align: center">
+                <h2>DETALLE CONTABLE DE DOCUMENTO(S)</h2>
+            </div>
+        </div>
+
+        <div class="panel panel-default" ng-repeat="d in data">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-7 col-md-7">
+                        <label>Banco:&nbsp;</label>{{d.nombre}}
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="panel" ng-repeat="t in d.tdocs">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-5 col-md-5">
+                                <label>Tipo de transcci&oacute;n:&nbsp;</label>{{t.tipo}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="panel" ng-repeat="d in t.docs">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-4 col-md-4">
+                                        <label>Fecha:&nbsp;</label>{{d.fecha | date:'dd/MM/yyyy'}}
+                                    </div>
+                                    <div class="col-xs-4 col-md-4">
+                                        <label>N&uacute;mero:&nbsp;</label>{{d.numero}}
+                                    </div>
+                                    <div class="col-xs-4 col-md-4">
+                                        <label>Monto:&nbsp;</label>{{d.monto | number:2}}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6 col-md-6">
+                                        <label>Beneficiario:&nbsp;</label>{{d.beneficiario}}
+                                    </div>
+                                    <div class="col-xs-6 col-md-6">
+                                        <label>Concepto:&nbsp;</label>{{d.concepto}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <table class="table table-responsive table-condensed">
+                                    <thead>
+                                    <tr>
+                                        <th>Cuenta</th>
+                                        <th style="text-align: right">Debe</th>
+                                        <th style="text-align: right">Haber</th>
+                                        <th>Concepto mayor</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="det in d.detcont"
+                                        ng-class="{'partida-cuadrada': det.conceptomayor.toUpperCase().indexOf('CUADRADA') > -1, 'partida-descuadrada': det.conceptomayor.toUpperCase().indexOf('DESCUADRADA') > -1}">
+                                        <td style="white-space: nowrap">({{det.codigo}})&nbsp;{{det.nombrecta}}</td>
+                                        <td style="text-align: right">{{det.codigo != '' && det.debe > 0 ? (det.debe | number:2) : ''}}</td>
+                                        <td style="text-align: right">{{det.codigo != '' && det.haber > 0 ? (det.haber | number:2) : ''}}</td>
+                                        <td>{{det.conceptomayor}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

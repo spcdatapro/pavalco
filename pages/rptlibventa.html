@@ -1,0 +1,160 @@
+<div class="container" ng-controller="rptLibroVentasCtrl">
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-body" style="text-align: right">
+                <div class="row" style="text-align: left">
+                    <div class="col-md-4 col-sm-4">
+                        <div class="form-group">
+                            <label for="selMes">Mes:</label>
+                            <select name="selMes" id="selMes" class="form-control" ng-model="params.mes" ng-change="resetData()">
+                                <option value="1">Enero</option>
+                                <option value="2">Febrero</option>
+                                <option value="3">Marzo</option>
+                                <option value="4">Abril</option>
+                                <option value="5">Mayo</option>
+                                <option value="6">Junio</option>
+                                <option value="7">Julio</option>
+                                <option value="8">Agosto</option>
+                                <option value="9">Septiembre</option>
+                                <option value="10">Octubre</option>
+                                <option value="11">Noviembre</option>
+                                <option value="12">Diciembre</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                        <div class="form-group">
+                            <label for="txtAnio">A&ntilde;o:</label>
+                            <input name="txtAnio" id="txtAnio" type="number" class="form-control" ng-model="params.anio" placeholder="A&ntilde;o" ng-change="resetData()"/>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-primary btn-sm" ng-click="getLibVenta()">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </button>
+                <button type="button" class="btn btn-primary btn-sm" ng-click="printVersion()">
+                    <span class="glyphicon glyphicon-print"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div id="toPrint" style="text-align: left">
+        <table>
+            <tr>
+                <td><strong>REPORTE DE VENTAS</strong></td>
+            </tr>
+            <tr>
+                <td><strong>GRUPO CORPORATIVO FINANCIERO, S.A.</strong></td>
+            </tr>
+            <tr>
+                <td>N.I.T. 7836702-6</td>
+            </tr>
+            <tr>
+                <td>PER&Iacute;ODO: {{meses[params.mes - 1].toUpperCase()}}&nbsp;DE&nbsp;{{params.anio | number:0}}</td>
+            </tr>
+        </table>
+        <hr/>
+        <table class="table table-bordered table-responsive table-condensed" ng-show="libroventas.length > 0">
+            <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Tipo de documento</th>
+                <th>Serie</th>
+                <th style="text-align: right">No. de documento</th>
+                <th>N.I.T.</th>
+                <th>Cliente</th>
+                <th style="text-align: right">Exentas</th>
+                <th style="text-align: right">Activos</th>
+                <th style="text-align: right">Bienes</th>
+                <th style="text-align: right">Servicios</th>
+                <th style="text-align: right">I.V.A.</th>
+                <th style="text-align: right">Total</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="lc in libroventas" ng-class="{'linea-de-totales': lc.cliente.toUpperCase().indexOf('TOTAL') > -1}">
+                <td>{{lc.fechafactura | date:'dd/MM/yyyy'}}</td>
+                <td style="white-space: nowrap">{{lc.tipodocumento}}</td>
+                <td style="white-space: nowrap">{{lc.serie}}</td>
+                <td style="text-align: right">{{lc.documento}}</td>
+                <td style="white-space: nowrap">{{lc.nit}}</td>
+                <td>{{lc.cliente}}</td>
+                <td style="text-align: right">{{lc.exento | number:2}}</td>
+                <td style="text-align: right">{{lc.activo | number:2}}</td>
+                <td style="text-align: right">{{lc.bien | number:2}}</td>
+                <td style="text-align: right">{{lc.servicio | number:2}}</td>
+                <td style="text-align: right">{{lc.iva | number:2}}</td>
+                <td style="text-align: right">{{lc.totfact | number:2}}</td>
+            </tr>
+            </tbody>
+        </table>
+        <hr/>
+        <p ng-show="libroventas.length > 0">TOTAL DE DOCUMENTOS: {{libroventas.length - 1}}</p>
+        <hr/>
+        <table ng-show="libroventas.length > 0" class="table" style="width: 50em">
+            <thead>
+            <tr>
+                <th>DESCRIPCI&Oacute;N</th>
+                <th style="text-align: right">BASE</th>
+                <th style="text-align: right">I.V.A.</th>
+                <th style="text-align: right">TOTALES</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th>EXENTAS</th>
+                <td style="text-align: right">{{(libroventas[libroventas.length-1].exento) | number:2}}</td>
+                <td style="text-align: right">0.00</td>
+                <th style="text-align: right">{{(libroventas[libroventas.length-1].exento) | number:2}}</th>
+            </tr>
+            <tr>
+                <th>ACTIVOS</th>
+                <td style="text-align: right">{{libroventas[libroventas.length-1].activo | number:2}}</td>
+                <td style="text-align: right">{{totiva.activo | number:2}}</td>
+                <th style="text-align: right">{{(libroventas[libroventas.length-1].activo + totiva.activo) | number:2}}</th>
+            </tr>
+            <tr>
+                <th>BIENES</th>
+                <td style="text-align: right">{{libroventas[libroventas.length-1].bien | number:2}}</td>
+                <td style="text-align: right">{{totiva.bien | number:2}}</td>
+                <th style="text-align: right">{{(libroventas[libroventas.length-1].bien + totiva.bien) | number:2}}</th>
+            </tr>
+            <tr>
+                <th>SERVICIOS</th>
+                <td style="text-align: right">{{libroventas[libroventas.length-1].servicio | number:2}}</td>
+                <td style="text-align: right">{{totiva.servicio | number:2}}</td>
+                <th style="text-align: right">{{(libroventas[libroventas.length-1].servicio + totiva.servicio) | number:2}}</th>
+            </tr>
+            <tr>
+                <th>TOTALES</th>
+                <td style="text-align: right">
+                    {{(
+                    libroventas[libroventas.length-1].activo +
+                    libroventas[libroventas.length-1].bien +
+                    libroventas[libroventas.length-1].servicio +
+                    libroventas[libroventas.length-1].exento
+                    ) | number : 2}}
+                </td>
+                <td style="text-align: right">
+                    {{(
+                    totiva.activo +
+                    totiva.bien +
+                    totiva.servicio
+                    ) | number:2}}
+                </td>
+                <th style="text-align: right">
+                    {{(
+                    libroventas[libroventas.length-1].activo +
+                    libroventas[libroventas.length-1].bien +
+                    libroventas[libroventas.length-1].servicio +
+                    libroventas[libroventas.length-1].exento +
+                    totiva.activo +
+                    totiva.bien +
+                    totiva.servicio
+                    ) | number:2}}
+                </th>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

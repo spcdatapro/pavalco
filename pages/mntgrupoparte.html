@@ -1,0 +1,96 @@
+<div class="container" ng-controller="grupoParteCtrl">
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a show-tab href="#divFrmGrupo" data-toggle="tab">GRUPOS DE PARTES</a>
+        </li>
+        <li ng-show="+grupo.id > 0">
+            <a show-tab href="#divFrmSubGrupo" data-toggle="tab">SUBGRUPOS DE PARTES</a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div id="divFrmGrupo" class="tab-pane fade in active">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Grupos de partes</div>
+                <div class="panel-body">
+                    <form name="frmGrupo" id="frmGrupo" class="form-inline" ng-submit="frmGrupo.$valid && addGrupo(grupo)" novalidate>
+                        <div class="form-group" ng-class="{'has-error':frmGrupo.txtDescGrupo.$invalid && !frmGrupo.txtDescGrupo.$pristine}">
+                            <label for="txtDescGrupo">Descripci&oacute;n:</label>
+                            <input name="txtDescGrupo" id="txtDescGrupo" type="text" class="form-control" style="width: 50em;" maxlength="75" ng-model="grupo.descripcion" required/>
+                        </div>
+                        <div class="btn-group" role="group" aria-label="...">
+                            <button type="submit" class="btn btn-primary" ng-disabled="frmGrupo.$invalid || !permiso.c" ng-hide="+grupo.id > 0">
+                                <span class="glyphicon glyphicon-floppy-save"></span>
+                            </button>
+                            <button type="button" class="btn btn-primary" ng-disabled="frmGrupo.$invalid || !permiso.m" ng-show="+grupo.id > 0" ng-click="updGrupo(grupo)">
+                                <span class="glyphicon glyphicon-floppy-save"></span>
+                            </button>
+                            <button type="button" class="btn btn-warning" ng-disabled="frmGrupo.$invalid || !permiso.e" ng-show="+grupo.id > 0" ng-click="delGrupo(grupo)">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                            <button type="button" class="btn btn-primary" ng-disabled="!permiso.c" ng-show="+grupo.id > 0" ng-click="resetGrupo()">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </button>
+                        </div>
+                    </form>
+                    <hr/>
+                    <div class="table-responsive">
+                        <table class="table table-condensed table-hover">
+                            <thead>
+                            <tr>
+                                <th>Descripci&oacute;n</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="g in grupos" ng-click="getGrupo(g.id)">
+                                <td>{{g.descripcion}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="divFrmSubGrupo" class="tab-pane fade">
+            <div class="panel panel-success">
+                <div class="panel-heading">Subgrupos de partes&nbsp;<span class="badge" style="color: white;">Grupo: {{grupo.descripcion}}</span></div>
+                <div class="panel-body">
+                    <form name="frmSubGrupo" id="frmSubGrupo" class="form-inline" ng-submit="frmSubGrupo.$valid && addSubGrupo(subgrupo)" novalidate>
+                        <div class="form-group" ng-class="{'has-error':frmSubGrupo.txtDescSubGrupo.$invalid && !frmSubGrupo.txtDescSubGrupo.$pristine}">
+                            <label for="txtDescSubGrupo">Descripci&oacute;n:</label>
+                            <input name="txtDescSubGrupo" id="txtDescSubGrupo" type="text" class="form-control" style="width: 50em;" maxlength="250" ng-model="subgrupo.descripcion" required/>
+                        </div>
+                        <div class="btn-group" role="group" aria-label="...">
+                            <button type="submit" class="btn btn-primary" ng-disabled="frmSubGrupo.$invalid || !permiso.c" ng-hide="+subgrupo.id > 0">
+                                <span class="glyphicon glyphicon-floppy-save"></span>
+                            </button>
+                            <button type="button" class="btn btn-primary" ng-disabled="frmSubGrupo.$invalid || !permiso.m" ng-show="+subgrupo.id > 0" ng-click="updSubGrupo(subgrupo)">
+                                <span class="glyphicon glyphicon-floppy-save"></span>
+                            </button>
+                            <button type="button" class="btn btn-warning" ng-disabled="frmSubGrupo.$invalid || !permiso.e" ng-show="+subgrupo.id > 0" ng-click="delSubGrupo(subgrupo)">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                            <button type="button" class="btn btn-primary" ng-disabled="!permiso.c" ng-show="+subgrupo.id > 0" ng-click="resetSubGrupo()">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </button>
+                        </div>
+                    </form>
+                    <hr/>
+                    <div class="table-responsive">
+                        <table class="table table-condensed table-hover">
+                            <thead>
+                            <tr>
+                                <th>Descripci&oacute;n</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="sg in subgrupos" ng-click="getSubGrupo(sg.id)">
+                                <td>{{sg.descripcion}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

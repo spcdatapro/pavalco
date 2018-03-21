@@ -1,0 +1,48 @@
+<div class="row">
+	<div class="col-sm-offset-2 col-sm-8">
+		<div class="jumbotron">
+			<div class="container">
+				<table class="table table-condensed">
+					<tbody>
+						<tr>
+							<td>Fecha:</td>
+							<td>{{ ing.fecha | date:"dd/MM/yyyy" }}</td>
+							<td>Documento:</td>
+							<td>{{ ing.documento }}</td>
+						</tr>
+						<tr>
+							<td>Usuario:</td>
+							<td colspan="3">{{ ing.nusuario }}</td>
+						</tr>
+						<tr>
+							<td>Bodega:</td>
+							<td colspan="3">{{ ing.nbodega }}</td>
+						</tr>
+						<tr>
+							<td>Descripción:</td>
+							<td colspan="3">{{ ing.descripcion }}</td>
+						</tr>
+					</tbody>
+				</table>
+				<table class="table table-condensed">
+					<thead>
+						<tr>
+							<th>Cantidad</th>
+							<th>Código</th>
+							<th>Descripción</th>
+							<th class="text-right">Costo/u</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="i in agregados">
+							<td>{{ i.cantidad | number:2 }}</td>
+							<td>{{ i.codigointerno }}</td>
+							<td>{{ i.descripcion }}</td>
+							<td class="text-right">{{ i.costounitario | number:2 }}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
