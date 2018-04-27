@@ -26,7 +26,7 @@ $app->post('/lstcerrados', function(){
     $query = "SELECT a.id, a.nocaso, a.idestatus, b.descripcion AS estatus, a.idequipo, c.descripcion AS equipo, a.idubicacion, d.descripcion AS ubicacion, a.idtipollamada, e.descripcion AS tipollamada, ";
     $query.= "a.fhapertura, a.idusuarioapertura, f.nombre AS usuarioapertura, a.comentario, a.idtipocaso, g.descripcion AS tipocaso, a.idtecnico, h.nombre AS tecnico, a.comentariocierre, a.serieequipouno, ";
     $query.= "a.serieequipodos, a.serieequipotres, a.fhcierre, a.idusuariocierra, i.nombre AS usuariocierra, (SELECT COUNT(id) FROM bitacoracaso WHERE idcaso = a.id AND esvisita = 1) AS visitado, ";
-    $query.= "a.idtiposolucion, j.descripcion AS tiposolucion, g.idfuentecaso, k.descripcion AS fuentecaso ";
+    $query.= "a.idtiposolucion, j.descripcion AS tiposolucion, g.idfuentecaso, k.descripcion AS fuentecaso, DATE_FORMAT(a.fhcierre, '%d/%m/%Y %H:%i:%s') AS fhcierrestr ";
     $query.= "FROM caso a LEFT JOIN estatuscaso b ON b.id = a.idestatus LEFT JOIN equipo c ON c.id = a.idequipo LEFT JOIN ubicacion d ON d.id = a.idubicacion LEFT JOIN tipollamada e ON e.id = a.idtipollamada ";
     $query.= "LEFT JOIN usuario f ON f.id = a.idusuarioapertura LEFT JOIN tipocaso g ON g.id = a.idtipocaso LEFT JOIN tecnico h ON h.id = a.idtecnico LEFT JOIN usuario i ON i.id = a.idusuariocierra ";
     $query.= "LEFT JOIN tiposolucion j ON j.id = a.idtiposolucion LEFT JOIN fuentecaso k ON k.id = g.idfuentecaso ";

@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9a5f2214-dc49-4fec-8939-ad25c31273d6" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/controllers/rptintegraanualctrl.js" afterPath="$PROJECT_DIR$/js/controllers/rptintegraanualctrl.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/services/jsreportsrvc.js" afterPath="$PROJECT_DIR$/js/services/jsreportsrvc.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/rptcasoscerrados.html" afterPath="$PROJECT_DIR$/pages/rptcasoscerrados.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/rptintegraanual.html" afterPath="$PROJECT_DIR$/pages/rptintegraanual.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/php/caso.php" afterPath="$PROJECT_DIR$/php/caso.php" />
     </list>
     <ignored path="cpm.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -39,14 +42,70 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="rptcasoscerrados.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="rptcasoscerrados.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pages/rptcasoscerrados.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.29574224">
-              <caret line="147" column="190" selection-start-line="147" selection-start-column="190" selection-end-line="147" selection-end-column="190" />
+            <state vertical-scroll-proportion="-23.653847">
+              <caret line="171" column="89" selection-start-line="171" selection-start-column="89" selection-end-line="171" selection-end-column="89" />
               <folding>
                 <element signature="n#style#0;n#input#0;n#caption#0;n#table#0;n#small#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="rptintegraanual.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pages/rptintegraanual.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-25.615385">
+              <caret line="279" column="12" selection-start-line="279" selection-start-column="12" selection-end-line="279" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="rptintegraanualctrl.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/js/controllers/rptintegraanualctrl.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.47058824">
+              <caret line="72" column="0" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="caso.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/php/caso.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-12.538462">
+              <caret line="28" column="167" selection-start-line="28" selection-start-column="156" selection-end-line="28" selection-end-column="167" />
+              <folding>
+                <marker date="1524805168199" expanded="true" signature="7000:7136" placeholder="SELECT GROUP..tiposolucion..." />
+                <marker date="1524805168199" expanded="true" signature="7244:7360" placeholder="SELECT GROUP..tecnico..." />
+                <marker date="1524805168199" expanded="true" signature="7473:7603" placeholder="SELECT GROUP..ubicacion..." />
+                <marker date="1524805168199" expanded="true" signature="7723:7857" placeholder="SELECT GROUP..tipollamada..." />
+                <marker date="1524805168199" expanded="true" signature="7967:8099" placeholder="SELECT GROUP..fuentecaso..." />
+                <marker date="1524805168199" expanded="true" signature="9802:9926" placeholder="INSERT INTO caso..." />
+                <marker date="1524805168199" expanded="true" signature="10530:10650" placeholder="UPDATE caso ..." />
+                <marker date="1524805168199" expanded="true" signature="10879:10919" placeholder="DELETE FROM ..." />
+                <marker date="1524805168199" expanded="true" signature="10948:10976" placeholder="DELETE FROM ..." />
+                <marker date="1524805168199" expanded="true" signature="11470:11485" placeholder="UPDATE caso ..." />
+                <marker date="1524805168199" expanded="true" signature="12041:12115" placeholder="SELECT COUNT..bitacoracaso..." />
+                <marker date="1524805168199" expanded="true" signature="12993:13060" placeholder="UPDATE caso ..." />
+                <marker date="1524805168199" expanded="true" signature="13254:13347" placeholder="INSERT INTO bitacoracaso..." />
+                <marker date="1524805168199" expanded="true" signature="13809:13956" placeholder="UPDATE bitac..." />
+                <marker date="1524805168199" expanded="true" signature="14226:14262" placeholder="DELETE FROM ..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="jsreportsrvc.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/services/jsreportsrvc.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="2" column="62" selection-start-line="2" selection-start-column="62" selection-end-line="2" selection-end-column="62" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -74,9 +133,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/pages/mntfuentecaso.html" />
-        <option value="$PROJECT_DIR$/js/services/tipollamada.js" />
-        <option value="$PROJECT_DIR$/php/tipollamada.php" />
         <option value="$PROJECT_DIR$/js/controllers/tipollamadactrl.js" />
         <option value="$PROJECT_DIR$/pages/mnttipollamada.html" />
         <option value="$PROJECT_DIR$/php/tiposolucion.php" />
@@ -122,9 +178,12 @@
         <option value="$PROJECT_DIR$/pages/tranbanc.html" />
         <option value="$PROJECT_DIR$/js/controllers/tranbancctrl.js" />
         <option value="$PROJECT_DIR$/php/pago.php" />
-        <option value="$PROJECT_DIR$/js/services/jsreportsrvc.js" />
         <option value="$PROJECT_DIR$/pages/rptconciliabco.html" />
         <option value="$PROJECT_DIR$/pages/rptcasoscerrados.html" />
+        <option value="$PROJECT_DIR$/js/services/jsreportsrvc.js" />
+        <option value="$PROJECT_DIR$/php/caso.php" />
+        <option value="$PROJECT_DIR$/pages/rptintegraanual.html" />
+        <option value="$PROJECT_DIR$/js/controllers/rptintegraanualctrl.js" />
       </list>
     </option>
   </component>
@@ -179,8 +238,6 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -196,20 +253,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="pavalco" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cpm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pavalco" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -241,8 +284,60 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cpm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pavalco" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cpm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pavalco" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="services" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cpm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pavalco" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controllers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -984,12 +1079,14 @@
       <workItem from="1524247203808" duration="672000" />
       <workItem from="1524248316921" duration="476000" />
       <workItem from="1524508414386" duration="798000" />
-      <workItem from="1524577497933" duration="673000" />
+      <workItem from="1524577497933" duration="1211000" />
+      <workItem from="1524605038523" duration="4000" />
+      <workItem from="1524803858587" duration="2080000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1926040000" />
+    <option name="totallyTimeSpent" value="1928662000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1001,25 +1098,25 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36405006" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14872068" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14872068" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32942432" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2489339" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="PHP-CGI Server" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37299034" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.626409" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1082,13 +1179,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/pages/mntparte.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.14886364">
-          <caret line="161" column="53" selection-start-line="161" selection-start-column="53" selection-end-line="161" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/controllers/partectrl.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.061810154">
@@ -1376,13 +1466,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/services/jsreportsrvc.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="53" column="38" selection-start-line="53" selection-start-column="38" selection-end-line="53" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pages/rptconciliabco.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.39655173">
@@ -1404,49 +1487,76 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/services/casosrvc.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="63" selection-start-line="12" selection-start-column="52" selection-end-line="12" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/php/caso.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.7307693">
-          <caret line="17" column="39" selection-start-line="17" selection-start-column="39" selection-end-line="17" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/php/rptintegracion.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3448276">
           <caret line="72" column="52" selection-start-line="72" selection-start-column="52" selection-end-line="72" selection-end-column="52" />
-          <folding>
-            <element signature="n#buscar#0;n#!!top" expanded="false" />
-            <element signature="n#sumaColumnas#0;n#!!top" expanded="false" />
-            <element signature="n#calcMix#0;n#!!top" expanded="false" />
-            <marker date="1521649583872" expanded="true" signature="2570:2736" placeholder="SELECT COUNT..caso..." />
-            <marker date="1521649583872" expanded="true" signature="2824:2893" placeholder="SELECT COUNT..ubicacion..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/rptintegraanual.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.46896553">
-          <caret line="24" column="38" selection-start-line="24" selection-start-column="38" selection-end-line="24" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pages/rptcasoscerrados.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.29574224">
-          <caret line="147" column="190" selection-start-line="147" selection-start-column="190" selection-end-line="147" selection-end-column="190" />
+        <state vertical-scroll-proportion="-23.653847">
+          <caret line="171" column="89" selection-start-line="171" selection-start-column="89" selection-end-line="171" selection-end-column="89" />
           <folding>
             <element signature="n#style#0;n#input#0;n#caption#0;n#table#0;n#small#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/caso.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.538462">
+          <caret line="28" column="167" selection-start-line="28" selection-start-column="156" selection-end-line="28" selection-end-column="167" />
+          <folding>
+            <marker date="1524805168199" expanded="true" signature="7000:7136" placeholder="SELECT GROUP..tiposolucion..." />
+            <marker date="1524805168199" expanded="true" signature="7244:7360" placeholder="SELECT GROUP..tecnico..." />
+            <marker date="1524805168199" expanded="true" signature="7473:7603" placeholder="SELECT GROUP..ubicacion..." />
+            <marker date="1524805168199" expanded="true" signature="7723:7857" placeholder="SELECT GROUP..tipollamada..." />
+            <marker date="1524805168199" expanded="true" signature="7967:8099" placeholder="SELECT GROUP..fuentecaso..." />
+            <marker date="1524805168199" expanded="true" signature="9802:9926" placeholder="INSERT INTO caso..." />
+            <marker date="1524805168199" expanded="true" signature="10530:10650" placeholder="UPDATE caso ..." />
+            <marker date="1524805168199" expanded="true" signature="10879:10919" placeholder="DELETE FROM ..." />
+            <marker date="1524805168199" expanded="true" signature="10948:10976" placeholder="DELETE FROM ..." />
+            <marker date="1524805168199" expanded="true" signature="11470:11485" placeholder="UPDATE caso ..." />
+            <marker date="1524805168199" expanded="true" signature="12041:12115" placeholder="SELECT COUNT..bitacoracaso..." />
+            <marker date="1524805168199" expanded="true" signature="12993:13060" placeholder="UPDATE caso ..." />
+            <marker date="1524805168199" expanded="true" signature="13254:13347" placeholder="INSERT INTO bitacoracaso..." />
+            <marker date="1524805168199" expanded="true" signature="13809:13956" placeholder="UPDATE bitac..." />
+            <marker date="1524805168199" expanded="true" signature="14226:14262" placeholder="DELETE FROM ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/services/jsreportsrvc.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="2" column="62" selection-start-line="2" selection-start-column="62" selection-end-line="2" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/services/casosrvc.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.22767857">
+          <caret line="12" column="63" selection-start-line="12" selection-start-column="52" selection-end-line="12" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/rptintegraanual.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-25.615385">
+          <caret line="279" column="12" selection-start-line="279" selection-start-column="12" selection-end-line="279" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/controllers/rptintegraanualctrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.47058824">
+          <caret line="72" column="0" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

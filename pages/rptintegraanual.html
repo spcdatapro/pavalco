@@ -255,7 +255,7 @@
                     <th>Tipo</th>
                     <th>Soluci&oacute;n</th>
                     <th>T&eacute;cnico</th>
-                    <th>Apertura</th>
+                    <!--<th>Apertura</th>-->
                     <th>Cierre</th>
                 </tr>
                 </thead>
@@ -268,7 +268,7 @@
                     <td>{{c.tipocaso}}</td>
                     <td>{{c.tiposolucion}}</td>
                     <td>{{c.tecnico}}</td>
-                    <td>{{c.fhapertura | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+                    <!--<td>{{c.fhapertura | date:'dd/MM/yyyy HH:mm:ss'}}</td>-->
                     <td>{{c.fhcierre | date:'dd/MM/yyyy HH:mm:ss'}}</td>
                 </tr>
                 </tbody>
@@ -278,6 +278,9 @@
     <div class="modal-footer">
         <div class="btn-group" role="group" aria-label="...">
             <!-- <button class="btn btn-primary" type="button" ng-click="ok()">Aceptar</button> -->
+            <button type="button" class="btn btn-primary" ng-click="getRepDetalle()">
+                <i class="fa fa-file-excel-o" aria-hidden="true"></i>
+            </button>
             <button class="btn btn-primary" type="button" ng-click="cancel()"><i class="fa fa-times-circle-o" aria-hidden="true"></i></button>
         </div>
     </div>

@@ -52,7 +52,8 @@
                     controller: 'ModalDetCasosCtrl',
                     windowClass: 'app-modal-window',
                     resolve:{
-                        casos: function(){ return $scope.casos; }
+                        casos: function(){ return $scope.casos; },
+                        filtros: function(){ return filtros; }
                     }
                 });
 
@@ -72,12 +73,21 @@
 
     //------------------------------------------------------------------------------------------------------------------------------------------------//
 
-    rptintegranualctrl.controller('ModalDetCasosCtrl', ['$scope', '$uibModalInstance', 'casos', function($scope, $uibModalInstance, casos){
+    rptintegranualctrl.controller('ModalDetCasosCtrl', ['$scope', '$uibModalInstance', 'casos', 'filtros', 'jsReportSrvc', function($scope, $uibModalInstance, casos, filtros, jsReportSrvc){
         $scope.cerrados = casos;
 
         $scope.ok = function () { $uibModalInstance.close(); };
 
         $scope.cancel = function () { $uibModalInstance.dismiss('cancel'); };
+
+        $scope.getRepDetalle= function(){
+            var test = false;
+            jsReportSrvc.getReport(test ? 'H1bK37eaz' : 'S1wJW4laG', filtros).then(function(result){
+                var file = new Blob([result.data], {type: 'application/vnd.ms-excel'});
+                var nombre = 'DetalleCasosCerrados';
+                saveAs(file, nombre + '.xlsx');
+            });
+        };
 
     }]);
 

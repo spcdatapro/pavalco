@@ -2,7 +2,7 @@
 
     var jsreportsrvc = angular.module('cpm.jsreportsrvc', []);
 
-    jsreportsrvc.factory('jsReportSrvc', ['$http', function($http){
+    jsreportsrvc.factory('jsReportSrvc', ['$http', '$sce', function($http, $sce){
         var url = window.location.origin + ':5489/api/report';
         //var url = 'http://52.35.3.1:5489/api/report';
         var props = {}, test = false;
@@ -151,6 +151,18 @@
             integracionClientes: function(obj){
                 props = {'template':{'shortid': test ? '' : 'HyzaHUHvg'}, 'data': obj};
                 return $http.post(url, props, {responseType: 'arraybuffer'}).success(function(response){return response});
+            },
+            getReport: function(shortid, obj){
+                props = {'template':{'shortid': shortid}, 'data': obj};
+                return $http.post(url, props, {responseType: 'arraybuffer'}).success(function(response){return response});
+            },
+            getPDFReport: function(shortid, obj){
+                props = { 'template':{'shortid': shortid}, 'data': obj };
+                return $http.post(url, props, {responseType: 'arraybuffer'}).then(function(response){
+                    var file = new Blob([response.data], {type: 'application/pdf'});
+                    var fileURL = URL.createObjectURL(file);
+                    return $sce.trustAsResourceUrl(fileURL);
+                });
             }
         };
     }]);
